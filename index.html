@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mono_invitations | Цифровые приглашения на свадьбу</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f4f4f4;
+            --dark-gray: #1a1a1a;
+            --border: #e2e2e2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 5%;
+        }
+        .logo {
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--black);
+            letter-spacing: 2px;
+            font-size: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .hero-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-size: 10px;
+            color: #888;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .hero p {
+            max-width: 500px;
+            font-weight: 200;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+        .btn-main {
+            padding: 18px 40px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-main:hover { background: #333; letter-spacing: 3px; }
+
+        /* Каталог */
+        .catalog { padding: 120px 0 60px; }
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .card { transition: 0.4s; }
+        .card-image {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background: var(--gray);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .placeholder-text {
+            color: #999;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .card:hover .card-overlay { opacity: 1; }
+        .card-info { padding: 25px 0; text-align: left; }
+        .card-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        .card-info p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .card-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .btn-view {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 11px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 2px;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .btn-order-card {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            font-family: inherit;
+            font-size: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .page-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid #ccc;
+            background: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .page-btn.active {
+            background: var(--black);
+            color: white;
+            border-color: var(--black);
+        }
+        .page-btn:hover { background: #eee; }
+
+        /* Info block */
+        .info-block {
+            padding: 80px 0;
+            background: var(--dark-gray);
+            color: var(--white);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .info-content h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+        .info-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .info-list li {
+            margin-bottom: 12px;
+            font-weight: 200;
+            display: flex;
+            align-items: flex-start;
+        }
+        .info-list li::before {
+            content: "—";
+            margin-right: 15px;
+            color: #888;
+        }
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 300;
+            margin: 20px 0 5px;
+        }
+        .price-note {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-bottom: 25px;
+        }
+        .insta-link {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 300;
+        }
+
+        /* Форма */
+        .order-section { padding: 100px 0; }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        form {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 18px;
+            border: 1px solid #ddd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus, select:focus { border-color: var(--black); }
+        .btn-submit {
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            padding: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover { background: #333; }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .footer-logo {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .copyright {
+            font-size: 10px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        /* Модальное окно */
+        .demo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .demo-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-header {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        .modal-close {
+            background: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 30px;
+            cursor: pointer;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .modal-close:hover {
+            background: white;
+            color: black;
+        }
+        .modal-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            background: white;
+        }
+        .modal-footer {
+            padding: 15px 30px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .modal-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 30px;
+            cursor: pointer;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .modal-btn:hover {
+            background: white;
+            color: black;
+        }
+        .modal-btn.primary {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+        .modal-btn.primary:hover {
+            background: #ddd;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 900px) {
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+        @media (max-width: 600px) {
+            .catalog-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 20px;
+            }
+            .info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .section-title { font-size: 2.2rem; }
+            .card-info h3 { font-size: 1.3rem; }
+            .btn-view { font-size: 10px; }
+            .modal-header { padding: 15px 20px; }
+            .modal-title { font-size: 1.3rem; }
+            .modal-close, .modal-btn { padding: 10px 20px; font-size: 10px; }
+            .modal-footer { flex-direction: column; }
+            .modal-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="#" class="logo">mono_invitations</a>
+        <ul class="nav-links">
+            <li><a href="#catalog">Коллекции</a></li>
+            <li><a href="#pricing">Условия</a></li>
+            <li><a href="#order">Заказать</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="hero">
+    <span class="hero-subtitle" data-aos="fade-down">Digital Wedding Agency</span>
+    <h1 data-aos="fade-up">Сайты, которые<br>приглашают красиво</h1>
+    <p data-aos="fade-up" data-aos-delay="200">Создаём эстетичные онлайн-приглашения с индивидуальным дизайном и удобной анкетой для гостей.</p>
+    <a href="#catalog" class="btn-main" data-aos="fade-up" data-aos-delay="400">Смотреть каталог</a>
+</header>
+
+<section id="pricing" class="info-block">
+    <div class="container">
+        <div class="info-grid">
+            <div class="info-content" data-aos="fade-right">
+                <h2>Стоимость и сроки</h2>
+                <div class="price-tag">90 BYN / 2500 ₽</div>
+                <div class="price-note">финальная цена под ключ</div>
+                <ul class="info-list">
+                    <li>Срок разработки: 1–3 рабочих дня</li>
+                    <li>Анкета гостя с отправкой на вашу почту</li>
+                    <li>Блок контактов (Telegram / WhatsApp)</li>
+                    <li>Добавление ваших фото и любых правок</li>
+                    <li>Персональная ссылка (действует 1 год)</li>
+                </ul>
+            </div>
+            <div class="info-content" data-aos="fade-left">
+                <h2>Как сделать заказ</h2>
+                <ul class="info-list">
+                    <li>Выберите шаблон из каталога ниже</li>
+                    <li>Оставьте заявку через форму на сайте</li>
+                    <li>Или напишите нам напрямую в Instagram</li>
+                    <li>Мы пришлём список необходимых данных</li>
+                    <li>Через 1–3 дня вы получите готовый сайт</li>
+                </ul>
+                <a href="https://instagram.com/mono_invitations" class="insta-link" target="_blank">@mono_invitations →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="catalog" class="catalog">
+    <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Коллекция шаблонов</h2>
+        
+        <div class="catalog-grid" id="catalogGrid"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+</section>
+
+<section id="order" class="order-section">
+    <div class="container">
+        <div class="form-container" data-aos="zoom-in">
+            <h2 class="section-title">Оставить заявку</h2>
+            <form id="monoForm">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="text" name="contact" placeholder="Telegram или Instagram" required>
+                <select name="template" id="templateSelect" required>
+                    <option value="">Выберите шаблон</option>
+                </select>
+                <textarea name="message" rows="4" placeholder="Ваши вопросы и пожелания"></textarea>
+                <button type="submit" class="btn-submit">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <span class="footer-logo">mono_invitations</span>
+        <p class="copyright">© 2026 Студия цифровых приглашений. Все права защищены.</p>
+    </div>
+</footer>
+
+<!-- Модальное окно -->
+<div class="demo-modal" id="demoModal">
+    <div class="modal-header">
+        <span class="modal-title" id="modalTitle">Классика</span>
+        <button class="modal-close" onclick="closeDemoModal()">Закрыть</button>
+    </div>
+    <iframe class="modal-frame" id="modalFrame" src="" frameborder="0"></iframe>
+    <div class="modal-footer">
+        <button class="modal-btn" onclick="closeDemoModal()">← Назад к каталогу</button>
+        <button class="modal-btn primary" id="modalSelectBtn">Выбрать этот шаблон</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+
+    // ШАБЛОНЫ
+    const templates = [
+        { name: "Классика", desc: "Вневременная элегантность, строгие линии.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg" },
+        { name: "Газета", desc: "Типографика в стиле редакционных изданий.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg" },
+        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg" },
+        { name: "Бархат", desc: "Глубокие тона, фактуры и драма.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg" },
+        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg" },
+        { name: "Cinema", desc: "Кинематографичный стиль, широкие кадры.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg" },
+        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg" },
+        { name: "Red", desc: "Яркий акцент на красном цвете.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg" },
+        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg" },
+        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg" },
+        { name: "Стиль", desc: "Графичный монохром с акцентами.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg" },
+        { name: "Black", desc: "Тёмная элегантность.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg" },
+        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg" },
+        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg" }
+    ];
+
+    const ITEMS_PER_PAGE = 9;
+    let currentPage = 1;
+    const totalPages = Math.ceil(templates.length / ITEMS_PER_PAGE);
+
+    const grid = document.getElementById('catalogGrid');
+    const paginationDiv = document.getElementById('pagination');
+    const select = document.getElementById('templateSelect');
+    const modal = document.getElementById('demoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalFrame = document.getElementById('modalFrame');
+    const modalSelectBtn = document.getElementById('modalSelectBtn');
+    let currentTemplateName = '';
+
+    function populateSelect() {
+        select.innerHTML = '<option value="">Выберите шаблон</option>';
+        templates.forEach(t => {
+            const opt = document.createElement('option');
+            opt.value = t.name;
+            opt.textContent = t.name;
+            select.appendChild(opt);
+        });
+    }
+    populateSelect();
+
+    function openDemoModal(template) {
+        currentTemplateName = template.name;
+        modalTitle.textContent = template.name;
+        modalFrame.src = template.demoUrl;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    window.closeDemoModal = function() {
+        modal.classList.remove('active');
+        modalFrame.src = '';
+        document.body.style.overflow = '';
+    };
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeDemoModal();
+        }
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeDemoModal();
+    });
+
+    modalSelectBtn.addEventListener('click', () => {
+        select.value = currentTemplateName;
+        closeDemoModal();
+        document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function renderPage(page) {
+        const start = (page - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        const pageItems = templates.slice(start, end);
+        
+        grid.innerHTML = '';
+        pageItems.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', (index * 50).toString());
+            
+            card.innerHTML = `
+                <div class="card-image">
+                    ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy">` : `<span class="placeholder-text">${item.name}</span>`}
+                    <div class="card-overlay">
+                        <button class="btn-main demo-trigger" data-name="${item.name}" style="padding: 10px 20px; font-size: 9px;">Быстрый просмотр</button>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.desc}</p>
+                    <div class="card-actions">
+                        <button class="btn-view demo-trigger" data-name="${item.name}">Посмотреть</button>
+                        <button class="btn-order-card" data-template="${item.name}">Выбрать</button>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        document.querySelectorAll('.demo-trigger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const templateName = e.target.dataset.name;
+                const template = templates.find(t => t.name === templateName);
+                if (template) openDemoModal(template);
+            });
+        });
+
+        document.querySelectorAll('.btn-order-card').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const templateName = e.target.dataset.template;
+                select.value = templateName;
+                document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        renderPagination();
+    }
+
+    function renderPagination() {
+        paginationDiv.innerHTML = '';
+        
+        if (currentPage > 1) {
+            const prevBtn = document.createElement('button');
+            prevBtn.textContent = '←';
+            prevBtn.className = 'page-btn';
+            prevBtn.addEventListener('click', () => { currentPage--; renderPage(currentPage); });
+            paginationDiv.appendChild(prevBtn);
+        }
+
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = i;
+            btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+            btn.addEventListener('click', () => { currentPage = i; renderPage(i); });
+            paginationDiv.appendChild(btn);
+        }
+
+        if (currentPage < totalPages) {
+            const nextBtn = document.createElement('button');
+            nextBtn.textContent = '→';
+            nextBtn.className = 'page-btn';
+            nextBtn.addEventListener('click', () => { currentPage++; renderPage(currentPage); });
+            paginationDiv.appendChild(nextBtn);
+        }
+    }
+
+    renderPage(1);
+
+    // ===== ФОРМА С AJAX =====
+    const form = document.getElementById('monoForm');
+    
+    function showCustomMessage(text, type) {
+        const existingMsg = document.querySelector('.custom-form-message');
+        if (existingMsg) existingMsg.remove();
+
+        const msg = document.createElement('div');
+        msg.className = 'custom-form-message';
+        msg.textContent = text;
+        msg.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: ${type === 'success' ? '#1a1a1a' : '#4a1515'};
+            color: white;
+            padding: 16px 32px;
+            border-radius: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 10001;
+            border-left: 3px solid ${type === 'success' ? '#b07d84' : '#c44'};
+            animation: slideUp 0.3s ease;
+        `;
+
+        if (!document.querySelector('#customMsgAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'customMsgAnimation';
+            style.textContent = `@keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }`;
+            document.head.appendChild(style);
+        }
+
+        document.body.appendChild(msg);
+        setTimeout(() => { msg.style.opacity = '0'; msg.style.transition = 'opacity 0.3s'; setTimeout(() => msg.remove(), 300); }, 4000);
+    }
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = this.querySelector('.btn-submit');
+        const originalText = btn.textContent;
+        btn.textContent = 'ОТПРАВКА...';
+        btn.style.opacity = '0.7';
+        btn.disabled = true;
+
+        const formData = new FormData(this);
+
+        fetch('https://formspree.io/f/xpqkwwwy', {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                showCustomMessage('Заявка отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
+                form.reset();
+            } else {
+                showCustomMessage('Произошла ошибка. Пожалуйста, попробуйте ещё раз.', 'error');
+            }
+        })
+        .catch(() => {
+            showCustomMessage('Проблема с соединением. Проверьте интернет и попробуйте снова.', 'error');
+        })
+        .finally(() => {
+            btn.textContent = originalText;
+            btn.style.opacity = '1';
+            btn.disabled = false;
+        });
+    });
+</script>
+</body>
+</html>
