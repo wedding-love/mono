@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>mono_invitations | Цифровые приглашения на свадьбу</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
@@ -187,6 +187,7 @@
             display: flex;
             gap: 15px;
             align-items: center;
+            flex-wrap: wrap;
         }
         .btn-view {
             text-decoration: none;
@@ -216,8 +217,9 @@
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
         .page-btn {
             width: 45px;
@@ -305,8 +307,21 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
             outline: none;
+            background: white;
+            color: var(--black);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
-        input:focus, select:focus { border-color: var(--black); }
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 12px;
+        }
+        input:focus, select:focus, textarea:focus { 
+            border-color: var(--black); 
+        }
         .btn-submit {
             background: var(--black);
             color: var(--white);
@@ -427,27 +442,110 @@
             background: #ddd;
         }
 
-        /* Адаптивность */
+        /* ===== АДАПТИВНОСТЬ ===== */
         @media (max-width: 900px) {
-            .catalog-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-        }
-        @media (max-width: 600px) {
             .catalog-grid { 
                 grid-template-columns: repeat(2, 1fr); 
-                gap: 20px;
+                gap: 25px;
             }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
             .info-grid { grid-template-columns: 1fr; gap: 40px; }
             .section-title { font-size: 2.2rem; }
-            .card-info h3 { font-size: 1.3rem; }
-            .btn-view { font-size: 10px; }
-            .modal-header { padding: 15px 20px; }
-            .modal-title { font-size: 1.3rem; }
-            .modal-close, .modal-btn { padding: 10px 20px; font-size: 10px; }
-            .modal-footer { flex-direction: column; }
-            .modal-btn { width: 100%; }
+        }
+
+        @media (max-width: 600px) {
+            .catalog { padding: 100px 0 40px; }
+            .section-title { 
+                font-size: 2rem; 
+                margin-bottom: 40px;
+            }
+            .catalog-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px;
+            }
+            .card-info { 
+                padding: 15px 0; 
+            }
+            .card-info h3 { 
+                font-size: 1.2rem; 
+                margin-bottom: 5px;
+            }
+            .card-info p { 
+                font-size: 10px; 
+                margin-bottom: 15px;
+            }
+            .card-actions { 
+                gap: 10px; 
+            }
+            .btn-view { 
+                font-size: 9px; 
+            }
+            .btn-order-card { 
+                padding: 6px 12px; 
+                font-size: 8px;
+            }
+            .card-overlay .btn-main {
+                padding: 8px 15px !important;
+                font-size: 8px !important;
+            }
+            
+            /* Форма на мобильных */
+            .order-section { padding: 60px 0; }
+            .form-container { padding: 0 15px; }
+            input, select, textarea { 
+                padding: 16px; 
+                font-size: 16px; /* Предотвращает зум на iOS */
+            }
+            select {
+                color: var(--black);
+                text-decoration: none;
+                background-position: right 16px center;
+            }
+            
+            /* Модальное окно на мобильных */
+            .modal-header { 
+                padding: 12px 15px; 
+            }
+            .modal-title { 
+                font-size: 1.2rem; 
+            }
+            .modal-close { 
+                padding: 8px 16px; 
+                font-size: 10px;
+            }
+            .modal-footer { 
+                padding: 12px 15px;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .modal-btn { 
+                width: 100%;
+                padding: 12px; 
+                font-size: 11px;
+            }
+            
+            /* Пагинация на мобильных */
+            .pagination { gap: 8px; }
+            .page-btn { 
+                width: 40px; 
+                height: 40px; 
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .catalog-grid { gap: 12px; }
+            .card-info h3 { font-size: 1.1rem; }
+            .btn-view { font-size: 8px; }
+            .btn-order-card { padding: 5px 10px; font-size: 7px; }
+        }
+
+        /* Убираем подчеркивание у select в iOS */
+        select, select:focus, select:hover {
+            text-decoration: none !important;
         }
     </style>
 </head>
@@ -549,7 +647,7 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true, offset: 100 });
+    AOS.init({ duration: 800, once: true, offset: 80 });
 
     // ШАБЛОНЫ
     const templates = [
