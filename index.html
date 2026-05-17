@@ -407,7 +407,7 @@
         document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
     });
 
-    function renderPage(page) {
+    function renderPage(page, isInitialLoad = false) {
         const start = (page - 1) * ITEMS_PER_PAGE;
         const end = start + ITEMS_PER_PAGE;
         const pageItems = templates.slice(start, end);
@@ -458,7 +458,11 @@
         });
 
         renderPagination();
-        window.scrollTo({ top: document.getElementById('catalog').offsetTop - 80, behavior: 'smooth' });
+        
+        // Прокручиваем к каталогу только при переключении страниц (НЕ при первой загрузке)
+        if (!isInitialLoad) {
+            window.scrollTo({ top: document.getElementById('catalog').offsetTop - 80, behavior: 'smooth' });
+        }
     }
 
     function renderPagination() {
@@ -489,7 +493,8 @@
         }
     }
 
-    renderPage(1);
+    // При первой загрузке передаём isInitialLoad = true, чтобы НЕ скроллить
+    renderPage(1, true);
 
     const form = document.getElementById('monoForm');
     
