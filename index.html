@@ -13,7 +13,6 @@
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
     
-    <!-- Подключены все необходимые жирности для Montserrat, чтобы шрифты не скакали -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -91,9 +90,10 @@
             animation: fadeInUp 1.2s ease 0.9s forwards;
             margin-top: 5px;
         }
+        /* УБРАНА полоска под "приглашение" */
         #splash .tagline em {
             font-style: normal;
-            border-bottom: 1px solid var(--primary);
+            /* border-bottom удалён */
             padding-bottom: 2px;
         }
         #splash .loader {
@@ -171,11 +171,10 @@
             background: var(--secondary);
             overflow: hidden;
         }
-        /* УБРАНА СТРАННАЯ ПОЛОСКА */
         .hero > * { position: relative; z-index: 2; }
         .hero-subtitle { 
             text-transform: uppercase; letter-spacing: 6px; font-size: clamp(8px, 1vw, 10px); 
-            color: #8a7e74; margin-bottom: 15px; 
+            color: #8a7e74; margin-bottom: 15px; font-weight: 300;
         }
         .hero h1 { 
             font-family: 'Cormorant Garamond', serif; 
@@ -191,7 +190,7 @@
         .hero-stats { display: flex; gap: 30px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; }
         .stat-item { text-align: center; }
         .stat-number { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; color: var(--primary); }
-        .stat-label { font-size: 8px; text-transform: uppercase; letter-spacing: 2px; color: #8a7e74; font-weight: 400; }
+        .stat-label { font-size: 8px; text-transform: uppercase; letter-spacing: 2px; color: #8a7e74; font-weight: 300; }
         .btn-main {
             padding: 16px 36px; background: var(--primary); color: var(--white);
             text-decoration: none; text-transform: uppercase; font-size: 10px;
@@ -261,7 +260,7 @@
             border-radius: var(--filter-radius);
             transition: var(--transition-smooth);
             background: var(--white);
-            font-weight: 400;
+            font-weight: 300;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
@@ -314,7 +313,7 @@
             letter-spacing: 2px;
             z-index: 2;
             border-radius: var(--filter-radius);
-            font-weight: 500;
+            font-weight: 400;
         }
         .card-badge.new { background: #6b6058; }
         .card-image {
@@ -334,7 +333,7 @@
             transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .card:hover .card-image img { transform: scale(1.04); }
-        .placeholder-text { color: #b5aaa0; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 400; }
+        .placeholder-text { color: #b5aaa0; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 300; }
         .card-overlay {
             position: absolute;
             top: 0;
@@ -382,7 +381,7 @@
             letter-spacing: 2px;
             color: #8a7e74;
             margin-bottom: 6px;
-            font-weight: 400;
+            font-weight: 300;
         }
         .card-info p {
             font-size: clamp(10px, 0.9vw, 12px);
@@ -496,13 +495,18 @@
         }
         .info-list { list-style: none; margin-bottom: 25px; }
         .info-list li { 
-            margin-bottom: 12px; font-weight: 300; display: flex; align-items: flex-start; 
-            font-size: clamp(0.85rem, 1vw, 0.95rem); color: #d6cec0; 
+            margin-bottom: 12px; 
+            font-weight: 300; /* Единый вес */
+            display: flex; 
+            align-items: flex-start; 
+            font-size: clamp(0.85rem, 1vw, 0.95rem); 
+            color: #d6cec0; /* Единый цвет */
+            word-break: break-word; /* Адаптивный перенос */
         }
         .info-list li::before { content: "—"; margin-right: 14px; color: #8a7e74; flex-shrink: 0; }
         .info-list li strong { 
             font-weight: 500; 
-            color: var(--white);
+            color: var(--white); /* Цвет выделения */
         }
         .price-tag { 
             font-size: clamp(2rem, 3.5vw, 2.5rem); 
@@ -516,7 +520,7 @@
         }
         .insta-link { 
             color: var(--white); text-decoration: underline; text-underline-offset: 4px; 
-            font-weight: 400; transition: opacity 0.3s; display: inline-block;
+            font-weight: 300; transition: opacity 0.3s; display: inline-block;
             font-size: clamp(0.85rem, 1vw, 0.95rem);
         }
         .insta-link:hover { opacity: 0.6; }
@@ -675,7 +679,7 @@
         .checkbox-wrapper label {
             font-size: clamp(11px, 0.9vw, 12px);
             color: #6b6058;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.5;
             cursor: pointer;
         }
@@ -714,7 +718,7 @@
         .btn-submit:active:not(:disabled) { transform: scale(0.97); transition: transform 0.1s; }
         .form-note { 
             font-size: 9px; color: #b5aaa0; text-transform: uppercase; 
-            letter-spacing: 1px; margin-top: 16px; font-weight: 400; 
+            letter-spacing: 1px; margin-top: 16px; font-weight: 300; 
         }
 
         /* FAQ */
@@ -1059,13 +1063,14 @@
                 <h2>Что входит в стоимость</h2>
                 <div class="price-tag">90 BYN / 2500 ₽</div>
                 <div class="price-note">финальная цена под ключ, без скрытых платежей</div>
+                <!-- ИСПРАВЛЕННЫЙ БЛОК -->
                 <ul class="info-list">
                     <li>Индивидуальная настройка выбранного шаблона</li>
                     <li>Анкета гостя с отправкой ответов на вашу почту</li>
                     <li>Блок контактов (Telegram / WhatsApp)</li>
                     <li>Добавление ваших фото, имён и дат</li>
                     <li>Персональная ссылка — <strong>действует без ограничений</strong></li>
-                    <li><strong>До 3 правок бесплатно</strong></li> <!-- ИСПРАВЛЕНО: слитное написание -->
+                    <li><strong>До 3 правок</strong> бесплатно</li>
                     <li>Срок разработки: 1–3 рабочих дня</li>
                 </ul>
             </div>
@@ -1547,7 +1552,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 10001;
             border-left: 3px solid ${type === 'success' ? '#8a7e74' : '#c46a5a'};
             animation: slideUp 0.4s ease;
-            font-weight: 400;
+            font-weight: 500;
             max-width: 90%;
             text-align: center;
         `;
