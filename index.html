@@ -25,6 +25,9 @@
             --dark-gray: #352e2c;
             --border: #d6cec0;
             --accent: #4a3f3b;
+            --soft-shadow: 0 8px 30px rgba(53,46,44,0.06);
+            --card-radius: 12px;
+            --filter-radius: 30px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -136,7 +139,7 @@
             text-transform: uppercase; letter-spacing: 1.5px; font-weight: 400; transition: opacity 0.3s;
         }
         .nav-links a:hover { opacity: 0.5; }
-        .nav-cta { background: var(--primary); color: var(--white) !important; padding: 10px 20px; font-size: 10px; letter-spacing: 1.5px; transition: all 0.3s !important; border-radius: 2px; }
+        .nav-cta { background: var(--primary); color: var(--white) !important; padding: 10px 20px; font-size: 10px; letter-spacing: 1.5px; transition: all 0.3s !important; border-radius: var(--filter-radius); }
         .nav-cta:hover { background: #4a3f3b; letter-spacing: 2px; opacity: 1 !important; }
         .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
         .mobile-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
@@ -173,7 +176,7 @@
             padding: 18px 40px; background: var(--primary); color: var(--white);
             text-decoration: none; text-transform: uppercase; font-size: 11px;
             letter-spacing: 2px; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-block;
-            border-radius: 2px; position: relative; overflow: hidden;
+            border-radius: var(--filter-radius); position: relative; overflow: hidden;
         }
         .btn-main::after {
             content: '';
@@ -201,47 +204,234 @@
             background: var(--border);
         }
         .section-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; text-align: center; margin-bottom: 15px; text-transform: uppercase; font-weight: 300; color: var(--primary); }
-        .section-subtitle { text-align: center; font-size: 13px; color: #8a7e74; margin-bottom: 60px; font-weight: 200; letter-spacing: 1px; }
-        .catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; margin-bottom: 50px; }
+        .section-subtitle { text-align: center; font-size: 13px; color: #8a7e74; margin-bottom: 40px; font-weight: 200; letter-spacing: 1px; }
+
+        /* Filters */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+        }
+        .filter-btn {
+            padding: 10px 28px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            border-radius: var(--filter-radius);
+            transition: all 0.3s ease;
+            background: var(--white);
+            font-weight: 300;
+        }
+        .filter-btn:hover {
+            background: var(--gray);
+            border-color: #c4b8ab;
+            transform: translateY(-1px);
+        }
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 15px rgba(53,46,44,0.15);
+        }
+        .filter-btn:active {
+            transform: scale(0.96);
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            margin-bottom: 50px;
+        }
         
-        .card { 
-            transition: transform 0.4s ease, box-shadow 0.4s ease; 
+        .card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
             position: relative;
-            border-radius: 4px;
+            border-radius: var(--card-radius);
             overflow: hidden;
             background: var(--white);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            box-shadow: var(--soft-shadow);
             border: 1px solid var(--border);
         }
-        .card:hover { 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            transform: translateY(-8px); 
+        .card:hover {
+            box-shadow: 0 15px 45px rgba(53,46,44,0.10);
+            transform: translateY(-6px);
             border-color: #c4b8ab;
         }
-        .card-badge { position: absolute; top: 15px; right: 15px; background: var(--primary); color: var(--white); padding: 6px 14px; font-size: 8px; text-transform: uppercase; letter-spacing: 2px; z-index: 2; border-radius: 2px; }
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 16px;
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 2;
+            border-radius: var(--filter-radius);
+        }
         .card-badge.new { background: #6b6058; }
-        .card-image { width: 100%; aspect-ratio: 3/4; background: var(--gray); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .card:hover .card-image img { transform: scale(1.05); }
+        .card-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--gray);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .card:hover .card-image img { transform: scale(1.04); }
         .placeholder-text { color: #b5aaa0; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; }
-        .card-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(53,46,44,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; }
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(53,46,44,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.4s;
+            backdrop-filter: blur(2px);
+        }
         .card:hover .card-overlay { opacity: 1; }
-        .card-overlay .btn-main { background: var(--white); color: var(--primary); padding: 12px 25px; font-size: 9px; border-radius: 2px; }
-        .card-overlay .btn-main:hover { background: var(--white); color: var(--primary); letter-spacing: 2px; }
-        .card-info { padding: 25px 20px; text-align: left; background: var(--white); }
-        .card-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--primary); margin-bottom: 6px; }
-        .card-info p { font-size: 12px; color: #6b6058; margin-bottom: 18px; font-weight: 200; line-height: 1.5; }
-        .card-actions { display: flex; gap: 15px; align-items: center; flex-wrap: wrap; }
-        .btn-view { text-decoration: none; color: var(--primary); font-size: 10px; text-transform: uppercase; border-bottom: 1px solid var(--primary); padding-bottom: 3px; cursor: pointer; background: none; border-top: none; border-left: none; border-right: none; letter-spacing: 1px; font-family: 'Montserrat', sans-serif; transition: 0.3s; }
+        .card-overlay .btn-main {
+            background: var(--white);
+            color: var(--primary);
+            padding: 12px 28px;
+            font-size: 9px;
+            border-radius: var(--filter-radius);
+        }
+        .card-overlay .btn-main:hover {
+            background: var(--white);
+            color: var(--primary);
+            letter-spacing: 2px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .card-info {
+            padding: 25px 22px;
+            text-align: left;
+            background: var(--white);
+        }
+        .card-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .card-info .card-category {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8a7e74;
+            margin-bottom: 8px;
+            font-weight: 300;
+        }
+        .card-info p {
+            font-size: 12px;
+            color: #6b6058;
+            margin-bottom: 18px;
+            font-weight: 200;
+            line-height: 1.5;
+        }
+        .card-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn-view {
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 10px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 3px;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+            transition: 0.3s;
+        }
         .btn-view:hover { opacity: 0.5; }
-        .btn-order-card { background: var(--primary); color: var(--white); border: none; padding: 10px 18px; font-family: 'Montserrat', sans-serif; font-size: 9px; text-transform: uppercase; cursor: pointer; letter-spacing: 1.5px; transition: all 0.3s; border-radius: 2px; }
-        .btn-order-card:hover { background: #4a3f3b; letter-spacing: 2px; }
+        .btn-order-card {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            border-radius: var(--filter-radius);
+        }
+        .btn-order-card:hover {
+            background: #4a3f3b;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(53,46,44,0.12);
+        }
         .btn-order-card:active, .btn-view:active { transform: scale(0.97); }
 
-        .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 30px; flex-wrap: wrap; }
-        .page-btn { width: 40px; height: 40px; border: 1px solid var(--border); background: var(--white); font-family: 'Montserrat', sans-serif; font-size: 12px; cursor: pointer; transition: all 0.2s; color: var(--primary); border-radius: 2px; }
-        .page-btn.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
-        .page-btn:hover:not(.active) { background: var(--gray); border-color: #c4b8ab; }
+        .no-results {
+            text-align: center;
+            padding: 60px 0;
+            color: #8a7e74;
+            font-weight: 200;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--primary);
+            border-radius: 50%;
+        }
+        .page-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        .page-btn:hover:not(.active) {
+            background: var(--gray);
+            border-color: #c4b8ab;
+        }
         .page-btn:active { transform: scale(0.95); }
 
         /* Info Block */
@@ -269,8 +459,19 @@
         /* Extra Services */
         .extra-services { padding: 80px 0; background: var(--white); border-top: 1px solid var(--border); }
         .extra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .extra-item { background: var(--gray); padding: 35px 30px; border-radius: 4px; text-align: left; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid transparent; }
-        .extra-item:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-color: var(--border); }
+        .extra-item {
+            background: var(--gray);
+            padding: 35px 30px;
+            border-radius: var(--card-radius);
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid transparent;
+        }
+        .extra-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--soft-shadow);
+            border-color: var(--border);
+        }
         .extra-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; margin-bottom: 10px; color: var(--primary); }
         .extra-item p { font-size: 13px; color: #6b6058; font-weight: 200; line-height: 1.7; }
         .extra-item .price { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-top: 15px; color: var(--primary); font-weight: 400; }
@@ -289,14 +490,18 @@
             background: var(--border);
         }
         .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-        .testimonial-card { 
-            background: var(--gray); padding: 30px; text-align: left;
-            border-radius: 4px;
+        .testimonial-card {
+            background: var(--gray);
+            padding: 30px;
+            text-align: left;
+            border-radius: var(--card-radius);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
         }
         .testimonial-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            box-shadow: var(--soft-shadow);
+            border-color: var(--border);
         }
         .testimonial-stars { color: var(--primary); margin-bottom: 15px; font-size: 14px; letter-spacing: 2px; }
         .testimonial-text { font-style: italic; font-weight: 200; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.8; color: var(--primary); }
@@ -314,30 +519,30 @@
             height: 1px;
             background: var(--border);
         }
-        .form-container { 
-            max-width: 600px; margin: 0 auto; text-align: center; 
-            background: var(--white); padding: 50px; 
-            box-shadow: 0 5px 30px rgba(0,0,0,0.04);
-            border-radius: 4px;
+        .form-container {
+            max-width: 600px; margin: 0 auto; text-align: center;
+            background: var(--white); padding: 50px;
+            box-shadow: var(--soft-shadow);
+            border-radius: var(--card-radius);
             border: 1px solid var(--border);
         }
         form { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
-        input, select, textarea { 
-            width: 100%; padding: 18px; border: 1px solid var(--border); 
-            font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none; 
-            background: var(--white); color: var(--primary); 
-            -webkit-appearance: none; -moz-appearance: none; appearance: none; 
-            transition: border-color 0.3s, box-shadow 0.3s; 
-            border-radius: 2px;
+        input, select, textarea {
+            width: 100%; padding: 18px; border: 1px solid var(--border);
+            font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none;
+            background: var(--white); color: var(--primary);
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            border-radius: var(--filter-radius);
         }
         select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23352e2c' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; background-size: 12px; }
-        input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(53,46,44,0.06); }
-        .btn-submit { 
-            background: var(--primary); color: var(--white); border: none; 
-            padding: 20px; text-transform: uppercase; letter-spacing: 2px; 
-            cursor: pointer; transition: all 0.3s; margin-top: 10px; 
-            font-family: 'Montserrat', sans-serif; font-size: 12px; 
-            border-radius: 2px; position: relative; overflow: hidden;
+        input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(53,46,44,0.06); }
+        .btn-submit {
+            background: var(--primary); color: var(--white); border: none;
+            padding: 20px; text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: all 0.3s; margin-top: 10px;
+            font-family: 'Montserrat', sans-serif; font-size: 12px;
+            border-radius: var(--filter-radius); position: relative; overflow: hidden;
         }
         .btn-submit::after {
             content: '';
@@ -364,16 +569,16 @@
             height: 1px;
             background: var(--border);
         }
-        .faq details { 
-            margin-bottom: 20px; 
-            border-bottom: 1px solid var(--border); 
-            padding-bottom: 15px; 
+        .faq details {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
             transition: all 0.3s;
         }
         .faq details[open] { border-bottom-color: #d6cec0; }
-        .faq summary { 
-            cursor: pointer; font-weight: 400; font-size: 14px; 
-            list-style: none; 
+        .faq summary {
+            cursor: pointer; font-weight: 400; font-size: 14px;
+            list-style: none;
             transition: color 0.3s;
             display: flex;
             align-items: center;
@@ -391,8 +596,8 @@
             transform: rotate(90deg);
             color: var(--primary);
         }
-        .faq p { 
-            margin-top: 10px; color: #6b6058; font-size: 13px; 
+        .faq p {
+            margin-top: 10px; color: #6b6058; font-size: 13px;
             font-weight: 200; line-height: 1.8; padding-left: 25px;
         }
 
@@ -441,25 +646,25 @@
         .demo-modal.active { display: flex; opacity: 1; }
         .modal-header { padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.06); }
         .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 2px; }
-        .modal-close { 
-            background: none; border: 1px solid rgba(255,255,255,0.15); 
-            color: var(--white); padding: 12px 30px; cursor: pointer; 
-            border-radius: 30px; font-family: 'Montserrat', sans-serif; 
-            font-size: 12px; text-transform: uppercase; letter-spacing: 2px; 
-            transition: all 0.3s; 
+        .modal-close {
+            background: none; border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white); padding: 12px 30px; cursor: pointer;
+            border-radius: var(--filter-radius); font-family: 'Montserrat', sans-serif;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            transition: all 0.3s;
         }
         .modal-close:hover { background: var(--white); color: var(--primary); }
-        .modal-frame { 
-            flex: 1; width: 100%; border: none; 
+        .modal-frame {
+            flex: 1; width: 100%; border: none;
             background: #f5f0e8 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="none" stroke="%23d6cec0" stroke-width="2"/><circle cx="20" cy="20" r="18" fill="none" stroke="%23352e2c" stroke-width="2" stroke-dasharray="80" stroke-dashoffset="60" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="1s" repeatCount="indefinite"/></circle></svg>') center/40px no-repeat;
         }
         .modal-footer { padding: 15px 30px; display: flex; justify-content: flex-end; gap: 20px; border-top: 1px solid rgba(255,255,255,0.06); }
-        .modal-btn { 
-            background: transparent; border: 1px solid rgba(255,255,255,0.15); 
-            color: var(--white); padding: 12px 30px; cursor: pointer; 
-            border-radius: 30px; font-family: 'Montserrat', sans-serif; 
-            font-size: 12px; text-transform: uppercase; letter-spacing: 2px; 
-            transition: all 0.3s; 
+        .modal-btn {
+            background: transparent; border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white); padding: 12px 30px; cursor: pointer;
+            border-radius: var(--filter-radius); font-family: 'Montserrat', sans-serif;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 2px;
+            transition: all 0.3s;
         }
         .modal-btn:hover { background: var(--white); color: var(--primary); }
         .modal-btn:active { transform: scale(0.97); }
@@ -467,57 +672,60 @@
         .modal-btn.primary:hover { background: #e8e0d6; }
 
         /* Responsive */
-        @media (max-width: 900px) { 
-            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; } 
-            .testimonials-grid { grid-template-columns: 1fr; } 
+        @media (max-width: 900px) {
+            .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .testimonials-grid { grid-template-columns: 1fr; }
             .info-grid { gap: 60px; }
             .extra-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             .nav-links { display: none; } .mobile-menu-btn { display: block; }
             .nav-links.mobile-active { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: var(--white); padding: 30px; border-bottom: 1px solid var(--border); gap: 20px; }
-            .info-grid { grid-template-columns: 1fr; gap: 40px; } 
-            .section-title { font-size: 2.2rem; } 
-            .hero-stats { gap: 25px; } 
+            .info-grid { grid-template-columns: 1fr; gap: 40px; }
+            .section-title { font-size: 2.2rem; }
+            .hero-stats { gap: 25px; }
             .form-container { padding: 30px 20px; }
             .scroll-top-btn { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 16px; }
             .extra-grid { grid-template-columns: 1fr; }
+            .filter-btn { padding: 8px 20px; font-size: 10px; }
         }
         @media (max-width: 600px) {
-            .catalog { padding: 100px 0 40px; } 
+            .catalog { padding: 100px 0 40px; }
             .section-title { font-size: 2rem; margin-bottom: 10px; }
             .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-            .card-info { padding: 15px 12px; } 
-            .card-info h3 { font-size: 1.2rem; margin-bottom: 5px; } 
+            .card-info { padding: 15px 14px; }
+            .card-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
             .card-info p { font-size: 10px; margin-bottom: 15px; }
-            .card-actions { gap: 10px; } 
-            .btn-view { font-size: 9px; } 
+            .card-actions { gap: 10px; }
+            .btn-view { font-size: 9px; }
             .btn-order-card { padding: 8px 14px; font-size: 8px; }
-            .hero h1 { font-size: 2rem; } 
-            .hero p { font-size: 0.9rem; } 
-            .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; } 
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 0.9rem; }
+            .hero-stats { gap: 20px; flex-wrap: wrap; justify-content: center; }
             .stat-number { font-size: 1.5rem; }
-            .order-section { padding: 60px 0; } 
-            .form-container { padding: 25px 15px; } 
+            .order-section { padding: 60px 0; }
+            .form-container { padding: 25px 15px; }
             input, select, textarea { padding: 16px; font-size: 16px; }
-            .modal-header { padding: 12px 15px; } 
-            .modal-title { font-size: 1.2rem; } 
+            .modal-header { padding: 12px 15px; }
+            .modal-title { font-size: 1.2rem; }
             .modal-close { padding: 8px 16px; font-size: 10px; }
-            .modal-footer { padding: 12px 15px; flex-direction: row; gap: 10px; } 
+            .modal-footer { padding: 12px 15px; flex-direction: row; gap: 10px; }
             .modal-btn { flex: 1; text-align: center; padding: 14px 10px; font-size: 10px; border-radius: 25px; }
-            .pagination { gap: 6px; } 
+            .pagination { gap: 6px; }
             .page-btn { width: 35px; height: 35px; font-size: 11px; }
-            .info-block { padding: 60px 0; } 
-            .info-content h2 { font-size: 1.8rem; } 
+            .info-block { padding: 60px 0; }
+            .info-content h2 { font-size: 1.8rem; }
             .price-tag { font-size: 2rem; }
             .faq { padding: 60px 0; }
             .faq summary { font-size: 13px; }
             .extra-item { padding: 25px 20px; }
+            .filter-bar { gap: 8px; }
+            .filter-btn { padding: 6px 16px; font-size: 9px; }
         }
-        @media (max-width: 400px) { 
-            .catalog-grid { gap: 12px; } 
-            .card-info h3 { font-size: 1.1rem; } 
-            .btn-view { font-size: 8px; } 
+        @media (max-width: 400px) {
+            .catalog-grid { gap: 12px; }
+            .card-info h3 { font-size: 1.1rem; }
+            .btn-view { font-size: 8px; }
             .btn-order-card { padding: 6px 10px; font-size: 7px; }
         }
     </style>
@@ -610,17 +818,17 @@
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Расширьте возможности вашего приглашения</p>
         <div class="extra-grid">
             <div class="extra-item" data-aos="fade-up" data-aos-delay="100">
-                <h3>🌐 На иностранном языке</h3>
+                <h3>На иностранном языке</h3>
                 <p>Полный перевод сайта на английский или другой язык. Идеально для международных свадеб.</p>
                 <div class="price">+30 BYN <small>/ +1000 ₽</small></div>
             </div>
             <div class="extra-item" data-aos="fade-up" data-aos-delay="200">
-                <h3>✏️ Дополнительные правки</h3>
+                <h3>Дополнительные правки</h3>
                 <p>Больше 3 правок? Внесём любые изменения сверх лимита.</p>
                 <div class="price">+10 BYN <small>/ +100 ₽</small></div>
             </div>
             <div class="extra-item" data-aos="fade-up" data-aos-delay="300">
-                <h3>⚡ Срочная разработка</h3>
+                <h3>Срочная разработка</h3>
                 <p>Готовый сайт в течение нескольких часов. Для тех, кто ценит время.</p>
                 <div class="price">+45 BYN <small>/ +1500 ₽</small></div>
             </div>
@@ -633,6 +841,15 @@
         <h2 class="section-title" data-aos="fade-up">Коллекция шаблонов</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Выберите стиль, который отражает вашу историю</p>
         
+        <!-- Filters -->
+        <div class="filter-bar" id="filterBar">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="classic">Классика</button>
+            <button class="filter-btn" data-filter="modern">Современный</button>
+            <button class="filter-btn" data-filter="romantic">Романтичный</button>
+            <button class="filter-btn" data-filter="minimal">Минимализм</button>
+        </div>
+
         <div class="catalog-grid" id="catalogGrid"></div>
         <div class="pagination" id="pagination"></div>
     </div>
@@ -773,30 +990,35 @@
     });
 
     const templates = [
-        { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", badge: "new" },
-        { name: "Классика", desc: "Вневременная элегантность, строгие линии.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", badge: "" },
-        { name: "Мы женимся", desc: "Нежные воспоминания, трогательный стиль.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", badge: "" },
-        { name: "Письмо", desc: "Камерный формат, личное послание гостям.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", badge: "" },
-        { name: "Газета", desc: "Типографика в стиле редакционных изданий.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", badge: "" },
-        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", badge: "" },
-        { name: "Бархат", desc: "Глубокие тона, фактуры и драма.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", badge: "" },
-        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", badge: "" },
-        { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", badge: "" },
-        { name: "Cinema", desc: "Кинематографичный стиль, широкие кадры.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", badge: "" },
-        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", badge: "" },
-        { name: "Red", desc: "Яркий акцент на красном цвете.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", badge: "" },
-        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", badge: "" },
-        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", badge: "" },
-        { name: "Стиль", desc: "Графичный монохром с акцентами.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", badge: "" },
-        { name: "Black", desc: "Тёмная элегантность.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", badge: "" },
-        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg", badge: "" },
-        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", badge: "" },
-        { name: "Звонок", desc: "Динамичный стиль, яркие эмоции.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", badge: "" }
+        // Classic
+        { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic" },
+        { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic" },
+        { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic" },
+        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic" },
+        // Modern
+        { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new" },
+        { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern" },
+        { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern" },
+        { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern" },
+        { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern" },
+        // Romantic
+        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic" },
+        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic" },
+        { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic" },
+        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic" },
+        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки и изысканная палитра.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", category: "romantic" },
+        // Minimal
+        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего. Только главное.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", category: "minimal" },
+        { name: "Red", desc: "Яркий акцент на красном цвете на минималистичной основе.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", category: "minimal" },
+        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений и свободы.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", category: "minimal" },
+        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок в минималистичном дизайне.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg", category: "minimal" },
+        { name: "Звонок", desc: "Динамичный стиль, яркие эмоции и лаконичные формы.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", category: "minimal" }
     ];
 
     const ITEMS_PER_PAGE = 9;
     let currentPage = 1;
-    const totalPages = Math.ceil(templates.length / ITEMS_PER_PAGE);
+    let currentFilter = 'all';
+    let filteredTemplates = [...templates];
 
     const grid = document.getElementById('catalogGrid');
     const paginationDiv = document.getElementById('pagination');
@@ -846,12 +1068,46 @@
         document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
     });
 
-    function renderPage(page, isInitialLoad = false) {
-        const start = (page - 1) * ITEMS_PER_PAGE;
-        const end = start + ITEMS_PER_PAGE;
-        const pageItems = templates.slice(start, end);
+    // Filter logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.filter;
+            currentPage = 1;
+            applyFilter();
+        });
+    });
+
+    function applyFilter() {
+        if (currentFilter === 'all') {
+            filteredTemplates = [...templates];
+        } else {
+            filteredTemplates = templates.filter(t => t.category === currentFilter);
+        }
+        renderPage(currentPage);
+    }
+
+    function renderPage(page) {
+        const totalFiltered = filteredTemplates.length;
+        const totalPages = Math.ceil(totalFiltered / ITEMS_PER_PAGE) || 1;
+        
+        if (page > totalPages) currentPage = totalPages;
+        if (page < 1) currentPage = 1;
+        
+        const start = (currentPage - 1) * ITEMS_PER_PAGE;
+        const end = Math.min(start + ITEMS_PER_PAGE, totalFiltered);
+        const pageItems = filteredTemplates.slice(start, end);
         
         grid.innerHTML = '';
+        
+        if (pageItems.length === 0) {
+            grid.innerHTML = '<div class="no-results">Нет шаблонов в этой категории</div>';
+            paginationDiv.innerHTML = '';
+            return;
+        }
+
         pageItems.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'card';
@@ -859,6 +1115,13 @@
             card.setAttribute('data-aos-delay', (index * 50).toString());
             
             const badgeHtml = item.badge ? `<span class="card-badge ${item.badge}">${item.badge === 'new' ? 'Новинка' : ''}</span>` : '';
+            
+            const categoryLabels = {
+                'classic': 'Классика',
+                'modern': 'Современный',
+                'romantic': 'Романтика',
+                'minimal': 'Минимализм'
+            };
             
             card.innerHTML = `
                 ${badgeHtml}
@@ -869,6 +1132,7 @@
                     </div>
                 </div>
                 <div class="card-info">
+                    <div class="card-category">${categoryLabels[item.category] || ''}</div>
                     <h3>${item.name}</h3>
                     <p>${item.desc}</p>
                     <div class="card-actions">
@@ -896,16 +1160,19 @@
             });
         });
 
-        renderPagination();
+        renderPagination(totalPages);
         
-        if (!isInitialLoad) {
+        // Only scroll on filter change or page change
+        if (page !== 1 || currentFilter !== 'all') {
             window.scrollTo({ top: document.getElementById('catalog').offsetTop - 80, behavior: 'smooth' });
         }
     }
 
-    function renderPagination() {
+    function renderPagination(totalPages) {
         paginationDiv.innerHTML = '';
         
+        if (totalPages <= 1) return;
+
         if (currentPage > 1) {
             const prevBtn = document.createElement('button');
             prevBtn.textContent = '←';
@@ -931,7 +1198,8 @@
         }
     }
 
-    renderPage(1, true);
+    // Initial render
+    renderPage(1);
 
     // Form
     const form = document.getElementById('monoForm');
