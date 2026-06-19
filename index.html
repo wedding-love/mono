@@ -57,7 +57,7 @@
             align-items: center;
             justify-content: center;
             z-index: 10002;
-            transition: opacity 1s ease, visibility 1s ease;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
             padding: 20px;
             text-align: center;
         }
@@ -96,9 +96,9 @@
         }
         #splash .loader {
             margin-top: 35px;
-            width: 40px;
+            width: 60px;
             height: 2px;
-            background: rgba(53,46,44,0.15);
+            background: rgba(53,46,44,0.12);
             border-radius: 2px;
             overflow: hidden;
             opacity: 0;
@@ -107,15 +107,15 @@
         #splash .loader::after {
             content: '';
             display: block;
-            width: 40%;
+            width: 30%;
             height: 100%;
             background: var(--primary);
-            animation: loading 1.6s ease-in-out infinite;
+            animation: loading 1.8s ease-in-out infinite;
             border-radius: 2px;
         }
         @keyframes loading {
             0% { transform: translateX(-100%); }
-            100% { transform: translateX(350%); }
+            100% { transform: translateX(450%); }
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(25px); }
@@ -199,12 +199,13 @@
         .hero-stats { display: flex; gap: 30px; margin-bottom: 35px; flex-wrap: wrap; justify-content: center; }
         .stat-item { text-align: center; }
         .stat-number { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3vw, 2rem); font-weight: 400; color: var(--primary); }
-        .stat-label { font-size: 8px; text-transform: uppercase; letter-spacing: 2px; color: #8a7e74; }
+        .stat-label { font-size: 8px; text-transform: uppercase; letter-spacing: 2px; color: #8a7e74; font-weight: 300; }
         .btn-main {
             padding: 16px 36px; background: var(--primary); color: var(--white);
             text-decoration: none; text-transform: uppercase; font-size: 10px;
             letter-spacing: 2px; transition: all 0.3s ease; border: none; cursor: pointer; display: inline-block;
             border-radius: var(--filter-radius); position: relative; overflow: hidden;
+            font-weight: 400;
         }
         .btn-main::after {
             content: '';
@@ -219,6 +220,7 @@
         .scroll-indicator { 
             position: absolute; bottom: 25px; font-size: 9px; letter-spacing: 3px; 
             text-transform: uppercase; color: #b5aaa0; animation: bounce 2.5s infinite; z-index: 2; 
+            font-weight: 200;
         }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
 
@@ -506,7 +508,10 @@
             font-size: clamp(0.85rem, 1vw, 0.95rem); color: #d6cec0; 
         }
         .info-list li::before { content: "—"; margin-right: 14px; color: #8a7e74; flex-shrink: 0; }
-        .info-list li strong { font-weight: 400; color: var(--white); }
+        .info-list li strong { 
+            font-weight: 400; 
+            color: var(--white);
+        }
         .price-tag { 
             font-size: clamp(2rem, 3.5vw, 2.5rem); 
             font-weight: 300; margin: 15px 0 5px; 
@@ -515,6 +520,7 @@
         .price-note { 
             font-size: clamp(0.7rem, 0.8vw, 0.8rem); 
             opacity: 0.5; margin-bottom: 20px; letter-spacing: 1px; color: #d6cec0;
+            font-weight: 200;
         }
         .insta-link { 
             color: var(--white); text-decoration: underline; text-underline-offset: 4px; 
@@ -631,6 +637,66 @@
         input:focus, select:focus, textarea:focus { 
             border-color: var(--primary); box-shadow: 0 0 0 3px rgba(53,46,44,0.06); 
         }
+        
+        /* Checkbox styling */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            text-align: left;
+            padding: 4px 0;
+        }
+        .checkbox-wrapper input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            margin-top: 2px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: var(--white);
+            transition: all 0.2s;
+            position: relative;
+        }
+        .checkbox-wrapper input[type="checkbox"]:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+        .checkbox-wrapper input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .checkbox-wrapper input[type="checkbox"]:focus {
+            outline: 2px solid rgba(53,46,44,0.2);
+            outline-offset: 2px;
+        }
+        .checkbox-wrapper label {
+            font-size: clamp(11px, 0.9vw, 12px);
+            color: #6b6058;
+            font-weight: 200;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+        .checkbox-wrapper label a {
+            color: var(--primary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 400;
+        }
+        .checkbox-wrapper label a:hover {
+            opacity: 0.6;
+        }
+
         .btn-submit {
             background: var(--primary); color: var(--white); border: none;
             padding: 18px; text-transform: uppercase; letter-spacing: 2px;
@@ -639,6 +705,11 @@
             border-radius: var(--filter-radius); position: relative; overflow: hidden;
             font-weight: 400;
         }
+        .btn-submit:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
         .btn-submit::after {
             content: '';
             position: absolute;
@@ -646,11 +717,13 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
             transition: left 0.6s;
         }
-        .btn-submit:hover::after { left: 100%; }
-        .btn-submit:hover { background: #4a3f3b; letter-spacing: 3px; }
-        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-        .btn-submit:active { transform: scale(0.97); transition: transform 0.1s; }
-        .form-note { font-size: 9px; color: #b5aaa0; text-transform: uppercase; letter-spacing: 1px; margin-top: 16px; font-weight: 300; }
+        .btn-submit:hover:not(:disabled)::after { left: 100%; }
+        .btn-submit:hover:not(:disabled) { background: #4a3f3b; letter-spacing: 3px; }
+        .btn-submit:active:not(:disabled) { transform: scale(0.97); transition: transform 0.1s; }
+        .form-note { 
+            font-size: 9px; color: #b5aaa0; text-transform: uppercase; 
+            letter-spacing: 1px; margin-top: 16px; font-weight: 300; 
+        }
 
         /* FAQ */
         .faq { padding: 70px 0; background: var(--white); position: relative; }
@@ -739,7 +812,7 @@
         .footer-links { display: flex; justify-content: center; gap: 25px; list-style: none; margin-bottom: 18px; flex-wrap: wrap; }
         .footer-links a { 
             color: #8a7e74; text-decoration: none; font-size: 9px; text-transform: uppercase; 
-            letter-spacing: 1px; transition: color 0.3s;
+            letter-spacing: 1px; transition: color 0.3s; font-weight: 300;
         }
         .footer-links a:hover { color: var(--primary); }
         .copyright { font-size: 9px; color: #b5aaa0; text-transform: uppercase; font-weight: 300; }
@@ -821,6 +894,7 @@
             .card-actions { gap: 10px; }
             .btn-view { font-size: 8px; }
             .btn-order-card { padding: 7px 14px; font-size: 7px; }
+            .checkbox-wrapper label { font-size: 11px; }
         }
         @media (max-width: 500px) {
             .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -850,16 +924,45 @@
             .faq { padding: 50px 0; }
             .footer-links { gap: 15px; }
             .footer-links a { font-size: 8px; }
+            .checkbox-wrapper {
+                gap: 10px;
+            }
+            .checkbox-wrapper input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                min-width: 16px;
+            }
+            .checkbox-wrapper label { font-size: 10px; }
+            
+            .card-actions {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+                align-items: center;
+            }
+            .card-actions .btn-view {
+                font-size: 7px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            .card-actions .btn-order-card {
+                font-size: 6px;
+                padding: 5px 10px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
         }
         @media (max-width: 380px) {
             .catalog-grid { gap: 10px; }
             .card-info { padding: 12px 10px; }
             .card-info h3 { font-size: 0.9rem; }
             .card-info p { font-size: 9px; margin-bottom: 10px; }
-            .btn-view { font-size: 7px; }
-            .btn-order-card { padding: 5px 10px; font-size: 6px; }
+            .btn-view { font-size: 6px; }
+            .btn-order-card { padding: 4px 8px; font-size: 5px; }
             .hero h1 { font-size: 1.5rem; }
             .hero-stats { gap: 14px; }
+            .card-actions { gap: 5px; }
+            .checkbox-wrapper label { font-size: 9px; }
         }
 
         /* Touch device optimizations */
@@ -1057,8 +1160,18 @@
                     <option value="">Выберите шаблон</option>
                 </select>
                 <textarea name="message" rows="4" placeholder="Ваши вопросы и пожелания (необязательно)"></textarea>
-                <button type="submit" class="btn-submit">Отправить заявку</button>
-                <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку данных</p>
+                
+                <!-- Checkbox for consent -->
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="consentCheck" required>
+                    <label for="consentCheck">
+                        Даю согласие на обработку персональных данных в соответствии с 
+                        <a href="#" onclick="event.preventDefault();">политикой конфиденциальности</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn-submit" id="submitBtn" disabled>Отправить заявку</button>
+                <p class="form-note">Заполняя форму, вы принимаете условия обработки данных</p>
             </form>
         </div>
     </div>
@@ -1099,7 +1212,7 @@
     window.addEventListener('load', function() {
         setTimeout(function() {
             document.getElementById('splash').classList.add('hidden');
-        }, 2200);
+        }, 2500);
     });
 
     AOS.init({ 
@@ -1141,6 +1254,14 @@
     });
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Consent checkbox logic
+    const consentCheck = document.getElementById('consentCheck');
+    const submitBtn = document.getElementById('submitBtn');
+
+    consentCheck.addEventListener('change', function() {
+        submitBtn.disabled = !this.checked;
     });
 
     const templates = [
@@ -1317,7 +1438,6 @@
 
         renderPagination(totalPages);
         
-        // Scroll to catalog on filter change
         if (page !== 1 || currentFilter !== 'all') {
             const catalogSection = document.getElementById('catalog');
             const offset = 80;
@@ -1363,7 +1483,6 @@
         }
     }
 
-    // Initial render
     renderPage(1);
 
     // Form
@@ -1402,10 +1521,15 @@
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        
+        if (!consentCheck.checked) {
+            showCustomMessage('Пожалуйста, подтвердите согласие на обработку данных', 'error');
+            return;
+        }
+
         const btn = this.querySelector('.btn-submit');
         const originalText = btn.textContent;
         btn.textContent = 'ОТПРАВКА...';
-        btn.style.opacity = '0.7';
         btn.disabled = true;
 
         const formData = new FormData(this);
@@ -1417,12 +1541,17 @@
             if (response.ok) {
                 showCustomMessage('Заявка отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
                 form.reset();
+                consentCheck.checked = false;
+                submitBtn.disabled = true;
             } else {
                 showCustomMessage('Произошла ошибка. Пожалуйста, попробуйте ещё раз.', 'error');
             }
         })
         .catch(() => showCustomMessage('Проблема с соединением. Проверьте интернет и попробуйте снова.', 'error'))
-        .finally(() => { btn.textContent = originalText; btn.style.opacity = '1'; btn.disabled = false; });
+        .finally(() => { 
+            btn.textContent = originalText; 
+            btn.disabled = false;
+        });
     });
 </script>
 </body>
