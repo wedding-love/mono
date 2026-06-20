@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -6,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>mono_invitations | Цифровые приглашения на свадьбу</title>
     
-    <meta name="description" content="Создаём эстетичные онлайн-приглашения на свадьбу с индивидуальным дизайном, анкетой гостя и сбором ответов. 19+ стильных шаблонов.">
+    <meta name="description" content="Создаю эстетичные онлайн-приглашения на свадьбу с индивидуальным дизайном, анкетой гостя и сбором ответов. 19+ стильных шаблонов.">
     <meta property="og:title" content="mono_invitations | Цифровые приглашения на свадьбу">
-    <meta property="og:description" content="Стильные сайты-приглашения с анкетой гостя. От 90 BYN / 2500 ₽ под ключ за 1-3 дня.">
+    <meta property="og:description" content="Стильные сайты-приглашения с анкетой гостя. Готовые шаблоны от 90 BYN / 2500 ₽. Индивидуальный дизайн от 150 BYN / 4000 ₽.">
     <meta property="og:type" content="website">
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
@@ -90,10 +89,8 @@
             animation: fadeInUp 1.2s ease 0.9s forwards;
             margin-top: 5px;
         }
-        /* УБРАНА полоска под "приглашение" */
         #splash .tagline em {
             font-style: normal;
-            /* border-bottom удалён */
             padding-bottom: 2px;
         }
         #splash .loader {
@@ -493,20 +490,27 @@
             font-size: clamp(1.8rem, 3vw, 2.5rem); 
             margin-bottom: 25px; font-weight: 300; color: var(--white);
         }
+        .info-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+            font-weight: 400;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
         .info-list { list-style: none; margin-bottom: 25px; }
         .info-list li { 
             margin-bottom: 12px; 
-            font-weight: 300; /* Единый вес */
+            font-weight: 300;
             display: flex; 
             align-items: flex-start; 
             font-size: clamp(0.85rem, 1vw, 0.95rem); 
-            color: #d6cec0; /* Единый цвет */
-            word-break: break-word; /* Адаптивный перенос */
+            color: #d6cec0;
+            word-break: break-word;
         }
         .info-list li::before { content: "—"; margin-right: 14px; color: #8a7e74; flex-shrink: 0; }
         .info-list li strong { 
             font-weight: 500; 
-            color: var(--white); /* Цвет выделения */
+            color: var(--white);
         }
         .price-tag { 
             font-size: clamp(2rem, 3.5vw, 2.5rem); 
@@ -691,6 +695,22 @@
         }
         .checkbox-wrapper label a:hover {
             opacity: 0.6;
+        }
+
+        #templateSelectWrapper {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        #templateSelectWrapper.hidden {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            pointer-events: none;
+        }
+
+        #templateSelectWrapper.hidden select {
+            display: none;
         }
 
         .btn-submit {
@@ -1000,7 +1020,7 @@
 <!-- Splash Screen -->
 <div id="splash">
     <div class="logo-big">mono_<span>invitations</span></div>
-    <div class="tagline">Ваше идеальное <em>приглашение</em> начинается тут</div>
+    <div class="tagline">Я — Алина, и я помогаю создать <em>приглашение</em> вашей мечты</div>
     <div class="loader"></div>
 </div>
 
@@ -1009,12 +1029,12 @@
     <div class="privacy-content">
         <button class="privacy-close" onclick="closePrivacyModal()">&times;</button>
         <h3>Политика обработки персональных данных</h3>
-        <p>Настоящая Политика обработки персональных данных разработана в соответствии с требованиями Закона Республики Беларусь от 07.05.2021 №99-З «О защите персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые студией mono_invitations.</p>
-        <p><strong>1. Общие положения</strong><br>Мы обрабатываем ваши персональные данные на законной и справедливой основе. Обработка ограничивается достижением конкретных, заранее определенных и законных целей. Мы не раскрываем персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством.</p>
-        <p><strong>2. Какие данные мы собираем</strong><br>Мы собираем только те данные, которые вы добровольно предоставляете через форму обратной связи: имя, контактную информацию (Telegram, Instagram, WhatsApp) и любые другие сведения, которые вы укажете в поле «Ваши вопросы и пожелания».</p>
-        <p><strong>3. Цели обработки</strong><br>Ваши данные используются исключительно для связи с вами с целью обсуждения и выполнения заказа на создание цифрового приглашения. Мы не используем ваши данные для маркетинговых рассылок без вашего явного согласия.</p>
-        <p><strong>4. Хранение и безопасность</strong><br>Мы принимаем необходимые организационные и технические меры для защиты вашей личной информации от неправомерного доступа, изменения, раскрытия или уничтожения. Данные хранятся не дольше, чем этого требуют цели обработки.</p>
-        <p><strong>5. Ваши права</strong><br>Вы имеете право на отзыв согласия, доступ к вашим данным, их уточнение, блокирование или удаление. Для реализации прав свяжитесь с нами через Instagram @mono_invitations.</p>
+        <p>Настоящая Политика обработки персональных данных разработана в соответствии с требованиями Закона Республики Беларусь от 07.05.2021 №99-З «О защите персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые Алиной (студия mono_invitations).</p>
+        <p><strong>1. Общие положения</strong><br>Я обрабатываю ваши персональные данные на законной и справедливой основе. Обработка ограничивается достижением конкретных, заранее определенных и законных целей. Я не раскрываю персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством.</p>
+        <p><strong>2. Какие данные я собираю</strong><br>Я собираю только те данные, которые вы добровольно предоставляете через форму обратной связи: имя, контактную информацию (Telegram, Instagram, WhatsApp) и любые другие сведения, которые вы укажете в поле «Ваши вопросы и пожелания».</p>
+        <p><strong>3. Цели обработки</strong><br>Ваши данные используются исключительно для связи с вами с целью обсуждения и выполнения заказа на создание цифрового приглашения. Я не использую ваши данные для маркетинговых рассылок без вашего явного согласия.</p>
+        <p><strong>4. Хранение и безопасность</strong><br>Я принимаю необходимые организационные и технические меры для защиты вашей личной информации от неправомерного доступа, изменения, раскрытия или уничтожения. Данные хранятся не дольше, чем этого требуют цели обработки.</p>
+        <p><strong>5. Ваши права</strong><br>Вы имеете право на отзыв согласия, доступ к вашим данным, их уточнение, блокирование или удаление. Для реализации прав свяжитесь со мной через Instagram @mono_invitations.</p>
     </div>
 </div>
 
@@ -1037,9 +1057,9 @@
 </nav>
 
 <header class="hero">
-    <span class="hero-subtitle" data-aos="fade-down" data-aos-duration="800">Digital Wedding Agency</span>
+    <span class="hero-subtitle" data-aos="fade-down" data-aos-duration="800">Привет! Я Алина</span>
     <h1 data-aos="fade-up" data-aos-duration="1000">Сайты, которые<br><em>приглашают</em> красиво</h1>
-    <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Создаём эстетичные онлайн-приглашения с индивидуальным дизайном и удобной анкетой для гостей. Ваши гости влюбятся с первого клика.</p>
+    <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Создаю эстетичные онлайн-приглашения с индивидуальным дизайном и удобной анкетой для гостей. Ваши гости влюбятся с первого клика.</p>
     
     <div class="hero-stats" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         <div class="stat-item">
@@ -1047,8 +1067,8 @@
             <div class="stat-label">Шаблонов</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number">1-3</div>
-            <div class="stat-label">Дня на разработку</div>
+            <div class="stat-number">1-7</div>
+            <div class="stat-label">Дней на разработку</div>
         </div>
     </div>
     
@@ -1061,29 +1081,51 @@
         <div class="info-grid">
             <div class="info-content" data-aos="fade-right" data-aos-duration="1000">
                 <h2>Что входит в стоимость</h2>
-                <div class="price-tag">90 BYN / 2500 ₽</div>
-                <div class="price-note">финальная цена под ключ, без скрытых платежей</div>
-                <!-- ИСПРАВЛЕННЫЙ БЛОК -->
-                <ul class="info-list">
-                    <li>Индивидуальная настройка выбранного шаблона</li>
-                    <li>Анкета гостя с отправкой ответов на вашу почту</li>
-                    <li>Блок контактов (Telegram / WhatsApp)</li>
-                    <li>Добавление ваших фото, имён и дат</li>
-                    <li>Персональная ссылка — <strong>действует без ограничений</strong></li>
-                    <li><strong>До 3 правок</strong> бесплатно</li>
-                    <li>Срок разработки: 1–3 рабочих дня</li>
-                </ul>
+                
+                <!-- Готовые шаблоны -->
+                <div style="margin-bottom: 35px;">
+                    <h3>Готовый шаблон</h3>
+                    <div class="price-tag">90 BYN / 2500 ₽</div>
+                    <div class="price-note">финальная цена под ключ, без скрытых платежей</div>
+                    <ul class="info-list" style="margin-bottom: 0;">
+                        <li>Индивидуальная настройка выбранного шаблона</li>
+                        <li>Анкета гостя с отправкой ответов на вашу почту</li>
+                        <li>Блок контактов (Telegram / WhatsApp)</li>
+                        <li>Добавление ваших фото, имён и дат</li>
+                        <li>Персональная ссылка — <strong>действует без ограничений</strong></li>
+                        <li><strong>До 3 правок</strong> бесплатно</li>
+                        <li>Срок разработки: 1–3 рабочих дня</li>
+                    </ul>
+                </div>
+
+                <!-- Индивидуальный дизайн -->
+                <div>
+                    <h3>Индивидуальный дизайн</h3>
+                    <div class="price-tag">от 150 BYN / 4000 ₽</div>
+                    <div class="price-note">уникальный дизайн с нуля под ваш стиль</div>
+                    <ul class="info-list" style="margin-bottom: 0;">
+                        <li>Разработка уникального дизайна с нуля</li>
+                        <li>Учёт всех ваших пожеланий и референсов</li>
+                        <li>Авторская типографика и цветовая гамма</li>
+                        <li>Анкета гостя с отправкой ответов на вашу почту</li>
+                        <li>Блок контактов (Telegram / WhatsApp)</li>
+                        <li>Персональная ссылка — <strong>действует без ограничений</strong></li>
+                        <li><strong>До 5 правок</strong> бесплатно</li>
+                        <li>Срок разработки: 3–7 рабочих дней</li>
+                    </ul>
+                </div>
             </div>
             <div class="info-content" data-aos="fade-left" data-aos-duration="1000">
                 <h2>Как это работает</h2>
                 <ul class="info-list">
-                    <li>Выберите шаблон из каталога ниже</li>
+                    <li>Выберите шаблон из каталога ниже или закажите индивидуальный дизайн</li>
                     <li>Оставьте заявку через форму на сайте</li>
-                    <li>Или напишите нам напрямую в Instagram</li>
-                    <li>Мы пришлём список необходимых данных</li>
+                    <li>Или напишите мне напрямую в Instagram</li>
+                    <li>Я пришлю список необходимых данных</li>
                     <li>Вы отправляете фото, имена, даты и пожелания</li>
-                    <li>Через 1–3 дня получаете готовый сайт</li>
-                    <li>Мы вносим правки до полного утверждения</li>
+                    <li>Для индивидуального дизайна — обсуждаем референсы и детали</li>
+                    <li>Через 1–7 дней (в зависимости от тарифа) получаете готовый сайт</li>
+                    <li>Я вношу правки до полного утверждения</li>
                 </ul>
                 <a href="https://instagram.com/mono_invitations" class="insta-link" target="_blank">@mono_invitations →</a>
             </div>
@@ -1104,7 +1146,7 @@
             </div>
             <div class="extra-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 <h3>Дополнительные правки</h3>
-                <p>Больше 3 правок? Внесём любые изменения сверх лимита.</p>
+                <p>Больше 3 правок? Внесу любые изменения сверх лимита.</p>
                 <div class="price">+10 BYN <small>/ +100 ₽</small></div>
             </div>
             <div class="extra-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
@@ -1141,12 +1183,12 @@
         <div class="testimonials-grid">
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">«Сайт получился именно таким, как мы мечтали. Гости были в восторге от анкеты и дизайна. Огромное спасибо!»</p>
+                <p class="testimonial-text">«Сайт получился именно таким, как мы мечтали. Гости были в восторге от анкеты и дизайна. Огромное спасибо Алине!»</p>
                 <p class="testimonial-author">Анна и Дмитрий, Минск</p>
             </div>
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">«Заказали за 3 дня до свадьбы — сделали за сутки. Очень быстро, качественно и с душой. Рекомендую всем!»</p>
+                <p class="testimonial-text">«Заказали за 3 дня до свадьбы — Алина сделала за сутки. Очень быстро, качественно и с душой. Рекомендую всем!»</p>
                 <p class="testimonial-author">Екатерина и Алексей, Москва</p>
             </div>
             <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
@@ -1163,7 +1205,7 @@
         <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Частые вопросы</h2>
         <details data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             <summary>Можно ли изменить цвета шаблона?</summary>
-            <p>Да, мы адаптируем любую цветовую гамму под стилистику вашего праздника. Вы можете прислать референсы или палитру, и мы всё настроим.</p>
+            <p>Да, я адаптирую любую цветовую гамму под стилистику вашего праздника. Вы можете прислать референсы или палитру, и я всё настрою.</p>
         </details>
         <details data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <summary>Как гости получат ссылку на приглашение?</summary>
@@ -1175,11 +1217,11 @@
         </details>
         <details data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
             <summary>Что нужно для начала работы?</summary>
-            <p>Выберите шаблон, оставьте заявку, и мы запросим всё необходимое: имена, дату, фото, пожелания по тексту и цветам. Остальное мы берём на себя.</p>
+            <p>Выберите шаблон, оставьте заявку, и я запрошу всё необходимое: имена, дату, фото, пожелания по тексту и цветам. Остальное я беру на себя.</p>
         </details>
         <details data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
             <summary>Можно ли заказать срочно?</summary>
-            <p>Да, мы можем выполнить заказ за несколько часов. Услуга «Срочная разработка» доступна в блоке дополнительных услуг.</p>
+            <p>Да, я могу выполнить заказ за несколько часов. Услуга «Срочная разработка» доступна в блоке дополнительных услуг.</p>
         </details>
     </div>
 </section>
@@ -1188,13 +1230,26 @@
     <div class="container">
         <div class="form-container" data-aos="zoom-in" data-aos-duration="1000">
             <h2 class="section-title">Оставить заявку</h2>
-            <p style="font-size: clamp(12px, 1vw, 13px); color: #8a7e74; margin-bottom: 8px; font-weight: 300;">Мы свяжемся с вами в течение 24 часов</p>
+            <p style="font-size: clamp(12px, 1vw, 13px); color: #8a7e74; margin-bottom: 8px; font-weight: 300;">Я свяжусь с вами в течение 24 часов</p>
             <form id="monoForm">
                 <input type="text" name="name" placeholder="Ваше имя" required>
                 <input type="text" name="contact" placeholder="Telegram / Instagram / WhatsApp" required>
-                <select name="template" id="templateSelect" required>
-                    <option value="">Выберите шаблон</option>
-                </select>
+                
+                <!-- Чекбокс индивидуального дизайна -->
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="customDesignCheck">
+                    <label for="customDesignCheck">
+                        Мне нужен <strong>индивидуальный дизайн</strong> (от 150 BYN / 4000 ₽)
+                    </label>
+                </div>
+                
+                <!-- Выбор шаблона (скрывается при индивидуальном заказе) -->
+                <div id="templateSelectWrapper">
+                    <select name="template" id="templateSelect">
+                        <option value="">Выберите шаблон</option>
+                    </select>
+                </div>
+                
                 <textarea name="message" rows="4" placeholder="Ваши вопросы и пожелания (необязательно)"></textarea>
                 
                 <!-- Checkbox for consent -->
@@ -1224,7 +1279,7 @@
             <li><a href="#faq">FAQ</a></li>
             <li><a href="https://instagram.com/mono_invitations" target="_blank">Instagram</a></li>
         </ul>
-        <p class="copyright">© 2026 Студия цифровых приглашений. Все права защищены.</p>
+        <p class="copyright">© 2026 Алина. Студия цифровых приглашений. Все права защищены.</p>
     </div>
 </footer>
 
@@ -1305,12 +1360,50 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Consent checkbox logic
+    // Form elements
+    const form = document.getElementById('monoForm');
     const consentCheck = document.getElementById('consentCheck');
+    const customDesignCheck = document.getElementById('customDesignCheck');
+    const templateSelectWrapper = document.getElementById('templateSelectWrapper');
+    const templateSelect = document.getElementById('templateSelect');
     const submitBtn = document.getElementById('submitBtn');
 
+    // Function to update submit button state
+    function updateSubmitButton() {
+        const consentGiven = consentCheck.checked;
+        const isCustomDesign = customDesignCheck.checked;
+        
+        if (isCustomDesign) {
+            // Для индивидуального дизайна нужно только согласие
+            submitBtn.disabled = !consentGiven;
+        } else {
+            // Для шаблона нужно и согласие, и выбранный шаблон
+            const templateSelected = templateSelect.value !== '';
+            submitBtn.disabled = !(consentGiven && templateSelected);
+        }
+    }
+
+    // Custom design checkbox handler
+    customDesignCheck.addEventListener('change', function() {
+        if (this.checked) {
+            templateSelectWrapper.classList.add('hidden');
+            templateSelect.removeAttribute('required');
+            templateSelect.value = '';
+        } else {
+            templateSelectWrapper.classList.remove('hidden');
+            templateSelect.setAttribute('required', 'required');
+        }
+        updateSubmitButton();
+    });
+
+    // Consent checkbox handler
     consentCheck.addEventListener('change', function() {
-        submitBtn.disabled = !this.checked;
+        updateSubmitButton();
+    });
+
+    // Template select handler
+    templateSelect.addEventListener('change', function() {
+        updateSubmitButton();
     });
 
     const templates = [
@@ -1534,9 +1627,7 @@
 
     renderPage(1);
 
-    // Form
-    const form = document.getElementById('monoForm');
-    
+    // Form submission
     function showCustomMessage(text, type) {
         const existingMsg = document.querySelector('.custom-form-message');
         if (existingMsg) existingMsg.remove();
@@ -1575,6 +1666,11 @@
             showCustomMessage('Пожалуйста, подтвердите согласие на обработку данных', 'error');
             return;
         }
+        
+        if (!customDesignCheck.checked && templateSelect.value === '') {
+            showCustomMessage('Пожалуйста, выберите шаблон или отметьте индивидуальный дизайн', 'error');
+            return;
+        }
 
         const btn = this.querySelector('.btn-submit');
         const originalText = btn.textContent;
@@ -1582,15 +1678,27 @@
         btn.disabled = true;
 
         const formData = new FormData(this);
+        
+        // Добавляем тип заказа в данные
+        if (customDesignCheck.checked) {
+            formData.append('design_type', 'Индивидуальный дизайн');
+        } else {
+            formData.append('design_type', 'Готовый шаблон');
+        }
 
         fetch('https://formspree.io/f/xpqkwwwy', {
-            method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
+            method: 'POST', 
+            body: formData, 
+            headers: { 'Accept': 'application/json' }
         })
         .then(response => {
             if (response.ok) {
-                showCustomMessage('Заявка отправлена! Мы свяжемся с вами в ближайшее время.', 'success');
+                showCustomMessage('Заявка отправлена! Я свяжусь с вами в ближайшее время.', 'success');
                 form.reset();
                 consentCheck.checked = false;
+                customDesignCheck.checked = false;
+                templateSelectWrapper.classList.remove('hidden');
+                templateSelect.setAttribute('required', 'required');
                 submitBtn.disabled = true;
             } else {
                 showCustomMessage('Произошла ошибка. Пожалуйста, попробуйте ещё раз.', 'error');
