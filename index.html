@@ -157,13 +157,17 @@
         .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
         .mobile-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
 
-        /* Hero */
+        /* Hero — весь экран */
         .hero {
             min-height: 100vh; 
-            min-height: 100dvh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 80px 20px 60px;
+            height: 100vh;
+            height: 100dvh;
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            padding: 60px 20px 40px;
             position: relative;
             background: var(--secondary);
             overflow: hidden;
@@ -179,7 +183,11 @@
             font-weight: 300; line-height: 1.08; margin-bottom: 20px; 
             text-transform: uppercase; letter-spacing: -0.02em; color: var(--primary);
         }
-        .hero h1 em { font-style: italic; }
+        .hero h1 em { 
+            font-style: normal; /* Шрифт как у основного текста */
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
         .hero p { 
             max-width: 500px; font-weight: 300; font-size: clamp(0.9rem, 1.2vw, 1.05rem); 
             margin-bottom: 30px; color: #6b6058; padding: 0 10px;
@@ -206,11 +214,20 @@
         .btn-main:hover { background: #4a3f3b; letter-spacing: 3px; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
         .btn-main:active { transform: scale(0.97); transition: transform 0.1s; }
         .scroll-indicator { 
-            position: absolute; bottom: 25px; font-size: 9px; letter-spacing: 3px; 
-            text-transform: uppercase; color: #b5aaa0; animation: bounce 2.5s infinite; z-index: 2; 
+            position: absolute; 
+            bottom: 20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #b5aaa0; 
+            animation: bounce 2.5s infinite; 
+            z-index: 2; 
             font-weight: 300;
+            white-space: nowrap;
         }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
 
         /* Catalog */
         .catalog { padding: 100px 0 50px; background: var(--white); position: relative; }
@@ -473,7 +490,13 @@
         .page-btn:active { transform: scale(0.95); }
 
         /* Info Block */
-        .info-block { padding: 80px 0; background: var(--dark-gray); color: var(--white); position: relative; overflow: hidden; }
+        .info-block { 
+            padding: 80px 0; 
+            background: var(--dark-gray); 
+            color: var(--white); 
+            position: relative; 
+            overflow: hidden; 
+        }
         .info-block::before {
             content: '';
             position: absolute;
@@ -484,47 +507,86 @@
             border: 1px solid rgba(255,255,255,0.04);
             border-radius: 50%;
         }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; position: relative; z-index: 1; }
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px; 
+            align-items: start; 
+            position: relative; 
+            z-index: 1; 
+        }
         .info-content h2 { 
             font-family: 'Cormorant Garamond', serif; 
             font-size: clamp(1.8rem, 3vw, 2.5rem); 
-            margin-bottom: 25px; font-weight: 300; color: var(--white);
+            margin-bottom: 30px; 
+            font-weight: 300; 
+            color: var(--white);
         }
-        .info-content h3 {
+        
+        .tariff-block {
+            margin-bottom: 35px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .tariff-block:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .tariff-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+            font-size: clamp(1.1rem, 1.5vw, 1.4rem);
             font-weight: 400;
             color: var(--white);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
-        .info-list { list-style: none; margin-bottom: 25px; }
+        .info-list { 
+            list-style: none; 
+            margin-bottom: 0; 
+        }
         .info-list li { 
-            margin-bottom: 12px; 
+            margin-bottom: 10px; 
             font-weight: 300;
             display: flex; 
             align-items: flex-start; 
-            font-size: clamp(0.85rem, 1vw, 0.95rem); 
+            font-size: clamp(0.82rem, 0.95vw, 0.9rem); 
             color: #d6cec0;
             word-break: break-word;
+            line-height: 1.5;
         }
-        .info-list li::before { content: "—"; margin-right: 14px; color: #8a7e74; flex-shrink: 0; }
+        .info-list li::before { 
+            content: "—"; 
+            margin-right: 12px; 
+            color: #8a7e74; 
+            flex-shrink: 0; 
+        }
         .info-list li strong { 
             font-weight: 500; 
             color: var(--white);
         }
         .price-tag { 
-            font-size: clamp(2rem, 3.5vw, 2.5rem); 
-            font-weight: 300; margin: 15px 0 5px; 
-            font-family: 'Cormorant Garamond', serif; color: var(--white);
+            font-size: clamp(1.8rem, 3vw, 2.2rem); 
+            font-weight: 300; 
+            margin: 10px 0 4px; 
+            font-family: 'Cormorant Garamond', serif; 
+            color: var(--white);
         }
         .price-note { 
             font-size: clamp(0.7rem, 0.8vw, 0.8rem); 
-            opacity: 0.5; margin-bottom: 20px; letter-spacing: 1px; color: #d6cec0;
+            opacity: 0.5; 
+            margin-bottom: 16px; 
+            letter-spacing: 1px; 
+            color: #d6cec0;
             font-weight: 300;
         }
         .insta-link { 
-            color: var(--white); text-decoration: underline; text-underline-offset: 4px; 
-            font-weight: 300; transition: opacity 0.3s; display: inline-block;
+            color: var(--white); 
+            text-decoration: underline; 
+            text-underline-offset: 4px; 
+            font-weight: 300; 
+            transition: opacity 0.3s; 
+            display: inline-block;
             font-size: clamp(0.85rem, 1vw, 0.95rem);
         }
         .insta-link:hover { opacity: 0.6; }
@@ -638,7 +700,6 @@
             border-color: var(--primary); box-shadow: 0 0 0 3px rgba(53,46,44,0.06); 
         }
         
-        /* Checkbox styling */
         .checkbox-wrapper {
             display: flex;
             align-items: flex-start;
@@ -936,10 +997,12 @@
             .btn-view { font-size: 8px; }
             .btn-order-card { padding: 7px 14px; font-size: 7px; }
             .checkbox-wrapper label { font-size: 11px; }
+            .tariff-title { font-size: 1.2rem; }
+            .info-list li { font-size: 0.85rem; }
         }
         @media (max-width: 500px) {
             .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            .hero { padding: 70px 15px 50px; min-height: 90vh; min-height: 90dvh; }
+            .hero { padding: 60px 15px 40px; height: 100vh; height: 100dvh; }
             .hero h1 { font-size: 1.8rem; }
             .hero p { font-size: 0.85rem; }
             .stat-number { font-size: 1.4rem; }
@@ -959,39 +1022,21 @@
             .modal-footer { padding: 10px 16px; flex-direction: row; gap: 8px; }
             .modal-btn { flex: 1; text-align: center; padding: 12px 10px; font-size: 9px; border-radius: 25px; }
             .info-block { padding: 50px 0; }
+            .tariff-block { margin-bottom: 25px; padding-bottom: 25px; }
+            .tariff-title { font-size: 1.1rem; }
+            .info-list li { font-size: 0.8rem; margin-bottom: 8px; }
             .extra-services { padding: 50px 0; }
             .testimonials { padding: 50px 0; }
             .order-section { padding: 50px 0; }
             .faq { padding: 50px 0; }
             .footer-links { gap: 15px; }
             .footer-links a { font-size: 8px; }
-            .checkbox-wrapper {
-                gap: 10px;
-            }
-            .checkbox-wrapper input[type="checkbox"] {
-                width: 16px;
-                height: 16px;
-                min-width: 16px;
-            }
+            .checkbox-wrapper { gap: 10px; }
+            .checkbox-wrapper input[type="checkbox"] { width: 16px; height: 16px; min-width: 16px; }
             .checkbox-wrapper label { font-size: 10px; }
-            
-            .card-actions {
-                display: flex;
-                flex-wrap: nowrap;
-                gap: 8px;
-                align-items: center;
-            }
-            .card-actions .btn-view {
-                font-size: 7px;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            .card-actions .btn-order-card {
-                font-size: 6px;
-                padding: 5px 10px;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
+            .card-actions { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
+            .card-actions .btn-view { font-size: 7px; white-space: nowrap; flex-shrink: 0; }
+            .card-actions .btn-order-card { font-size: 6px; padding: 5px 10px; white-space: nowrap; flex-shrink: 0; }
         }
         @media (max-width: 380px) {
             .catalog-grid { gap: 10px; }
@@ -1004,9 +1049,9 @@
             .hero-stats { gap: 14px; }
             .card-actions { gap: 5px; }
             .checkbox-wrapper label { font-size: 9px; }
+            .info-list li { font-size: 0.75rem; }
         }
 
-        /* Touch device optimizations */
         @media (hover: none) {
             .card:hover .card-overlay { opacity: 0; }
             .card:active .card-overlay { opacity: 1; }
@@ -1017,14 +1062,12 @@
 </head>
 <body>
 
-<!-- Splash Screen -->
 <div id="splash">
     <div class="logo-big">mono_<span>invitations</span></div>
-    <div class="tagline">Я — Алина, и я помогаю создать <em>приглашение</em> вашей мечты</div>
+    <div class="tagline">Ваше идеальное <em>приглашение</em> начинается тут</div>
     <div class="loader"></div>
 </div>
 
-<!-- Privacy Policy Modal -->
 <div class="privacy-modal" id="privacyModal">
     <div class="privacy-content">
         <button class="privacy-close" onclick="closePrivacyModal()">&times;</button>
@@ -1057,7 +1100,7 @@
 </nav>
 
 <header class="hero">
-    <span class="hero-subtitle" data-aos="fade-down" data-aos-duration="800">Привет! Я Алина</span>
+    <!-- БЛОК DIGITAL WEDDING AGENCY УБРАН -->
     <h1 data-aos="fade-up" data-aos-duration="1000">Сайты, которые<br><em>приглашают</em> красиво</h1>
     <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Создаю эстетичные онлайн-приглашения с индивидуальным дизайном и удобной анкетой для гостей. Ваши гости влюбятся с первого клика.</p>
     
@@ -1076,18 +1119,17 @@
     <span class="scroll-indicator">Листайте вниз ↓</span>
 </header>
 
+<!-- Далее весь остальной код без изменений -->
 <section id="pricing" class="info-block">
     <div class="container">
         <div class="info-grid">
             <div class="info-content" data-aos="fade-right" data-aos-duration="1000">
                 <h2>Что входит в стоимость</h2>
-                
-                <!-- Готовые шаблоны -->
-                <div style="margin-bottom: 35px;">
-                    <h3>Готовый шаблон</h3>
+                <div class="tariff-block">
+                    <div class="tariff-title">Готовый шаблон</div>
                     <div class="price-tag">90 BYN / 2500 ₽</div>
                     <div class="price-note">финальная цена под ключ, без скрытых платежей</div>
-                    <ul class="info-list" style="margin-bottom: 0;">
+                    <ul class="info-list">
                         <li>Индивидуальная настройка выбранного шаблона</li>
                         <li>Анкета гостя с отправкой ответов на вашу почту</li>
                         <li>Блок контактов (Telegram / WhatsApp)</li>
@@ -1097,13 +1139,11 @@
                         <li>Срок разработки: 1–3 рабочих дня</li>
                     </ul>
                 </div>
-
-                <!-- Индивидуальный дизайн -->
-                <div>
-                    <h3>Индивидуальный дизайн</h3>
+                <div class="tariff-block">
+                    <div class="tariff-title">Индивидуальный дизайн</div>
                     <div class="price-tag">от 150 BYN / 4000 ₽</div>
                     <div class="price-note">уникальный дизайн с нуля под ваш стиль</div>
-                    <ul class="info-list" style="margin-bottom: 0;">
+                    <ul class="info-list">
                         <li>Разработка уникального дизайна с нуля</li>
                         <li>Учёт всех ваших пожеланий и референсов</li>
                         <li>Авторская типографика и цветовая гамма</li>
@@ -1133,7 +1173,6 @@
     </div>
 </section>
 
-<!-- Extra Services -->
 <section id="services" class="extra-services">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Дополнительные услуги</h2>
@@ -1162,8 +1201,6 @@
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Коллекция шаблонов</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Выберите стиль, который отражает вашу историю</p>
-        
-        <!-- Filters -->
         <div class="filter-bar" id="filterBar">
             <button class="filter-btn active" data-filter="all">Все</button>
             <button class="filter-btn" data-filter="classic">Классика</button>
@@ -1171,7 +1208,6 @@
             <button class="filter-btn" data-filter="romantic">Романтичный</button>
             <button class="filter-btn" data-filter="minimal">Минимализм</button>
         </div>
-
         <div class="catalog-grid" id="catalogGrid"></div>
         <div class="pagination" id="pagination"></div>
     </div>
@@ -1234,33 +1270,20 @@
             <form id="monoForm">
                 <input type="text" name="name" placeholder="Ваше имя" required>
                 <input type="text" name="contact" placeholder="Telegram / Instagram / WhatsApp" required>
-                
-                <!-- Чекбокс индивидуального дизайна -->
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="customDesignCheck">
-                    <label for="customDesignCheck">
-                        Мне нужен <strong>индивидуальный дизайн</strong> (от 150 BYN / 4000 ₽)
-                    </label>
+                    <label for="customDesignCheck">Мне нужен <strong>индивидуальный дизайн</strong> (от 150 BYN / 4000 ₽)</label>
                 </div>
-                
-                <!-- Выбор шаблона (скрывается при индивидуальном заказе) -->
                 <div id="templateSelectWrapper">
                     <select name="template" id="templateSelect">
                         <option value="">Выберите шаблон</option>
                     </select>
                 </div>
-                
                 <textarea name="message" rows="4" placeholder="Ваши вопросы и пожелания (необязательно)"></textarea>
-                
-                <!-- Checkbox for consent -->
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="consentCheck" required>
-                    <label for="consentCheck">
-                        Даю согласие на обработку персональных данных в соответствии с 
-                        <a href="#" onclick="event.preventDefault(); openPrivacyModal();">политикой конфиденциальности</a>
-                    </label>
+                    <label for="consentCheck">Даю согласие на обработку персональных данных в соответствии с <a href="#" onclick="event.preventDefault(); openPrivacyModal();">политикой конфиденциальности</a></label>
                 </div>
-                
                 <button type="submit" class="btn-submit" id="submitBtn" disabled>Отправить заявку</button>
                 <p class="form-note">Заполняя форму, вы принимаете условия обработки данных</p>
             </form>
@@ -1299,7 +1322,6 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    // Privacy Modal functions
     function openPrivacyModal() {
         document.getElementById('privacyModal').classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1312,27 +1334,17 @@
         if (e.target === this) closePrivacyModal();
     });
 
-    // Hide splash after content loads
     window.addEventListener('load', function() {
         setTimeout(function() {
             document.getElementById('splash').classList.add('hidden');
         }, 2500);
     });
 
-    AOS.init({ 
-        duration: 1000, 
-        once: true, 
-        offset: 60,
-        easing: 'ease-out-cubic'
-    });
+    AOS.init({ duration: 1000, once: true, offset: 60, easing: 'ease-out-cubic' });
 
-    // Mobile menu
     function toggleMobileMenu() {
-        const navLinks = document.getElementById('navLinks');
-        navLinks.classList.toggle('mobile-active');
+        document.getElementById('navLinks').classList.toggle('mobile-active');
     }
-
-    // Close mobile menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             document.getElementById('navLinks').classList.remove('mobile-active');
@@ -1341,26 +1353,19 @@
 
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
-        }
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
     });
 
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            scrollTopBtn.classList.add('visible');
-        } else {
-            scrollTopBtn.classList.remove('visible');
-        }
+        if (window.scrollY > 500) scrollTopBtn.classList.add('visible');
+        else scrollTopBtn.classList.remove('visible');
     });
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Form elements
     const form = document.getElementById('monoForm');
     const consentCheck = document.getElementById('consentCheck');
     const customDesignCheck = document.getElementById('customDesignCheck');
@@ -1368,22 +1373,16 @@
     const templateSelect = document.getElementById('templateSelect');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Function to update submit button state
     function updateSubmitButton() {
         const consentGiven = consentCheck.checked;
         const isCustomDesign = customDesignCheck.checked;
-        
         if (isCustomDesign) {
-            // Для индивидуального дизайна нужно только согласие
             submitBtn.disabled = !consentGiven;
         } else {
-            // Для шаблона нужно и согласие, и выбранный шаблон
-            const templateSelected = templateSelect.value !== '';
-            submitBtn.disabled = !(consentGiven && templateSelected);
+            submitBtn.disabled = !(consentGiven && templateSelect.value !== '');
         }
     }
 
-    // Custom design checkbox handler
     customDesignCheck.addEventListener('change', function() {
         if (this.checked) {
             templateSelectWrapper.classList.add('hidden');
@@ -1395,36 +1394,24 @@
         }
         updateSubmitButton();
     });
-
-    // Consent checkbox handler
-    consentCheck.addEventListener('change', function() {
-        updateSubmitButton();
-    });
-
-    // Template select handler
-    templateSelect.addEventListener('change', function() {
-        updateSubmitButton();
-    });
+    consentCheck.addEventListener('change', updateSubmitButton);
+    templateSelect.addEventListener('change', updateSubmitButton);
 
     const templates = [
-        // Classic
         { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic" },
         { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic" },
         { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic" },
         { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic" },
-        // Modern
         { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new" },
         { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern" },
         { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern" },
         { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern" },
         { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern" },
-        // Romantic
         { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic" },
         { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic" },
         { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic" },
         { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic" },
         { name: "Пыльная роза", desc: "Романтика, припылённые лепестки и изысканная палитра.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", category: "romantic" },
-        // Minimal
         { name: "Минимализм", desc: "Чистое пространство и ничего лишнего. Только главное.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", category: "minimal" },
         { name: "Red", desc: "Яркий акцент на красном цвете на минималистичной основе.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", category: "minimal" },
         { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений и свободы.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", category: "minimal" },
@@ -1433,282 +1420,164 @@
     ];
 
     const ITEMS_PER_PAGE = 9;
-    let currentPage = 1;
-    let currentFilter = 'all';
-    let filteredTemplates = [...templates];
+    let currentPage = 1, currentFilter = 'all', filteredTemplates = [...templates];
 
-    const grid = document.getElementById('catalogGrid');
-    const paginationDiv = document.getElementById('pagination');
-    const select = document.getElementById('templateSelect');
-    const modal = document.getElementById('demoModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalFrame = document.getElementById('modalFrame');
+    const grid = document.getElementById('catalogGrid'), paginationDiv = document.getElementById('pagination');
+    const select = document.getElementById('templateSelect'), modal = document.getElementById('demoModal');
+    const modalTitle = document.getElementById('modalTitle'), modalFrame = document.getElementById('modalFrame');
     const modalSelectBtn = document.getElementById('modalSelectBtn');
     let currentTemplateName = '';
 
     function populateSelect() {
         select.innerHTML = '<option value="">Выберите шаблон</option>';
-        templates.forEach(t => {
-            const opt = document.createElement('option');
-            opt.value = t.name;
-            opt.textContent = t.name;
-            select.appendChild(opt);
-        });
+        templates.forEach(t => { const opt = document.createElement('option'); opt.value = t.name; opt.textContent = t.name; select.appendChild(opt); });
     }
     populateSelect();
 
     function openDemoModal(template) {
-        currentTemplateName = template.name;
-        modalTitle.textContent = template.name;
-        modalFrame.src = template.demoUrl;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+        currentTemplateName = template.name; modalTitle.textContent = template.name;
+        modalFrame.src = template.demoUrl; modal.classList.add('active'); document.body.style.overflow = 'hidden';
     }
-
     window.closeDemoModal = function() {
-        modal.classList.remove('active');
-        modalFrame.src = '';
-        document.body.style.overflow = '';
+        modal.classList.remove('active'); modalFrame.src = ''; document.body.style.overflow = '';
     };
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) closeDemoModal();
-    });
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeDemoModal();
-    });
-
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeDemoModal(); });
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeDemoModal(); });
     modalSelectBtn.addEventListener('click', () => {
-        select.value = currentTemplateName;
-        closeDemoModal();
+        select.value = currentTemplateName; closeDemoModal();
         document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Filter logic
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    filterButtons.forEach(btn => {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            currentFilter = this.dataset.filter;
-            currentPage = 1;
-            applyFilter();
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active'); currentFilter = this.dataset.filter; currentPage = 1; applyFilter();
         });
     });
 
     function applyFilter() {
-        if (currentFilter === 'all') {
-            filteredTemplates = [...templates];
-        } else {
-            filteredTemplates = templates.filter(t => t.category === currentFilter);
-        }
+        filteredTemplates = currentFilter === 'all' ? [...templates] : templates.filter(t => t.category === currentFilter);
         renderPage(currentPage);
     }
 
     function renderPage(page) {
-        const totalFiltered = filteredTemplates.length;
-        const totalPages = Math.ceil(totalFiltered / ITEMS_PER_PAGE) || 1;
-        
+        const totalPages = Math.ceil(filteredTemplates.length / ITEMS_PER_PAGE) || 1;
         if (page > totalPages) currentPage = totalPages;
         if (page < 1) currentPage = 1;
-        
         const start = (currentPage - 1) * ITEMS_PER_PAGE;
-        const end = Math.min(start + ITEMS_PER_PAGE, totalFiltered);
-        const pageItems = filteredTemplates.slice(start, end);
-        
+        const pageItems = filteredTemplates.slice(start, start + ITEMS_PER_PAGE);
         grid.innerHTML = '';
-        
         if (pageItems.length === 0) {
             grid.innerHTML = '<div class="no-results">Нет шаблонов в этой категории</div>';
-            paginationDiv.innerHTML = '';
-            return;
+            paginationDiv.innerHTML = ''; return;
         }
-
         pageItems.forEach((item, index) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.setAttribute('data-aos', 'fade-up');
             card.setAttribute('data-aos-delay', (index * 50).toString());
             card.setAttribute('data-aos-duration', '800');
-            
-            const badgeHtml = item.badge ? `<span class="card-badge ${item.badge}">${item.badge === 'new' ? 'Новинка' : ''}</span>` : '';
-            
-            const categoryLabels = {
-                'classic': 'Классика',
-                'modern': 'Современный',
-                'romantic': 'Романтика',
-                'minimal': 'Минимализм'
-            };
-            
+            const categoryLabels = { 'classic': 'Классика', 'modern': 'Современный', 'romantic': 'Романтика', 'minimal': 'Минимализм' };
             card.innerHTML = `
-                ${badgeHtml}
+                ${item.badge ? `<span class="card-badge ${item.badge}">${item.badge === 'new' ? 'Новинка' : ''}</span>` : ''}
                 <div class="card-image">
                     ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23f0ebe0\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%238a7e74\\' font-family=\\'Arial\\' font-size=\\'12\\'%3E${item.name}%3C/text%3E%3C/svg%3E';">` : `<span class="placeholder-text">${item.name}</span>`}
-                    <div class="card-overlay">
-                        <button class="btn-main demo-trigger" data-name="${item.name}">Быстрый просмотр</button>
-                    </div>
+                    <div class="card-overlay"><button class="btn-main demo-trigger" data-name="${item.name}">Быстрый просмотр</button></div>
                 </div>
                 <div class="card-info">
                     <div class="card-category">${categoryLabels[item.category] || ''}</div>
-                    <h3>${item.name}</h3>
-                    <p>${item.desc}</p>
+                    <h3>${item.name}</h3><p>${item.desc}</p>
                     <div class="card-actions">
                         <button class="btn-view demo-trigger" data-name="${item.name}">Посмотреть</button>
                         <button class="btn-order-card" data-template="${item.name}">Выбрать</button>
                     </div>
-                </div>
-            `;
+                </div>`;
             grid.appendChild(card);
         });
-
         document.querySelectorAll('.demo-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const templateName = e.target.dataset.name;
-                const template = templates.find(t => t.name === templateName);
-                if (template) openDemoModal(template);
+                const t = templates.find(t => t.name === e.target.dataset.name);
+                if (t) openDemoModal(t);
             });
         });
-
         document.querySelectorAll('.btn-order-card').forEach(btn => {
             btn.addEventListener('click', (e) => {
-                const templateName = e.target.dataset.template;
-                select.value = templateName;
+                select.value = e.target.dataset.template;
                 document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
             });
         });
-
         renderPagination(totalPages);
-        
         if (page !== 1 || currentFilter !== 'all') {
-            const catalogSection = document.getElementById('catalog');
-            const offset = 80;
-            const top = catalogSection.getBoundingClientRect().top + window.pageYOffset - offset;
+            const top = document.getElementById('catalog').getBoundingClientRect().top + window.pageYOffset - 80;
             window.scrollTo({ top, behavior: 'smooth' });
         }
     }
 
     function renderPagination(totalPages) {
         paginationDiv.innerHTML = '';
-        
         if (totalPages <= 1) return;
-
         if (currentPage > 1) {
-            const prevBtn = document.createElement('button');
-            prevBtn.textContent = '←';
-            prevBtn.className = 'page-btn';
-            prevBtn.addEventListener('click', () => { currentPage--; renderPage(currentPage); });
-            paginationDiv.appendChild(prevBtn);
+            const prev = document.createElement('button');
+            prev.textContent = '←'; prev.className = 'page-btn';
+            prev.addEventListener('click', () => { currentPage--; renderPage(currentPage); });
+            paginationDiv.appendChild(prev);
         }
-
         const maxVisible = 5;
         let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
         let endPage = Math.min(totalPages, startPage + maxVisible - 1);
-        if (endPage - startPage < maxVisible - 1) {
-            startPage = Math.max(1, endPage - maxVisible + 1);
-        }
-
+        if (endPage - startPage < maxVisible - 1) startPage = Math.max(1, endPage - maxVisible + 1);
         for (let i = startPage; i <= endPage; i++) {
             const btn = document.createElement('button');
-            btn.textContent = i;
-            btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+            btn.textContent = i; btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
             btn.addEventListener('click', () => { currentPage = i; renderPage(i); });
             paginationDiv.appendChild(btn);
         }
-
         if (currentPage < totalPages) {
-            const nextBtn = document.createElement('button');
-            nextBtn.textContent = '→';
-            nextBtn.className = 'page-btn';
-            nextBtn.addEventListener('click', () => { currentPage++; renderPage(currentPage); });
-            paginationDiv.appendChild(nextBtn);
+            const next = document.createElement('button');
+            next.textContent = '→'; next.className = 'page-btn';
+            next.addEventListener('click', () => { currentPage++; renderPage(currentPage); });
+            paginationDiv.appendChild(next);
         }
     }
-
     renderPage(1);
 
-    // Form submission
     function showCustomMessage(text, type) {
-        const existingMsg = document.querySelector('.custom-form-message');
-        if (existingMsg) existingMsg.remove();
-
+        const existing = document.querySelector('.custom-form-message');
+        if (existing) existing.remove();
         const msg = document.createElement('div');
         msg.className = 'custom-form-message';
         msg.textContent = text;
-        msg.style.cssText = `
-            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            background: ${type === 'success' ? '#352e2c' : '#4a2a22'}; color: white;
-            padding: 14px 28px; border-radius: 40px; font-family: 'Montserrat', sans-serif;
-            font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 10001;
-            border-left: 3px solid ${type === 'success' ? '#8a7e74' : '#c46a5a'};
-            animation: slideUp 0.4s ease;
-            font-weight: 500;
-            max-width: 90%;
-            text-align: center;
-        `;
-
+        msg.style.cssText = `position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:${type==='success'?'#352e2c':'#4a2a22'};color:white;padding:14px 28px;border-radius:40px;font-family:'Montserrat',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;box-shadow:0 10px 30px rgba(0,0,0,0.15);z-index:10001;border-left:3px solid ${type==='success'?'#8a7e74':'#c46a5a'};animation:slideUp 0.4s ease;font-weight:500;max-width:90%;text-align:center;`;
         if (!document.querySelector('#customMsgAnimation')) {
             const style = document.createElement('style');
             style.id = 'customMsgAnimation';
-            style.textContent = `@keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }`;
+            style.textContent = '@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}';
             document.head.appendChild(style);
         }
-
         document.body.appendChild(msg);
-        setTimeout(() => { msg.style.opacity = '0'; msg.style.transition = 'opacity 0.4s'; setTimeout(() => msg.remove(), 400); }, 4000);
+        setTimeout(()=>{msg.style.opacity='0';msg.style.transition='opacity 0.4s';setTimeout(()=>msg.remove(),400)},4000);
     }
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        if (!consentCheck.checked) {
-            showCustomMessage('Пожалуйста, подтвердите согласие на обработку данных', 'error');
-            return;
-        }
-        
+        if (!consentCheck.checked) { showCustomMessage('Пожалуйста, подтвердите согласие на обработку данных', 'error'); return; }
         if (!customDesignCheck.checked && templateSelect.value === '') {
-            showCustomMessage('Пожалуйста, выберите шаблон или отметьте индивидуальный дизайн', 'error');
-            return;
+            showCustomMessage('Пожалуйста, выберите шаблон или отметьте индивидуальный дизайн', 'error'); return;
         }
-
-        const btn = this.querySelector('.btn-submit');
-        const originalText = btn.textContent;
-        btn.textContent = 'ОТПРАВКА...';
-        btn.disabled = true;
-
+        const btn = this.querySelector('.btn-submit'), originalText = btn.textContent;
+        btn.textContent = 'ОТПРАВКА...'; btn.disabled = true;
         const formData = new FormData(this);
-        
-        // Добавляем тип заказа в данные
-        if (customDesignCheck.checked) {
-            formData.append('design_type', 'Индивидуальный дизайн');
-        } else {
-            formData.append('design_type', 'Готовый шаблон');
-        }
-
-        fetch('https://formspree.io/f/xpqkwwwy', {
-            method: 'POST', 
-            body: formData, 
-            headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-            if (response.ok) {
+        formData.append('design_type', customDesignCheck.checked ? 'Индивидуальный дизайн' : 'Готовый шаблон');
+        fetch('https://formspree.io/f/xpqkwwwy', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+        .then(r => {
+            if (r.ok) {
                 showCustomMessage('Заявка отправлена! Я свяжусь с вами в ближайшее время.', 'success');
-                form.reset();
-                consentCheck.checked = false;
-                customDesignCheck.checked = false;
-                templateSelectWrapper.classList.remove('hidden');
-                templateSelect.setAttribute('required', 'required');
-                submitBtn.disabled = true;
-            } else {
-                showCustomMessage('Произошла ошибка. Пожалуйста, попробуйте ещё раз.', 'error');
-            }
+                form.reset(); consentCheck.checked = false; customDesignCheck.checked = false;
+                templateSelectWrapper.classList.remove('hidden'); templateSelect.setAttribute('required', 'required'); submitBtn.disabled = true;
+            } else showCustomMessage('Произошла ошибка. Пожалуйста, попробуйте ещё раз.', 'error');
         })
         .catch(() => showCustomMessage('Проблема с соединением. Проверьте интернет и попробуйте снова.', 'error'))
-        .finally(() => { 
-            btn.textContent = originalText; 
-            btn.disabled = false;
-        });
+        .finally(() => { btn.textContent = originalText; btn.disabled = false; });
     });
 </script>
 </body>
