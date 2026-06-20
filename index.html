@@ -157,7 +157,7 @@
         .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 10px; }
         .mobile-menu-btn span { display: block; width: 22px; height: 1.5px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
 
-        /* Hero — весь экран */
+        /* Hero */
         .hero {
             min-height: 100vh; 
             height: 100vh;
@@ -173,10 +173,6 @@
             overflow: hidden;
         }
         .hero > * { position: relative; z-index: 2; }
-        .hero-subtitle { 
-            text-transform: uppercase; letter-spacing: 6px; font-size: clamp(8px, 1vw, 10px); 
-            color: #8a7e74; margin-bottom: 15px; font-weight: 300;
-        }
         .hero h1 { 
             font-family: 'Cormorant Garamond', serif; 
             font-size: clamp(2rem, 7vw, 5rem); 
@@ -184,7 +180,7 @@
             text-transform: uppercase; letter-spacing: -0.02em; color: var(--primary);
         }
         .hero h1 em { 
-            font-style: normal; /* Шрифт как у основного текста */
+            font-style: normal;
             font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
         }
@@ -523,24 +519,54 @@
             color: var(--white);
         }
         
-        .tariff-block {
-            margin-bottom: 35px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+        /* Pricing Table */
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
         }
-        .tariff-block:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
+        .table-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1.2fr;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.3s ease;
+        }
+        .table-row:last-child {
             border-bottom: none;
         }
-        .tariff-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        .table-row:hover {
+            background: rgba(255,255,255,0.02);
+        }
+        .table-header {
+            border-bottom: 1px solid rgba(255,255,255,0.12);
             font-weight: 400;
-            color: var(--white);
-            margin-bottom: 8px;
             letter-spacing: 1px;
         }
+        .table-header .table-cell {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+            color: var(--white);
+            padding: 14px 10px;
+            font-weight: 400;
+        }
+        .table-cell {
+            padding: 12px 10px;
+            font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+            font-weight: 300;
+            color: #d6cec0;
+            display: flex;
+            align-items: center;
+            line-height: 1.4;
+        }
+        .table-cell:first-child {
+            color: #8a7e74;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .table-header .table-cell:first-child {
+            color: #8a7e74;
+        }
+
         .info-list { 
             list-style: none; 
             margin-bottom: 0; 
@@ -560,25 +586,6 @@
             margin-right: 12px; 
             color: #8a7e74; 
             flex-shrink: 0; 
-        }
-        .info-list li strong { 
-            font-weight: 500; 
-            color: var(--white);
-        }
-        .price-tag { 
-            font-size: clamp(1.8rem, 3vw, 2.2rem); 
-            font-weight: 300; 
-            margin: 10px 0 4px; 
-            font-family: 'Cormorant Garamond', serif; 
-            color: var(--white);
-        }
-        .price-note { 
-            font-size: clamp(0.7rem, 0.8vw, 0.8rem); 
-            opacity: 0.5; 
-            margin-bottom: 16px; 
-            letter-spacing: 1px; 
-            color: #d6cec0;
-            font-weight: 300;
         }
         .insta-link { 
             color: var(--white); 
@@ -997,8 +1004,10 @@
             .btn-view { font-size: 8px; }
             .btn-order-card { padding: 7px 14px; font-size: 7px; }
             .checkbox-wrapper label { font-size: 11px; }
-            .tariff-title { font-size: 1.2rem; }
             .info-list li { font-size: 0.85rem; }
+            .table-row { grid-template-columns: 1fr 1fr 1fr; gap: 5px; }
+            .table-cell { padding: 10px 6px; font-size: 0.7rem; }
+            .table-header .table-cell { font-size: 0.8rem; padding: 12px 6px; }
         }
         @media (max-width: 500px) {
             .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -1022,8 +1031,6 @@
             .modal-footer { padding: 10px 16px; flex-direction: row; gap: 8px; }
             .modal-btn { flex: 1; text-align: center; padding: 12px 10px; font-size: 9px; border-radius: 25px; }
             .info-block { padding: 50px 0; }
-            .tariff-block { margin-bottom: 25px; padding-bottom: 25px; }
-            .tariff-title { font-size: 1.1rem; }
             .info-list li { font-size: 0.8rem; margin-bottom: 8px; }
             .extra-services { padding: 50px 0; }
             .testimonials { padding: 50px 0; }
@@ -1037,6 +1044,9 @@
             .card-actions { display: flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
             .card-actions .btn-view { font-size: 7px; white-space: nowrap; flex-shrink: 0; }
             .card-actions .btn-order-card { font-size: 6px; padding: 5px 10px; white-space: nowrap; flex-shrink: 0; }
+            .table-row { grid-template-columns: 1fr 1fr 1fr; gap: 3px; }
+            .table-cell { padding: 8px 4px; font-size: 0.65rem; line-height: 1.3; }
+            .table-header .table-cell { font-size: 0.7rem; padding: 10px 4px; }
         }
         @media (max-width: 380px) {
             .catalog-grid { gap: 10px; }
@@ -1062,12 +1072,14 @@
 </head>
 <body>
 
+<!-- Splash Screen -->
 <div id="splash">
     <div class="logo-big">mono_<span>invitations</span></div>
     <div class="tagline">Ваше идеальное <em>приглашение</em> начинается тут</div>
     <div class="loader"></div>
 </div>
 
+<!-- Privacy Policy Modal -->
 <div class="privacy-modal" id="privacyModal">
     <div class="privacy-content">
         <button class="privacy-close" onclick="closePrivacyModal()">&times;</button>
@@ -1100,7 +1112,6 @@
 </nav>
 
 <header class="hero">
-    <!-- БЛОК DIGITAL WEDDING AGENCY УБРАН -->
     <h1 data-aos="fade-up" data-aos-duration="1000">Сайты, которые<br><em>приглашают</em> красиво</h1>
     <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Создаю эстетичные онлайн-приглашения с индивидуальным дизайном и удобной анкетой для гостей. Ваши гости влюбятся с первого клика.</p>
     
@@ -1119,40 +1130,64 @@
     <span class="scroll-indicator">Листайте вниз ↓</span>
 </header>
 
-<!-- Далее весь остальной код без изменений -->
 <section id="pricing" class="info-block">
     <div class="container">
         <div class="info-grid">
             <div class="info-content" data-aos="fade-right" data-aos-duration="1000">
                 <h2>Что входит в стоимость</h2>
-                <div class="tariff-block">
-                    <div class="tariff-title">Готовый шаблон</div>
-                    <div class="price-tag">90 BYN / 2500 ₽</div>
-                    <div class="price-note">финальная цена под ключ, без скрытых платежей</div>
-                    <ul class="info-list">
-                        <li>Индивидуальная настройка выбранного шаблона</li>
-                        <li>Анкета гостя с отправкой ответов на вашу почту</li>
-                        <li>Блок контактов (Telegram / WhatsApp)</li>
-                        <li>Добавление ваших фото, имён и дат</li>
-                        <li>Персональная ссылка — <strong>действует без ограничений</strong></li>
-                        <li><strong>До 3 правок</strong> бесплатно</li>
-                        <li>Срок разработки: 1–3 рабочих дня</li>
-                    </ul>
-                </div>
-                <div class="tariff-block">
-                    <div class="tariff-title">Индивидуальный дизайн</div>
-                    <div class="price-tag">от 150 BYN / 4000 ₽</div>
-                    <div class="price-note">уникальный дизайн с нуля под ваш стиль</div>
-                    <ul class="info-list">
-                        <li>Разработка уникального дизайна с нуля</li>
-                        <li>Учёт всех ваших пожеланий и референсов</li>
-                        <li>Авторская типографика и цветовая гамма</li>
-                        <li>Анкета гостя с отправкой ответов на вашу почту</li>
-                        <li>Блок контактов (Telegram / WhatsApp)</li>
-                        <li>Персональная ссылка — <strong>действует без ограничений</strong></li>
-                        <li><strong>До 5 правок</strong> бесплатно</li>
-                        <li>Срок разработки: 3–7 рабочих дней</li>
-                    </ul>
+                
+                <!-- Таблица сравнения -->
+                <div class="pricing-table">
+                    <div class="table-row table-header">
+                        <div class="table-cell"></div>
+                        <div class="table-cell">Готовый шаблон</div>
+                        <div class="table-cell">Индивидуальный дизайн</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Цена</div>
+                        <div class="table-cell">90 BYN / 2500 ₽</div>
+                        <div class="table-cell">от 150 BYN / 4000 ₽</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Срок</div>
+                        <div class="table-cell">1–3 рабочих дня</div>
+                        <div class="table-cell">3–7 рабочих дней</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Дизайн</div>
+                        <div class="table-cell">Выбранный шаблон</div>
+                        <div class="table-cell">Уникальный, с нуля</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Анкета гостя</div>
+                        <div class="table-cell">✓</div>
+                        <div class="table-cell">✓</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Блок контактов</div>
+                        <div class="table-cell">✓</div>
+                        <div class="table-cell">✓</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Ваши фото и даты</div>
+                        <div class="table-cell">✓</div>
+                        <div class="table-cell">✓</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Ссылка без ограничений</div>
+                        <div class="table-cell">✓</div>
+                        <div class="table-cell">✓</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Правки</div>
+                        <div class="table-cell">До 3 бесплатно</div>
+                        <div class="table-cell">До 3 бесплатно</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">Правки сверх лимита</div>
+                        <div class="table-cell">+10 BYN / +100 ₽ за каждую</div>
+                        <div class="table-cell">+10 BYN / +100 ₽ за каждую</div>
+                    </div>
                 </div>
             </div>
             <div class="info-content" data-aos="fade-left" data-aos-duration="1000">
@@ -1165,7 +1200,7 @@
                     <li>Вы отправляете фото, имена, даты и пожелания</li>
                     <li>Для индивидуального дизайна — обсуждаем референсы и детали</li>
                     <li>Через 1–7 дней (в зависимости от тарифа) получаете готовый сайт</li>
-                    <li>Я вношу правки до полного утверждения</li>
+                    <li>Я вношу правки (до 3 бесплатно), далее — оплачиваются дополнительно</li>
                 </ul>
                 <a href="https://instagram.com/mono_invitations" class="insta-link" target="_blank">@mono_invitations →</a>
             </div>
@@ -1185,8 +1220,8 @@
             </div>
             <div class="extra-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                 <h3>Дополнительные правки</h3>
-                <p>Больше 3 правок? Внесу любые изменения сверх лимита.</p>
-                <div class="price">+10 BYN <small>/ +100 ₽</small></div>
+                <p>Каждая правка сверх лимита (3 бесплатных) оплачивается отдельно.</p>
+                <div class="price">+10 BYN <small>/ +100 ₽ за правку</small></div>
             </div>
             <div class="extra-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
                 <h3>Срочная разработка</h3>
@@ -1201,6 +1236,7 @@
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Коллекция шаблонов</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Выберите стиль, который отражает вашу историю</p>
+        
         <div class="filter-bar" id="filterBar">
             <button class="filter-btn active" data-filter="all">Все</button>
             <button class="filter-btn" data-filter="classic">Классика</button>
@@ -1208,6 +1244,7 @@
             <button class="filter-btn" data-filter="romantic">Романтичный</button>
             <button class="filter-btn" data-filter="minimal">Минимализм</button>
         </div>
+
         <div class="catalog-grid" id="catalogGrid"></div>
         <div class="pagination" id="pagination"></div>
     </div>
@@ -1270,20 +1307,25 @@
             <form id="monoForm">
                 <input type="text" name="name" placeholder="Ваше имя" required>
                 <input type="text" name="contact" placeholder="Telegram / Instagram / WhatsApp" required>
+                
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="customDesignCheck">
                     <label for="customDesignCheck">Мне нужен <strong>индивидуальный дизайн</strong> (от 150 BYN / 4000 ₽)</label>
                 </div>
+                
                 <div id="templateSelectWrapper">
                     <select name="template" id="templateSelect">
                         <option value="">Выберите шаблон</option>
                     </select>
                 </div>
+                
                 <textarea name="message" rows="4" placeholder="Ваши вопросы и пожелания (необязательно)"></textarea>
+                
                 <div class="checkbox-wrapper">
                     <input type="checkbox" id="consentCheck" required>
                     <label for="consentCheck">Даю согласие на обработку персональных данных в соответствии с <a href="#" onclick="event.preventDefault(); openPrivacyModal();">политикой конфиденциальности</a></label>
                 </div>
+                
                 <button type="submit" class="btn-submit" id="submitBtn" disabled>Отправить заявку</button>
                 <p class="form-note">Заполняя форму, вы принимаете условия обработки данных</p>
             </form>
