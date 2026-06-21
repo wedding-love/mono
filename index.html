@@ -256,31 +256,31 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 40px;
             padding: 0 5px;
         }
         .filter-btn {
-            padding: 8px 22px;
+            padding: 10px 28px;
             border: 1px solid var(--border);
             background: transparent;
             color: var(--primary);
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(9px, 0.9vw, 11px);
+            font-size: clamp(10px, 1vw, 12px);
             text-transform: uppercase;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             cursor: pointer;
             border-radius: var(--filter-radius);
             transition: var(--transition-smooth);
             background: var(--white);
-            font-weight: 300;
+            font-weight: 400;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
         .filter-btn:hover {
             background: var(--gray);
             border-color: #c4b8ab;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
         .filter-btn.active {
             background: var(--primary);
@@ -290,6 +290,11 @@
         }
         .filter-btn:active {
             transform: scale(0.96);
+        }
+        .filter-btn .price-icon {
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 0.9em;
         }
 
         .catalog-grid {
@@ -308,6 +313,8 @@
             background: var(--white);
             box-shadow: var(--soft-shadow);
             border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
         }
         .card:hover {
             box-shadow: 0 15px 45px rgba(53,46,44,0.10);
@@ -330,6 +337,31 @@
         }
         .card-badge.new { background: #6b6058; }
         .card-badge.popular { background: #b088b3; }
+        .card-price {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(53,46,44,0.7));
+            color: white;
+            padding: 30px 16px 14px;
+            font-size: clamp(11px, 1.2vw, 14px);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            z-index: 2;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .card-price span {
+            background: rgba(255,255,255,0.15);
+            padding: 4px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
         .card-image {
             width: 100%;
             aspect-ratio: 3/4;
@@ -339,6 +371,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         .card-image img {
             width: 100%;
@@ -381,6 +414,9 @@
             padding: 22px 20px 20px;
             text-align: left;
             background: var(--white);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         .card-info h3 {
             font-family: 'Cormorant Garamond', serif;
@@ -403,12 +439,14 @@
             margin-bottom: 16px;
             font-weight: 300;
             line-height: 1.5;
+            flex: 1;
         }
         .card-actions {
             display: flex;
             gap: 12px;
             align-items: center;
             flex-wrap: wrap;
+            margin-top: auto;
         }
         .btn-view {
             text-decoration: none;
@@ -998,7 +1036,7 @@
             .form-container { padding: 30px 20px; }
             .scroll-top-btn { bottom: 18px; right: 18px; width: 40px; height: 40px; font-size: 15px; }
             .extra-grid { grid-template-columns: 1fr; }
-            .filter-btn { padding: 7px 18px; font-size: 9px; }
+            .filter-btn { padding: 8px 20px; font-size: 10px; }
             .testimonials-grid { grid-template-columns: 1fr; }
             .catalog-grid { gap: 16px; }
             .card-info { padding: 18px 16px 16px; }
@@ -1024,10 +1062,12 @@
             .form-container { padding: 25px 16px; }
             input, select, textarea { padding: 14px 16px; font-size: 15px; }
             .card-badge { font-size: 6px; padding: 2px 10px; top: 10px; right: 10px; }
+            .card-price { padding: 20px 12px 10px; font-size: 10px; }
+            .card-price span { padding: 3px 12px; }
             .card-info h3 { font-size: 1rem; }
             .card-info .card-category { font-size: 7px; }
-            .filter-bar { gap: 6px; margin-bottom: 25px; }
-            .filter-btn { padding: 6px 14px; font-size: 8px; letter-spacing: 1px; }
+            .filter-bar { gap: 8px; margin-bottom: 25px; }
+            .filter-btn { padding: 6px 16px; font-size: 9px; letter-spacing: 1px; }
             .page-btn { width: 34px; height: 34px; font-size: 10px; }
             .modal-header { padding: 12px 16px; }
             .modal-title { font-size: 1.1rem; }
@@ -1241,11 +1281,9 @@
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Выберите стиль, который отражает вашу историю</p>
         
         <div class="filter-bar" id="filterBar">
-            <button class="filter-btn active" data-filter="all">Все</button>
-            <button class="filter-btn" data-filter="classic">Классика</button>
-            <button class="filter-btn" data-filter="modern">Современный</button>
-            <button class="filter-btn" data-filter="romantic">Романтичный</button>
-            <button class="filter-btn" data-filter="minimal">Минимализм</button>
+            <button class="filter-btn active" data-filter="all">Все шаблоны</button>
+            <button class="filter-btn" data-filter="price90"><span class="price-icon">●</span> 90 BYN / 2500 ₽</button>
+            <button class="filter-btn" data-filter="price110"><span class="price-icon">◆</span> 110 BYN / 3000 ₽</button>
         </div>
 
         <div class="catalog-grid" id="catalogGrid"></div>
@@ -1447,32 +1485,32 @@
         { 
             name: "Дети выросли — мы женимся!", 
             desc: "Трогательное приглашение в стиле «из детства во взрослую жизнь». Идеально для пар, которые хотят рассказать свою историю любви с первых лет.", 
-            demoUrl: "about:blank", 
+            demoUrl: "https://wedding-love.github.io/detstvo/", 
             imageUrl: "дети.png", 
             category: "romantic", 
             badge: "popular",
-            price: "110 BYN / 3000 ₽"
+            priceValue: 110
         },
         // Остальные шаблоны
-        { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic" },
-        { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic" },
-        { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic" },
-        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic" },
-        { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new" },
-        { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern" },
-        { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern" },
-        { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern" },
-        { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern" },
-        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic" },
-        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic" },
-        { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic" },
-        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic" },
-        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки и изысканная палитра.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", category: "romantic" },
-        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего. Только главное.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", category: "minimal" },
-        { name: "Red", desc: "Яркий акцент на красном цвете на минималистичной основе.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", category: "minimal" },
-        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений и свободы.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", category: "minimal" },
-        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок в минималистичном дизайне.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg", category: "minimal" },
-        { name: "Звонок", desc: "Динамичный стиль, яркие эмоции и лаконичные формы.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", category: "minimal" }
+        { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic", priceValue: 90 },
+        { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic", priceValue: 90 },
+        { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic", priceValue: 90 },
+        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic", priceValue: 90 },
+        { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new", priceValue: 110 },
+        { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern", priceValue: 90 },
+        { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern", priceValue: 90 },
+        { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern", priceValue: 90 },
+        { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern", priceValue: 90 },
+        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic", priceValue: 90 },
+        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic", priceValue: 90 },
+        { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic", priceValue: 90 },
+        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic", priceValue: 110 },
+        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки и изысканная палитра.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", category: "romantic", priceValue: 90 },
+        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего. Только главное.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", category: "minimal", priceValue: 110 },
+        { name: "Red", desc: "Яркий акцент на красном цвете на минималистичной основе.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", category: "minimal", priceValue: 90 },
+        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений и свободы.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", category: "minimal", priceValue: 90 },
+        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок в минималистичном дизайне.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg", category: "minimal", priceValue: 90 },
+        { name: "Звонок", desc: "Динамичный стиль, яркие эмоции и лаконичные формы.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", category: "minimal", priceValue: 90 }
     ];
 
     const ITEMS_PER_PAGE = 9;
@@ -1486,33 +1524,55 @@
 
     function populateSelect() {
         select.innerHTML = '<option value="">Выберите шаблон</option>';
-        templates.forEach(t => { const opt = document.createElement('option'); opt.value = t.name; opt.textContent = t.name + (t.price ? ' (' + t.price + ')' : ''); select.appendChild(opt); });
+        templates.forEach(t => { 
+            const opt = document.createElement('option'); 
+            opt.value = t.name; 
+            const priceText = t.priceValue === 110 ? '110 BYN / 3000 ₽' : '90 BYN / 2500 ₽';
+            opt.textContent = t.name + ' (' + priceText + ')'; 
+            select.appendChild(opt); 
+        });
     }
     populateSelect();
 
     function openDemoModal(template) {
-        currentTemplateName = template.name; modalTitle.textContent = template.name + (template.price ? ' — ' + template.price : '');
-        modalFrame.src = template.demoUrl; modal.classList.add('active'); document.body.style.overflow = 'hidden';
+        currentTemplateName = template.name; 
+        const priceText = template.priceValue === 110 ? '110 BYN / 3000 ₽' : '90 BYN / 2500 ₽';
+        modalTitle.textContent = template.name + ' — ' + priceText;
+        modalFrame.src = template.demoUrl; 
+        modal.classList.add('active'); 
+        document.body.style.overflow = 'hidden';
     }
     window.closeDemoModal = function() {
-        modal.classList.remove('active'); modalFrame.src = ''; document.body.style.overflow = '';
+        modal.classList.remove('active'); 
+        modalFrame.src = ''; 
+        document.body.style.overflow = '';
     };
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeDemoModal(); });
     modal.addEventListener('click', (e) => { if (e.target === modal) closeDemoModal(); });
     modalSelectBtn.addEventListener('click', () => {
-        select.value = currentTemplateName; closeDemoModal();
+        select.value = currentTemplateName; 
+        closeDemoModal();
         document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
     });
 
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active'); currentFilter = this.dataset.filter; currentPage = 1; applyFilter();
+            this.classList.add('active'); 
+            currentFilter = this.dataset.filter; 
+            currentPage = 1; 
+            applyFilter();
         });
     });
 
     function applyFilter() {
-        filteredTemplates = currentFilter === 'all' ? [...templates] : templates.filter(t => t.category === currentFilter);
+        if (currentFilter === 'all') {
+            filteredTemplates = [...templates];
+        } else if (currentFilter === 'price90') {
+            filteredTemplates = templates.filter(t => t.priceValue === 90);
+        } else if (currentFilter === 'price110') {
+            filteredTemplates = templates.filter(t => t.priceValue === 110);
+        }
         renderPage(currentPage);
     }
 
@@ -1525,7 +1585,8 @@
         grid.innerHTML = '';
         if (pageItems.length === 0) {
             grid.innerHTML = '<div class="no-results">Нет шаблонов в этой категории</div>';
-            paginationDiv.innerHTML = ''; return;
+            paginationDiv.innerHTML = ''; 
+            return;
         }
         pageItems.forEach((item, index) => {
             const card = document.createElement('div');
@@ -1535,16 +1596,18 @@
             card.setAttribute('data-aos-duration', '800');
             const categoryLabels = { 'classic': 'Классика', 'modern': 'Современный', 'romantic': 'Романтика', 'minimal': 'Минимализм' };
             const badgeText = item.badge === 'popular' ? 'Популярный' : item.badge === 'new' ? 'Новинка' : '';
+            const priceText = item.priceValue === 110 ? '110 BYN / 3000 ₽' : '90 BYN / 2500 ₽';
             card.innerHTML = `
                 ${item.badge ? `<span class="card-badge ${item.badge}">${badgeText}</span>` : ''}
-                ${item.price ? `<span class="card-badge" style="top:60px;right:14px;background:#b088b3;font-size:7px;">${item.price}</span>` : ''}
                 <div class="card-image">
                     ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23f0ebe0\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%238a7e74\\' font-family=\\'Arial\\' font-size=\\'12\\'%3E${item.name}%3C/text%3E%3C/svg%3E';">` : `<span class="placeholder-text">${item.name}</span>`}
+                    <div class="card-price"><span>${priceText}</span></div>
                     <div class="card-overlay"><button class="btn-main demo-trigger" data-name="${item.name}">Быстрый просмотр</button></div>
                 </div>
                 <div class="card-info">
                     <div class="card-category">${categoryLabels[item.category] || ''}</div>
-                    <h3>${item.name}</h3><p>${item.desc}</p>
+                    <h3>${item.name}</h3>
+                    <p>${item.desc}</p>
                     <div class="card-actions">
                         <button class="btn-view demo-trigger" data-name="${item.name}">Посмотреть</button>
                         <button class="btn-order-card" data-template="${item.name}">Выбрать</button>
