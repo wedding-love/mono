@@ -276,6 +276,7 @@
             font-weight: 400;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
         }
         .filter-btn:hover {
             background: var(--gray);
@@ -361,6 +362,9 @@
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
             border: 1px solid rgba(255,255,255,0.1);
+            display: inline-block;
+            white-space: nowrap;
+            font-size: clamp(10px, 1.1vw, 13px);
         }
         .card-image {
             width: 100%;
@@ -1047,7 +1051,7 @@
             .form-container { padding: 30px 20px; }
             .scroll-top-btn { bottom: 18px; right: 18px; width: 40px; height: 40px; font-size: 15px; }
             .extra-grid { grid-template-columns: 1fr; }
-            .filter-btn { padding: 8px 20px; font-size: 10px; }
+            .filter-btn { padding: 8px 16px; font-size: 9px; letter-spacing: 1px; }
             .testimonials-grid { grid-template-columns: 1fr; }
             .catalog-grid { gap: 16px; }
             .card-info { padding: 18px 16px 16px; }
@@ -1074,11 +1078,21 @@
             input, select, textarea { padding: 14px 16px; font-size: 15px; }
             .card-badge { font-size: 6px; padding: 2px 10px; top: 10px; right: 10px; }
             .card-price { padding: 20px 12px 10px; font-size: 10px; }
-            .card-price span { padding: 3px 12px; }
+            .card-price span { 
+                padding: 3px 10px; 
+                font-size: 9px; 
+                white-space: nowrap;
+            }
             .card-info h3 { font-size: 1rem; }
             .card-info .card-category { font-size: 7px; }
-            .filter-bar { gap: 8px; margin-bottom: 25px; }
-            .filter-btn { padding: 6px 16px; font-size: 9px; letter-spacing: 1px; }
+            .filter-bar { gap: 6px; margin-bottom: 25px; }
+            .filter-btn { 
+                padding: 6px 12px; 
+                font-size: 8px; 
+                letter-spacing: 0.5px;
+                white-space: nowrap;
+            }
+            .filter-btn .price-icon { margin-right: 4px; }
             .page-btn { width: 34px; height: 34px; font-size: 10px; }
             .modal-header { padding: 12px 16px; }
             .modal-title { font-size: 1.1rem; }
@@ -1115,6 +1129,8 @@
             .card-actions { gap: 5px; }
             .checkbox-wrapper label { font-size: 9px; }
             .info-list li { font-size: 0.75rem; }
+            .card-price span { font-size: 8px; padding: 2px 8px; }
+            .filter-btn { font-size: 7px; padding: 5px 10px; }
         }
 
         @media (hover: none) {
