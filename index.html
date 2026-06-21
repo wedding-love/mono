@@ -329,6 +329,7 @@
             font-weight: 400;
         }
         .card-badge.new { background: #6b6058; }
+        .card-badge.popular { background: #b088b3; }
         .card-image {
             width: 100%;
             aspect-ratio: 3/4;
@@ -1120,7 +1121,7 @@
     
     <div class="hero-stats" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         <div class="stat-item">
-            <div class="stat-number">19+</div>
+            <div class="stat-number">20+</div>
             <div class="stat-label">Шаблонов</div>
         </div>
         <div class="stat-item">
@@ -1147,7 +1148,7 @@
                     </div>
                     <div class="table-row">
                         <div class="table-cell">Цена</div>
-                        <div class="table-cell">90 BYN / 2500 ₽</div>
+                        <div class="table-cell">90–110 BYN / 2500–3000 ₽</div>
                         <div class="table-cell">от 150 BYN / 4000 ₽</div>
                     </div>
                     <div class="table-row">
@@ -1442,6 +1443,17 @@
     templateSelect.addEventListener('change', updateSubmitButton);
 
     const templates = [
+        // Новый шаблон "Дети выросли — мы женимся!" — первый в списке
+        { 
+            name: "Дети выросли — мы женимся!", 
+            desc: "Трогательное приглашение в стиле «из детства во взрослую жизнь». Идеально для пар, которые хотят рассказать свою историю любви с первых лет.", 
+            demoUrl: "about:blank", 
+            imageUrl: "дети.png", 
+            category: "romantic", 
+            badge: "popular",
+            price: "110 BYN / 3000 ₽"
+        },
+        // Остальные шаблоны
         { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic" },
         { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic" },
         { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic" },
@@ -1451,7 +1463,7 @@
         { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern" },
         { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern" },
         { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern" },
-        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "IMG_7806.jpeg", category: "romantic", badge: "new" },
+        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic" },
         { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic" },
         { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic" },
         { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic" },
@@ -1474,12 +1486,12 @@
 
     function populateSelect() {
         select.innerHTML = '<option value="">Выберите шаблон</option>';
-        templates.forEach(t => { const opt = document.createElement('option'); opt.value = t.name; opt.textContent = t.name; select.appendChild(opt); });
+        templates.forEach(t => { const opt = document.createElement('option'); opt.value = t.name; opt.textContent = t.name + (t.price ? ' (' + t.price + ')' : ''); select.appendChild(opt); });
     }
     populateSelect();
 
     function openDemoModal(template) {
-        currentTemplateName = template.name; modalTitle.textContent = template.name;
+        currentTemplateName = template.name; modalTitle.textContent = template.name + (template.price ? ' — ' + template.price : '');
         modalFrame.src = template.demoUrl; modal.classList.add('active'); document.body.style.overflow = 'hidden';
     }
     window.closeDemoModal = function() {
@@ -1522,8 +1534,10 @@
             card.setAttribute('data-aos-delay', (index * 50).toString());
             card.setAttribute('data-aos-duration', '800');
             const categoryLabels = { 'classic': 'Классика', 'modern': 'Современный', 'romantic': 'Романтика', 'minimal': 'Минимализм' };
+            const badgeText = item.badge === 'popular' ? 'Популярный' : item.badge === 'new' ? 'Новинка' : '';
             card.innerHTML = `
-                ${item.badge ? `<span class="card-badge ${item.badge}">${item.badge === 'new' ? 'Новинка' : ''}</span>` : ''}
+                ${item.badge ? `<span class="card-badge ${item.badge}">${badgeText}</span>` : ''}
+                ${item.price ? `<span class="card-badge" style="top:60px;right:14px;background:#b088b3;font-size:7px;">${item.price}</span>` : ''}
                 <div class="card-image">
                     ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23f0ebe0\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%238a7e74\\' font-family=\\'Arial\\' font-size=\\'12\\'%3E${item.name}%3C/text%3E%3C/svg%3E';">` : `<span class="placeholder-text">${item.name}</span>`}
                     <div class="card-overlay"><button class="btn-main demo-trigger" data-name="${item.name}">Быстрый просмотр</button></div>
