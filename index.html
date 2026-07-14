@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>mono_invitations | Цифровые приглашения на свадьбу</title>
+    <title>mono_invitations | Цифровые приглашения на свадьбу и гендер-пати</title>
     
-    <meta name="description" content="Создаю эстетичные онлайн-приглашения на свадьбу с индивидуальным дизайном, анкетой гостя и сбором ответов. 20+ стильных шаблонов.">
-    <meta property="og:title" content="mono_invitations | Цифровые приглашения на свадьбу">
+    <meta name="description" content="Создаю эстетичные онлайн-приглашения на свадьбу и гендер-пати с индивидуальным дизайном, анкетой гостя и сбором ответов. 20+ стильных шаблонов.">
+    <meta property="og:title" content="mono_invitations | Цифровые приглашения">
     <meta property="og:description" content="Стильные сайты-приглашения с анкетой гостя. Готовые шаблоны от 90 BYN / 2500 ₽. Индивидуальный дизайн от 150 BYN / 4000 ₽.">
     <meta property="og:type" content="website">
     
@@ -257,8 +257,11 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 40px;
+            margin-bottom: 15px;
             padding: 0 5px;
+        }
+        .filter-bar.price-filter {
+            margin-bottom: 30px;
         }
         .filter-btn {
             padding: 10px 28px;
@@ -338,6 +341,7 @@
         }
         .card-badge.new { background: #6b6058; }
         .card-badge.popular { background: #b088b3; }
+        .card-badge.gender { background: #b8a08c; }
         .card-price {
             position: absolute;
             bottom: 0;
@@ -613,7 +617,6 @@
         .table-header .table-cell:first-child {
             color: #8a7e74;
         }
-        /* Сброс стилей ссылок для цены */
         .table-cell a, .table-cell a:visited, .table-cell a:hover, .table-cell a:active {
             color: inherit !important;
             text-decoration: none !important;
@@ -1095,7 +1098,7 @@
             }
             .card-info h3 { font-size: 1rem; }
             .card-info .card-category { font-size: 7px; }
-            .filter-bar { gap: 6px; margin-bottom: 25px; }
+            .filter-bar { gap: 6px; margin-bottom: 15px; }
             .filter-btn { 
                 padding: 6px 12px; 
                 font-size: 8px; 
@@ -1204,7 +1207,7 @@
 
 <header class="hero">
     <h1 data-aos="fade-up" data-aos-duration="1000">Сайты, которые<br><em>приглашают</em> красиво</h1>
-    <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Создаю эстетичные онлайн-приглашения с индивидуальным дизайном и удобной анкетой для гостей. Ваши гости влюбятся с первого клика.</p>
+    <p data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">Создаю эстетичные онлайн-приглашения для свадьбы и гендер-пати с индивидуальным дизайном и удобной анкетой для гостей. Ваши гости влюбятся с первого клика.</p>
     
     <div class="hero-stats" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
         <div class="stat-item">
@@ -1325,12 +1328,20 @@
 <section id="catalog" class="catalog">
     <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000">Коллекция шаблонов</h2>
-        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Выберите стиль, который отражает вашу историю</p>
+        <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">Выберите стиль для свадьбы или гендер-пати</p>
         
+        <!-- Основные фильтры (категории) -->
         <div class="filter-bar" id="filterBar">
             <button class="filter-btn active" data-filter="all">Все шаблоны</button>
-            <button class="filter-btn" data-filter="price90"><span class="price-icon">●</span> 90 BYN / 2500 ₽</button>
-            <button class="filter-btn" data-filter="price110"><span class="price-icon">◆</span> 110 BYN / 3000 ₽</button>
+            <button class="filter-btn" data-filter="wedding">Свадьба</button>
+            <button class="filter-btn" data-filter="gender">Гендер-пати</button>
+        </div>
+
+        <!-- Фильтр по цене (показывается только для свадебных шаблонов) -->
+        <div class="filter-bar price-filter" id="priceFilterBar" style="display: none;">
+            <button class="filter-btn active" data-price="all">Все цены</button>
+            <button class="filter-btn" data-price="90"><span class="price-icon">●</span> 90 BYN / 2500 ₽</button>
+            <button class="filter-btn" data-price="110"><span class="price-icon">◆</span> 110 BYN / 3000 ₽</button>
         </div>
 
         <div class="catalog-grid" id="catalogGrid"></div>
@@ -1452,6 +1463,7 @@
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
+    // ---------- PRIVACY MODAL ----------
     function openPrivacyModal() {
         document.getElementById('privacyModal').classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -1464,6 +1476,7 @@
         if (e.target === this) closePrivacyModal();
     });
 
+    // ---------- SPLASH SCREEN ----------
     window.addEventListener('load', function() {
         setTimeout(function() {
             document.getElementById('splash').classList.add('hidden');
@@ -1472,6 +1485,7 @@
 
     AOS.init({ duration: 1000, once: true, offset: 60, easing: 'ease-out-cubic' });
 
+    // ---------- NAV ----------
     function toggleMobileMenu() {
         document.getElementById('navLinks').classList.toggle('mobile-active');
     }
@@ -1496,6 +1510,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // ---------- FORM ----------
     const form = document.getElementById('monoForm');
     const consentCheck = document.getElementById('consentCheck');
     const customDesignCheck = document.getElementById('customDesignCheck');
@@ -1527,99 +1542,150 @@
     consentCheck.addEventListener('change', updateSubmitButton);
     templateSelect.addEventListener('change', updateSubmitButton);
 
+    // ---------- TEMPLATES DATA ----------
     const templates = [
-        // Новый шаблон "Дети выросли — мы женимся!" — первый в списке
+        // Гендер-пати (первый в списке)
         { 
-            name: "Дети выросли — мы женимся!", 
-            desc: "Трогательное приглашение в стиле «из детства во взрослую жизнь». Идеально для пар, которые хотят рассказать свою историю любви с первых лет.", 
-            demoUrl: "https://wedding-love.github.io/deti/", 
-            imageUrl: "IMG_7806.jpeg", 
-            category: "romantic", 
-            badge: "popular",
-            priceValue: 110
+            name: "Бежевый", 
+            desc: "Нежный и тёплый дизайн для гендер-пати. Идеально подходит для создания интриги и уютной атмосферы.", 
+            demoUrl: "https://wedding-love.github.io/gender-party2/", 
+            imageUrl: "главная.png", 
+            category: "gender", 
+            badge: "new",
+            priceValue: 110,
+            type: "gender"
         },
-        // Остальные шаблоны
-        { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic", priceValue: 90 },
-        { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic", priceValue: 90 },
-        { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic", priceValue: 90 },
-        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic", priceValue: 90 },
-        { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new", priceValue: 110 },
-        { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern", priceValue: 90 },
-        { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern", priceValue: 90 },
-        { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern", priceValue: 90 },
-        { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern", priceValue: 90 },
-        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic", priceValue: 90 },
-        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic", priceValue: 90 },
-        { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic", priceValue: 90 },
-        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic", priceValue: 110 },
-        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки и изысканная палитра.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", category: "romantic", priceValue: 90 },
-        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего. Только главное.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", category: "minimal", priceValue: 110 },
-        { name: "Red", desc: "Яркий акцент на красном цвете на минималистичной основе.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", category: "minimal", priceValue: 90 },
-        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений и свободы.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", category: "minimal", priceValue: 90 },
-        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок в минималистичном дизайне.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg", category: "minimal", priceValue: 90 },
-        { name: "Звонок", desc: "Динамичный стиль, яркие эмоции и лаконичные формы.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", category: "minimal", priceValue: 90 }
+        // Свадебные шаблоны
+        { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic", priceValue: 90, type: "wedding" },
+        { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic", priceValue: 90, type: "wedding" },
+        { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic", priceValue: 90, type: "wedding" },
+        { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic", priceValue: 90, type: "wedding" },
+        { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new", priceValue: 110, type: "wedding" },
+        { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern", priceValue: 90, type: "wedding" },
+        { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern", priceValue: 90, type: "wedding" },
+        { name: "Стиль", desc: "Графичный монохром с акцентами и современной типографикой.", demoUrl: "https://wedding-love.github.io/--/", imageUrl: "стиль.jpg", category: "modern", priceValue: 90, type: "wedding" },
+        { name: "Black", desc: "Тёмная элегантность для смелых и стильных пар.", demoUrl: "https://wedding-love.github.io/black/", imageUrl: "black.jpg", category: "modern", priceValue: 90, type: "wedding" },
+        { name: "Мы женимся", desc: "Нежные воспоминания и трогательный стиль в каждой детали.", demoUrl: "https://wedding-love.github.io/detstvo/", imageUrl: "detstvo.jpg", category: "romantic", priceValue: 90, type: "wedding" },
+        { name: "Уют", desc: "Тёплая пастельная гамма и мягкие формы для душевной свадьбы.", demoUrl: "https://wedding-love.github.io/yut/", imageUrl: "уют.jpg", category: "romantic", priceValue: 90, type: "wedding" },
+        { name: "Бархат", desc: "Глубокие тона, фактуры и драматичная атмосфера.", demoUrl: "https://wedding-love.github.io/barhat/", imageUrl: "бархат.jpg", category: "romantic", priceValue: 90, type: "wedding" },
+        { name: "Нежность", desc: "Воздушные шрифты и нюдовые оттенки для романтичной истории.", demoUrl: "https://wedding-love.github.io/-/", imageUrl: "нежность.jpg", category: "romantic", priceValue: 110, type: "wedding" },
+        { name: "Пыльная роза", desc: "Романтика, припылённые лепестки и изысканная палитра.", demoUrl: "https://wedding-love.github.io/rose/", imageUrl: "пыльная_роза.jpg", category: "romantic", priceValue: 90, type: "wedding" },
+        { name: "Минимализм", desc: "Чистое пространство и ничего лишнего. Только главное.", demoUrl: "https://wedding-love.github.io/minimalism/", imageUrl: "минимализм.jpg", category: "minimal", priceValue: 110, type: "wedding" },
+        { name: "Red", desc: "Яркий акцент на красном цвете на минималистичной основе.", demoUrl: "https://wedding-love.github.io/red/", imageUrl: "Red.jpg", category: "minimal", priceValue: 90, type: "wedding" },
+        { name: "Самолёт", desc: "Тревел-эстетика для любителей приключений и свободы.", demoUrl: "https://wedding-love.github.io/airplane/", imageUrl: "самолет.jpg", category: "minimal", priceValue: 90, type: "wedding" },
+        { name: "Морская лагуна", desc: "Свежесть океана, бирюза и песок в минималистичном дизайне.", demoUrl: "https://wedding-love.github.io/blue/", imageUrl: "blue.jpg", category: "minimal", priceValue: 90, type: "wedding" },
+        { name: "Звонок", desc: "Динамичный стиль, яркие эмоции и лаконичные формы.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", category: "minimal", priceValue: 90, type: "wedding" }
     ];
 
+    // ---------- CATALOG LOGIC ----------
     const ITEMS_PER_PAGE = 9;
-    let currentPage = 1, currentFilter = 'all', filteredTemplates = [...templates];
+    let currentCategoryFilter = 'all';
+    let currentPriceFilter = 'all';
+    let currentPage = 1;
+    let filteredTemplates = [...templates];
 
-    const grid = document.getElementById('catalogGrid'), paginationDiv = document.getElementById('pagination');
-    const select = document.getElementById('templateSelect'), modal = document.getElementById('demoModal');
-    const modalTitle = document.getElementById('modalTitle'), modalFrame = document.getElementById('modalFrame');
+    const grid = document.getElementById('catalogGrid');
+    const paginationDiv = document.getElementById('pagination');
+    const select = document.getElementById('templateSelect');
+    const modal = document.getElementById('demoModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalFrame = document.getElementById('modalFrame');
     const modalSelectBtn = document.getElementById('modalSelectBtn');
     let currentTemplateName = '';
 
+    // Populate select dropdown
     function populateSelect() {
         select.innerHTML = '<option value="">Выберите шаблон</option>';
-        templates.forEach(t => { 
-            const opt = document.createElement('option'); 
-            opt.value = t.name; 
+        templates.forEach(t => {
+            const opt = document.createElement('option');
+            opt.value = t.name;
             const priceText = t.priceValue === 110 ? '110 BYN / 3000 ₽' : '90 BYN / 2500 ₽';
-            opt.textContent = t.name + ' (' + priceText + ')'; 
-            select.appendChild(opt); 
+            opt.textContent = t.name + ' (' + priceText + ')';
+            select.appendChild(opt);
         });
     }
     populateSelect();
 
+    // Modal functions
     function openDemoModal(template) {
-        currentTemplateName = template.name; 
+        currentTemplateName = template.name;
         const priceText = template.priceValue === 110 ? '110 BYN / 3000 ₽' : '90 BYN / 2500 ₽';
         modalTitle.textContent = template.name + ' — ' + priceText;
-        modalFrame.src = template.demoUrl; 
-        modal.classList.add('active'); 
+        modalFrame.src = template.demoUrl;
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
     window.closeDemoModal = function() {
-        modal.classList.remove('active'); 
-        modalFrame.src = ''; 
+        modal.classList.remove('active');
+        modalFrame.src = '';
         document.body.style.overflow = '';
     };
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeDemoModal(); });
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeDemoModal(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeDemoModal();
+    });
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeDemoModal();
+    });
     modalSelectBtn.addEventListener('click', () => {
-        select.value = currentTemplateName; 
+        select.value = currentTemplateName;
         closeDemoModal();
         document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
     });
 
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    // Category filter buttons
+    document.querySelectorAll('#filterBar .filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active'); 
-            currentFilter = this.dataset.filter; 
-            currentPage = 1; 
-            applyFilter();
+            document.querySelectorAll('#filterBar .filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentCategoryFilter = this.dataset.filter;
+            currentPriceFilter = 'all'; // сбрасываем ценовой фильтр
+            currentPage = 1;
+            
+            // Показываем/скрываем ценовые фильтры
+            const priceFilterBar = document.getElementById('priceFilterBar');
+            if (currentCategoryFilter === 'wedding') {
+                priceFilterBar.style.display = 'flex';
+                // сбрасываем активный ценовой фильтр на "все цены"
+                document.querySelectorAll('#priceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('#priceFilterBar .filter-btn[data-price="all"]').classList.add('active');
+            } else {
+                priceFilterBar.style.display = 'none';
+            }
+            
+            applyFilters();
         });
     });
 
-    function applyFilter() {
-        if (currentFilter === 'all') {
-            filteredTemplates = [...templates];
-        } else if (currentFilter === 'price90') {
-            filteredTemplates = templates.filter(t => t.priceValue === 90);
-        } else if (currentFilter === 'price110') {
-            filteredTemplates = templates.filter(t => t.priceValue === 110);
+    // Price filter buttons
+    document.querySelectorAll('#priceFilterBar .filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (currentCategoryFilter !== 'wedding') return;
+            document.querySelectorAll('#priceFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentPriceFilter = this.dataset.price;
+            currentPage = 1;
+            applyFilters();
+        });
+    });
+
+    function applyFilters() {
+        let filtered = [...templates];
+        
+        // Фильтр по категории
+        if (currentCategoryFilter === 'wedding') {
+            filtered = filtered.filter(t => t.type === 'wedding');
+        } else if (currentCategoryFilter === 'gender') {
+            filtered = filtered.filter(t => t.type === 'gender');
         }
+        // 'all' — без фильтрации по категории
+
+        // Фильтр по цене (только если выбран свадебный раздел)
+        if (currentCategoryFilter === 'wedding' && currentPriceFilter !== 'all') {
+            const price = parseInt(currentPriceFilter);
+            filtered = filtered.filter(t => t.priceValue === price);
+        }
+
+        filteredTemplates = filtered;
         renderPage(currentPage);
     }
 
@@ -1632,7 +1698,7 @@
         grid.innerHTML = '';
         if (pageItems.length === 0) {
             grid.innerHTML = '<div class="no-results">Нет шаблонов в этой категории</div>';
-            paginationDiv.innerHTML = ''; 
+            paginationDiv.innerHTML = '';
             return;
         }
         pageItems.forEach((item, index) => {
@@ -1641,11 +1707,26 @@
             card.setAttribute('data-aos', 'fade-up');
             card.setAttribute('data-aos-delay', (index * 50).toString());
             card.setAttribute('data-aos-duration', '800');
-            const categoryLabels = { 'classic': 'Классика', 'modern': 'Современный', 'romantic': 'Романтика', 'minimal': 'Минимализм' };
+            
+            const categoryLabels = {
+                'classic': 'Классика',
+                'modern': 'Современный',
+                'romantic': 'Романтика',
+                'minimal': 'Минимализм',
+                'gender': 'Гендер-пати'
+            };
             const badgeText = item.badge === 'popular' ? 'Популярный' : item.badge === 'new' ? 'Новинка' : '';
             const priceText = item.priceValue === 110 ? '110 BYN / 3000 ₽' : '90 BYN / 2500 ₽';
+            
+            // Дополнительный бейдж для гендер-пати
+            let extraBadge = '';
+            if (item.type === 'gender') {
+                extraBadge = `<span class="card-badge gender">Гендер-пати</span>`;
+            }
+            
             card.innerHTML = `
                 ${item.badge ? `<span class="card-badge ${item.badge}">${badgeText}</span>` : ''}
+                ${extraBadge}
                 <div class="card-image">
                     ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23f0ebe0\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%238a7e74\\' font-family=\\'Arial\\' font-size=\\'12\\'%3E${item.name}%3C/text%3E%3C/svg%3E';">` : `<span class="placeholder-text">${item.name}</span>`}
                     <div class="card-price"><span>${priceText}</span></div>
@@ -1659,9 +1740,12 @@
                         <button class="btn-view demo-trigger" data-name="${item.name}">Посмотреть</button>
                         <button class="btn-order-card" data-template="${item.name}">Выбрать</button>
                     </div>
-                </div>`;
+                </div>
+            `;
             grid.appendChild(card);
         });
+
+        // Event listeners для кнопок в карточках
         document.querySelectorAll('.demo-trigger').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const t = templates.find(t => t.name === e.target.dataset.name);
@@ -1674,8 +1758,9 @@
                 document.querySelector('#order').scrollIntoView({ behavior: 'smooth' });
             });
         });
+
         renderPagination(totalPages);
-        if (page !== 1 || currentFilter !== 'all') {
+        if (page !== 1 || currentCategoryFilter !== 'all' || currentPriceFilter !== 'all') {
             const top = document.getElementById('catalog').getBoundingClientRect().top + window.pageYOffset - 80;
             window.scrollTo({ top, behavior: 'smooth' });
         }
@@ -1707,8 +1792,11 @@
             paginationDiv.appendChild(next);
         }
     }
+
+    // Инициализация
     renderPage(1);
 
+    // ---------- FORM SUBMIT ----------
     function showCustomMessage(text, type) {
         const existing = document.querySelector('.custom-form-message');
         if (existing) existing.remove();
