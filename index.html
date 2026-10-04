@@ -333,7 +333,6 @@
         }
         .card-badge.new { background: #6b6058; }
         .card-badge.popular { background: #b088b3; }
-        .card-badge.gender { background: #b8a08c; top: 14px; right: auto; left: 14px; }
         .card-price {
             position: absolute;
             bottom: 0;
@@ -1082,7 +1081,6 @@
             .form-container { padding: 25px 16px; }
             input, select, textarea { padding: 14px 16px; font-size: 15px; }
             .card-badge { font-size: 6px; padding: 2px 10px; top: 10px; right: 10px; }
-            .card-badge.gender { top: 10px; right: auto; left: 10px; }
             .card-price { padding: 20px 12px 10px; font-size: 10px; }
             .card-price span { 
                 padding: 3px 10px; 
@@ -1531,14 +1529,23 @@
 
     // ---------- TEMPLATES DATA ----------
     const templates = [
-        // Гендер-пати
+        // ПАЗЛ — первый в списке
+        { 
+            name: "Пазл", 
+            desc: "Осенний дизайн-пазл: тёплые оттенки, уют и атмосфера. Идеально для свадьбы осенью.", 
+            demoUrl: "https://wedding-love.github.io/autumn1/", 
+            imageUrl: "2026-10-04 12.53.26.jpg", 
+            category: "romantic", 
+            badge: "new",
+            type: "wedding"
+        },
+        // Гендер-пати (без бейджей)
         { 
             name: "Вечерняя сказка", 
             desc: "Загадочный и элегантный дизайн для гендер-пати. Идеально подходит для создания интриги и уютной атмосферы.", 
             demoUrl: "https://wedding-love.github.io/gender-party2/", 
             imageUrl: "главная.png", 
             category: "gender", 
-            badge: "new",
             type: "gender"
         },
         { 
@@ -1547,7 +1554,6 @@
             demoUrl: "https://gender-party.github.io/-1/", 
             imageUrl: "photo_2026-07-16_17-12-43.jpg", 
             category: "gender", 
-            badge: "new",
             type: "gender"
         },
         // Свадебные шаблоны
@@ -1577,15 +1583,6 @@
             desc: "Романтичный и воздушный дизайн для вашей свадьбы. Лёгкость, нежность и атмосфера любви в каждой детали.", 
             demoUrl: "https://wedding-love.github.io/love-in-the-air/", 
             imageUrl: "lovein.jpg", 
-            category: "romantic", 
-            badge: "new",
-            type: "wedding"
-        },
-        { 
-            name: "Пазл", 
-            desc: "Осенний дизайн-пазл: тёплые оттенки, уют и атмосфера. Идеально для свадьбы осенью.", 
-            demoUrl: "https://wedding-love.github.io/autumn1/", 
-            imageUrl: "2026-10-04 12.53.26.jpg", 
             category: "romantic", 
             badge: "new",
             type: "wedding"
@@ -1696,14 +1693,8 @@
             };
             const badgeText = item.badge === 'popular' ? 'Популярный' : item.badge === 'new' ? 'Новинка' : '';
             
-            let extraBadge = '';
-            if (item.type === 'gender') {
-                extraBadge = `<span class="card-badge gender">Гендер-пати</span>`;
-            }
-            
             card.innerHTML = `
                 ${item.badge ? `<span class="card-badge ${item.badge}">${badgeText}</span>` : ''}
-                ${extraBadge}
                 <div class="card-image">
                     ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23f0ebe0\\'/%3E%3Ctext x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' fill=\\'%238a7e74\\' font-family=\\'Arial\\' font-size=\\'12\\'%3E${item.name}%3C/text%3E%3C/svg%3E';">` : `<span class="placeholder-text">${item.name}</span>`}
                     <div class="card-price"><span>${UNIFIED_PRICE_TEXT}</span></div>
@@ -1800,7 +1791,7 @@
         btn.textContent = 'ОТПРАВКА...'; btn.disabled = true;
         const formData = new FormData(this);
         formData.append('design_type', customDesignCheck.checked ? 'Индивидуальный дизайн' : 'Готовый шаблон');
-        fetch('https://formspree.io/xpqkwwwy', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+        fetch('https://formspree.io/f/xpqkwwwy', { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
         .then(r => {
             if (r.ok) {
                 showCustomMessage('Заявка отправлена! Я свяжусь с вами в ближайшее время.', 'success');
