@@ -3088,6 +3088,9 @@
                     <h2 class="section-title">Оставить заявку</h2>
                     <p class="form-subtitle">Я свяжусь с вами в течение 24 часов</p>
                     <form id="monoForm" class="form-fields">
+                        <!-- WEB3FORMS ACCESS KEY -->
+                        <input type="hidden" name="access_key" value="0f98fb8e-08af-449b-8cf0-60626d5e2a99">
+                        
                         <div class="form-field">
                             <input type="text" name="name" placeholder="Ваше имя" required autocomplete="name">
                         </div>
@@ -3663,7 +3666,7 @@
     renderPage(1);
 
     /* ============================================
-       FORM SUBMIT
+       FORM SUBMIT (WEB3FORMS)
        ============================================ */
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -3684,7 +3687,8 @@
         var formData = new FormData(form);
         formData.append('design_type', customDesignCheck.checked ? 'Индивидуальный дизайн' : 'Готовый шаблон');
 
-        fetch('https://formspree.io/f/xpqkwwwy', {
+        // Отправка на Web3Forms
+        fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             body: formData,
             headers: { 'Accept': 'application/json' }
