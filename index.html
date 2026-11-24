@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>mono_invitations — Цифровые приглашения на свадьбу и гендер-пати</title>
     <meta name="description" content="Эстетичные онлайн-приглашения на свадьбу и гендер-пати. Индивидуальный дизайн, анкета гостя, сбор ответов. 27+ стильных шаблонов.">
-    <meta property="og:title" content="mono_invitations — Ваш день начинается">
+    <meta property="og:title" content="mono_invitations — Ваш день начинается тут">
     <meta property="og:description" content="Цифровые приглашения с индивидуальным дизайном. Готовые шаблоны — 90 BYN. Индивидуальный дизайн от 150 BYN.">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#ffffff">
@@ -437,61 +437,34 @@
             flex-direction: column;
             align-items: center;
             max-width: 960px;
+            width: 100%;
         }
 
-        .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 18px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-pill);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text-soft);
-            margin-bottom: 32px;
-            animation: heroFadeUp 1s var(--ease-out) 0.1s both;
-        }
-
-        .hero-eyebrow .dot {
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--accent);
-        }
-
+        /* ---- ЗАГОЛОВОК В ОДНУ СТРОКУ, ОДИН ШРИФТ ---- */
         .hero-title {
-            font-size: clamp(3rem, 9vw, 7.5rem);
-            font-weight: 700;
-            letter-spacing: -0.045em;
-            line-height: 1.02;
+            font-family: var(--font-serif);
+            font-size: clamp(1.25rem, 6.5vw, 6rem);
+            font-weight: 300;
+            letter-spacing: -0.025em;
+            line-height: 1.05;
+            white-space: nowrap;
             color: var(--text);
-            margin-bottom: 28px;
+            margin-bottom: 34px;
             animation: heroFadeUp 1s var(--ease-out) 0.2s both;
+            max-width: 100%;
         }
 
         .hero-title em {
             font-style: italic;
-            font-family: var(--font-serif);
-            font-weight: 400;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #1d1d1f 0%, #b8956b 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 300;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+            font-size: clamp(1rem, 1.7vw, 1.3rem);
             font-weight: 400;
             color: var(--text-soft);
             line-height: 1.5;
-            max-width: 620px;
+            max-width: 640px;
             margin-bottom: 44px;
             letter-spacing: -0.01em;
             animation: heroFadeUp 1s var(--ease-out) 0.35s both;
@@ -1752,7 +1725,6 @@
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Demo Modal */
         .demo-modal .modal-content {
             max-width: 1200px;
             height: 88vh;
@@ -1837,7 +1809,6 @@
             min-width: 140px;
         }
 
-        /* Privacy Modal */
         .privacy-modal .modal-content {
             max-width: 680px;
             max-height: 80vh;
@@ -1877,7 +1848,7 @@
         }
 
         /* ============================================
-           TOAST MESSAGE
+           TOAST
            ============================================ */
         .toast {
             position: fixed;
@@ -1918,8 +1889,8 @@
                 gap: 24px;
             }
             .catalog-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 24px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
             }
             .process-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1942,8 +1913,8 @@
                 margin-bottom: 56px;
             }
             .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
             }
             .services-grid,
             .reviews-grid {
@@ -2027,7 +1998,7 @@
 
             /* HERO */
             .hero {
-                padding: 88px 20px 100px;
+                padding: 88px 16px 100px;
                 min-height: 100vh;
                 min-height: 100dvh;
             }
@@ -2035,29 +2006,24 @@
                 filter: blur(40px);
                 opacity: 0.8;
             }
-            .hero-eyebrow {
-                margin-bottom: 24px;
-                font-size: 11px;
-                padding: 7px 14px;
-                gap: 8px;
-            }
             .hero-title {
-                font-size: clamp(2.4rem, 11vw, 3.6rem);
-                margin-bottom: 20px;
-                letter-spacing: -0.04em;
+                font-size: clamp(1.05rem, 6.2vw, 2rem);
+                margin-bottom: 22px;
+                letter-spacing: -0.03em;
             }
             .hero-subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 line-height: 1.5;
-                margin-bottom: 32px;
+                margin-bottom: 30px;
                 max-width: 100%;
+                padding: 0 4px;
             }
             .hero-actions {
                 flex-direction: column;
                 width: 100%;
                 max-width: 340px;
                 gap: 10px;
-                margin-bottom: 44px;
+                margin-bottom: 40px;
             }
             .hero-actions .btn {
                 width: 100%;
@@ -2086,28 +2052,36 @@
 
             /* SECTIONS */
             section {
-                padding: 80px 0;
+                padding: 72px 0;
             }
             .container {
-                padding: 0 20px;
-                padding-left: calc(20px + var(--safe-left));
-                padding-right: calc(20px + var(--safe-right));
+                padding: 0 16px;
+                padding-left: calc(16px + var(--safe-left));
+                padding-right: calc(16px + var(--safe-right));
             }
             .section-head {
-                margin-bottom: 44px;
+                margin-bottom: 36px;
+            }
+            .section-eyebrow {
+                font-size: 11px;
+                margin-bottom: 12px;
             }
             .section-title {
-                font-size: clamp(1.8rem, 7vw, 2.4rem);
+                font-size: clamp(1.6rem, 6.5vw, 2.2rem);
                 letter-spacing: -0.03em;
+                margin-bottom: 14px;
             }
             .section-subtitle {
-                font-size: 15px;
+                font-size: 14px;
+                line-height: 1.5;
             }
 
-            /* CATALOG */
+            /* ============================================
+               CATALOG — 3 КОЛОНКИ НА МОБИЛЬНОМ
+               ============================================ */
             .filter-bar {
-                margin-bottom: 32px;
-                padding: 0 4px;
+                margin-bottom: 24px;
+                padding: 0 2px;
             }
             .filter-pills {
                 width: 100%;
@@ -2123,155 +2097,237 @@
             }
             .filter-btn {
                 flex: 1;
-                padding: 11px 14px;
-                font-size: 13px;
-                min-height: 42px;
+                padding: 10px 12px;
+                font-size: 12px;
+                min-height: 40px;
                 text-align: center;
             }
+
             .catalog-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
-                max-width: 440px;
-                margin-left: auto;
-                margin-right: auto;
-                margin-bottom: 40px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
+                margin-bottom: 32px;
             }
             .card {
-                border-radius: var(--radius-md);
+                border-radius: 12px;
+                border-width: 1px;
+            }
+            .card-image {
+                aspect-ratio: 3 / 4;
             }
             .card-body {
-                padding: 18px 18px 20px;
+                padding: 8px 6px 10px;
+            }
+            .card-category {
+                display: none;
             }
             .card-title {
-                font-size: 1.2rem;
+                font-size: 11px;
+                font-weight: 600;
+                margin-bottom: 0;
+                line-height: 1.25;
+                letter-spacing: -0.01em;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .card-desc {
-                font-size: 14px;
-                margin-bottom: 16px;
-            }
-            .card-price {
-                font-size: 12px;
-                padding: 8px 16px;
-                bottom: 12px;
+                display: none;
             }
             .card-actions {
-                gap: 12px;
+                display: none;
             }
-            .card-link {
-                font-size: 14px;
-                min-height: 40px;
+            .card-price {
+                font-size: 7px;
+                padding: 2px 5px;
+                bottom: 5px;
+                letter-spacing: 0;
+                font-weight: 700;
             }
-            .card-cta {
-                padding: 10px 20px;
-                font-size: 13px;
-                min-height: 40px;
+            .card-badge {
+                font-size: 6px;
+                padding: 2px 5px;
+                top: 5px;
+                right: 5px;
+                letter-spacing: 0.04em;
             }
             .card-overlay {
                 display: none;
             }
+            .card:active {
+                transform: scale(0.96);
+                transition: transform 0.15s var(--ease-out);
+            }
 
             /* PAGINATION */
             .page-btn {
-                min-width: 40px;
-                height: 40px;
-                padding: 0 12px;
-                font-size: 13px;
+                min-width: 38px;
+                height: 38px;
+                padding: 0 10px;
+                font-size: 12px;
             }
             .pagination {
                 gap: 4px;
             }
 
-            /* PRICING */
+            /* ============================================
+               PRICING — 2 КАРТОЧКИ В ОДНУ СТРОКУ
+               ============================================ */
+            .pricing-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                max-width: 100%;
+            }
             .pricing-card {
-                padding: 32px 24px;
-                border-radius: var(--radius-lg);
+                padding: 16px 12px;
+                border-radius: 14px;
+            }
+            .pricing-badge {
+                font-size: 7px;
+                padding: 3px 8px;
+                margin-bottom: 10px;
+                letter-spacing: 0.08em;
             }
             .pricing-name {
-                font-size: 20px;
+                font-size: 13px;
+                font-weight: 700;
+                margin-bottom: 8px;
+                letter-spacing: -0.01em;
+                line-height: 1.2;
+            }
+            .pricing-price {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1px;
+                margin-bottom: 12px;
             }
             .pricing-amount {
-                font-size: 2rem;
+                font-size: 1.15rem;
+                letter-spacing: -0.02em;
+            }
+            .pricing-currency {
+                font-size: 10px;
+            }
+            .pricing-features {
+                gap: 7px;
+                margin-bottom: 14px;
             }
             .pricing-features li {
-                font-size: 13px;
+                font-size: 10px;
+                line-height: 1.3;
+                gap: 6px;
+            }
+            .pricing-features li::before {
+                width: 11px;
+                height: 11px;
+                margin-top: 1px;
+                background-size: 7px;
+            }
+            .pricing-features li:nth-child(n+5) {
+                display: none;
+            }
+            .pricing-card .btn {
+                padding: 9px 8px;
+                font-size: 10px;
+                min-height: 36px;
+                letter-spacing: 0;
             }
 
             /* PROCESS */
             .process-grid {
                 grid-template-columns: 1fr;
-                gap: 32px;
+                gap: 28px;
             }
             .process-number {
-                font-size: 44px;
-                margin-bottom: 14px;
+                font-size: 40px;
+                margin-bottom: 12px;
             }
             .process-step h3 {
-                font-size: 17px;
+                font-size: 16px;
+            }
+            .process-step p {
+                font-size: 13px;
             }
 
             /* SERVICES */
             .service-card {
-                padding: 28px 24px;
+                padding: 24px 20px;
             }
             .service-card h3 {
+                font-size: 17px;
+            }
+            .service-card p {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+            .service-price {
                 font-size: 18px;
             }
 
             /* REVIEWS */
             .review-card {
-                padding: 28px 24px;
+                padding: 24px 20px;
             }
             .review-text {
                 font-size: 14px;
+            }
+            .review-stars {
+                font-size: 12px;
+                margin-bottom: 14px;
             }
 
             /* FAQ */
             .faq-item summary {
                 font-size: 15px;
-                padding: 20px 0;
-                min-height: 60px;
+                padding: 18px 0;
+                min-height: 56px;
             }
             .faq-icon {
-                margin-left: 16px;
+                margin-left: 14px;
             }
             .faq-answer {
-                font-size: 14px;
-                padding-bottom: 20px;
+                font-size: 13px;
+                padding-bottom: 18px;
                 max-width: 100%;
             }
 
             /* FORM */
             .form-card {
-                padding: 32px 22px;
+                padding: 28px 18px;
                 border-radius: var(--radius-lg);
             }
             .form-card .section-title {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             .form-card .form-subtitle {
-                font-size: 14px;
-                margin-bottom: 24px;
+                font-size: 13px;
+                margin-bottom: 22px;
             }
             .form-fields {
-                gap: 14px;
+                gap: 12px;
             }
             .form-field input,
             .form-field select,
             .form-field textarea {
-                padding: 16px 18px;
+                padding: 15px 16px;
                 font-size: 16px;
                 min-height: 52px;
             }
             .form-field select {
-                padding-right: 42px;
-                background-position: right 18px center;
+                padding-right: 40px;
+                background-position: right 16px center;
             }
             .form-toggle {
-                padding: 16px 18px;
+                padding: 14px 16px;
                 gap: 12px;
             }
             .form-toggle label {
-                font-size: 14px;
+                font-size: 13px;
             }
             .checkbox-field {
                 gap: 10px;
@@ -2282,10 +2338,10 @@
             }
             .checkbox-field label,
             .checkbox-field span {
-                font-size: 13px;
+                font-size: 12px;
             }
             .form-submit {
-                padding: 17px;
+                padding: 16px;
                 font-size: 15px;
                 min-height: 54px;
             }
@@ -2293,9 +2349,6 @@
             /* MOBILE STICKY CTA */
             .mobile-sticky-cta {
                 display: block;
-            }
-            body {
-                padding-bottom: 0;
             }
             footer {
                 padding-bottom: calc(100px + var(--safe-bottom));
@@ -2395,34 +2448,53 @@
            ============================================ */
         @media (max-width: 480px) {
             .hero-title {
-                font-size: clamp(2.2rem, 10vw, 3rem);
-            }
-            .hero-eyebrow {
-                font-size: 10px;
-                padding: 6px 12px;
+                font-size: clamp(0.95rem, 6vw, 1.6rem);
             }
             .section-title {
-                font-size: 1.7rem;
+                font-size: 1.55rem;
             }
             .filter-btn {
-                font-size: 12px;
-                padding: 10px 10px;
+                font-size: 11px;
+                padding: 9px 8px;
+            }
+            .catalog-grid {
+                gap: 6px;
+            }
+            .card-body {
+                padding: 6px 5px 8px;
+            }
+            .card-title {
+                font-size: 10px;
             }
             .card-price {
-                font-size: 11px;
-                padding: 7px 14px;
+                font-size: 6.5px;
+                padding: 2px 4px;
+            }
+            .card-badge {
+                font-size: 5.5px;
+                padding: 2px 4px;
             }
             .pricing-card {
-                padding: 28px 20px;
+                padding: 14px 9px;
+            }
+            .pricing-name {
+                font-size: 11.5px;
+            }
+            .pricing-amount {
+                font-size: 1.05rem;
+            }
+            .pricing-features li {
+                font-size: 9px;
+            }
+            .pricing-card .btn {
+                font-size: 9px;
+                padding: 8px 6px;
             }
             .form-card {
-                padding: 28px 18px;
-            }
-            .privacy-header h3 {
-                font-size: 18px;
+                padding: 24px 16px;
             }
             .footer-links {
-                gap: 14px;
+                gap: 12px;
             }
             .footer-links a {
                 font-size: 11px;
@@ -2434,10 +2506,7 @@
            ============================================ */
         @media (max-width: 380px) {
             .hero-title {
-                font-size: 2rem;
-            }
-            .hero-subtitle {
-                font-size: 0.95rem;
+                font-size: clamp(0.85rem, 5.8vw, 1.3rem);
             }
             .hero-stats {
                 gap: 16px;
@@ -2449,26 +2518,22 @@
                 font-size: 10px;
             }
             .section-title {
-                font-size: 1.55rem;
-            }
-            .card-body {
-                padding: 16px 16px 18px;
+                font-size: 1.4rem;
             }
             .card-title {
-                font-size: 1.1rem;
+                font-size: 9.5px;
             }
-            .card-desc {
-                font-size: 13px;
+            .card-price {
+                font-size: 6px;
             }
-            .form-toggle {
-                padding: 14px;
-            }
-            .form-toggle label {
-                font-size: 13px;
-            }
-            .filter-btn {
+            .pricing-name {
                 font-size: 11px;
-                padding: 9px 8px;
+            }
+            .pricing-amount {
+                font-size: 1rem;
+            }
+            .pricing-features li {
+                font-size: 8.5px;
             }
         }
 
@@ -2486,10 +2551,6 @@
             }
             .card:hover .card-overlay {
                 opacity: 0;
-            }
-            .card:active {
-                transform: scale(0.985);
-                transition: transform 0.15s var(--ease-out);
             }
             .service-card:hover,
             .review-card:hover,
@@ -2593,22 +2654,17 @@
     <!-- HERO -->
     <header class="hero">
         <div class="hero-inner">
-            <div class="hero-eyebrow">
-                <span>Свадьба</span>
-                <span class="dot"></span>
-                <span>Гендер-пати</span>
-            </div>
-            <h1 class="hero-title" data-aos="fade-up" data-aos-duration="1000">
-                Ваш день<br><em>начинается</em>
+            <h1 class="hero-title">
+                Ваш день <em>начинается</em> тут
             </h1>
-            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+            <p class="hero-subtitle">
                 Цифровые приглашения с индивидуальным дизайном, удобной анкетой для гостей и вниманием к каждой детали.
             </p>
-            <div class="hero-actions" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="hero-actions">
                 <a href="#catalog" class="btn btn-primary btn-lg">Смотреть коллекцию</a>
                 <a href="#order" class="btn btn-secondary btn-lg">Обсудить проект</a>
             </div>
-            <div class="hero-stats" data-aos="fade-up" data-aos-delay="450" data-aos-duration="1000">
+            <div class="hero-stats">
                 <div class="stat">
                     <span class="stat-value">27</span>
                     <span class="stat-label">шаблонов</span>
@@ -2993,6 +3049,7 @@
         this.classList.toggle('open');
         navLinks.classList.toggle('open');
         document.body.classList.toggle('menu-open');
+        updateMobileCta();
     });
 
     navLinks.querySelectorAll('a').forEach(function (link) {
@@ -3037,7 +3094,6 @@
         var scrollY = window.scrollY;
         var heroHeight = heroSection.offsetHeight;
         var orderTop = orderSection.offsetTop;
-        var orderBottom = orderTop + orderSection.offsetHeight;
         var viewportMiddle = scrollY + window.innerHeight / 2;
         var showAfter = heroHeight * 0.5;
         if (scrollY > showAfter && viewportMiddle < orderTop) {
@@ -3057,10 +3113,12 @@
     function openPrivacyModal() {
         document.getElementById('privacyModal').classList.add('active');
         document.body.classList.add('modal-open');
+        updateMobileCta();
     }
     function closePrivacyModal() {
         document.getElementById('privacyModal').classList.remove('active');
         document.body.classList.remove('modal-open');
+        updateMobileCta();
     }
     window.openPrivacyModal = openPrivacyModal;
     window.closePrivacyModal = closePrivacyModal;
@@ -3186,8 +3244,8 @@
         { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic", type: "wedding" },
         { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic", type: "wedding" },
         { name: "Elegant", desc: "Изысканная роскошь и тонкие детали для особенного дня.", demoUrl: "https://wedding-love.github.io/Elegant/", imageUrl: "Elegant.jpg", category: "classic", type: "wedding" },
-        { name: "Дети выросли — мы женимся", desc: "Трогательная история в кадрах: от детства до любви всей жизни. Тёплый винтажный стиль с семейными фото.", demoUrl: "https://wedding-love.github.io/deti/", imageUrl: "IMG_8763.PNG", category: "romantic", badge: "new", type: "wedding" },
-        { name: "Геометрия", desc: "Строгая графика, оранжевый акцент и современные формы. Смелый выбор для нестандартной свадьбы.", demoUrl: "https://wedding-love.github.io/orange-geometry/", imageUrl: "IMG_8764.PNG", category: "modern", badge: "new", type: "wedding" },
+        { name: "Дети выросли — мы женимся", desc: "Трогательная история в кадрах: от детства до любви всей жизни.", demoUrl: "https://wedding-love.github.io/deti/", imageUrl: "IMG_8763.PNG", category: "romantic", badge: "new", type: "wedding" },
+        { name: "Геометрия", desc: "Строгая графика, оранжевый акцент и современные формы.", demoUrl: "https://wedding-love.github.io/orange-geometry/", imageUrl: "IMG_8764.PNG", category: "modern", badge: "new", type: "wedding" },
         { name: "Black & White", desc: "Строгая монохромная эстетика, контраст и чистота линий.", demoUrl: "https://wedding-love.github.io/black-white/", imageUrl: "white.jpg", category: "modern", badge: "new", type: "wedding" },
         { name: "Минимализм 2", desc: "Лаконичный стиль, фото на весь экран и максимум воздуха.", demoUrl: "https://wedding-love.github.io/-2/", imageUrl: "2пара.png", category: "modern", type: "wedding" },
         { name: "Cinema", desc: "Кинематографичный стиль с широкими кадрами и атмосферой.", demoUrl: "https://wedding-love.github.io/Cinema/", imageUrl: "cinema.jpg", category: "modern", type: "wedding" },
@@ -3205,7 +3263,7 @@
         { name: "Звонок", desc: "Динамичный стиль, яркие эмоции и лаконичные формы.", demoUrl: "https://wedding-love.github.io/call/", imageUrl: "call.jpg", category: "minimal", type: "wedding" },
         {
             name: "Любовь в воздухе",
-            desc: "Романтичный и воздушный дизайн для вашей свадьбы. Лёгкость, нежность и атмосфера любви в каждой детали.",
+            desc: "Романтичный и воздушный дизайн для вашей свадьбы.",
             demoUrl: "https://wedding-love.github.io/love-in-the-air/",
             imageUrl: "lovein.jpg",
             category: "romantic",
@@ -3231,7 +3289,6 @@
     var modalSelectBtn = document.getElementById('modalSelectBtn');
     var currentTemplateName = '';
 
-    /* Populate select */
     function populateSelect() {
         select.innerHTML = '<option value="">Выберите шаблон</option>';
         templates.forEach(function (t) {
@@ -3243,7 +3300,6 @@
     }
     populateSelect();
 
-    /* Demo modal */
     function openDemoModal(template) {
         currentTemplateName = template.name;
         modalTitle.innerHTML = template.name + ' <span>· ' + UNIFIED_PRICE_TEXT + '</span>';
@@ -3270,7 +3326,6 @@
         document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
     });
 
-    /* Filters */
     document.querySelectorAll('#filterBar .filter-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
             document.querySelectorAll('#filterBar .filter-btn').forEach(function (b) {
@@ -3349,10 +3404,15 @@
                     '</div>' +
                 '</div>';
 
+            /* Делаем всю карточку кликабельной (важно для мобильного 3-col) */
+            card.addEventListener('click', function (e) {
+                if (e.target.closest('.demo-trigger') || e.target.closest('.order-trigger')) return;
+                openDemoModal(item);
+            });
+
             grid.appendChild(card);
         });
 
-        /* Bind triggers */
         grid.querySelectorAll('.demo-trigger').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
@@ -3370,13 +3430,6 @@
                 templateSelectWrapper.classList.remove('hidden');
                 updateSubmitButton();
                 document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-        grid.querySelectorAll('.card-image').forEach(function (img) {
-            img.addEventListener('click', function () {
-                var card = this.closest('.card');
-                var btn = card.querySelector('.demo-trigger');
-                if (btn) btn.click();
             });
         });
 
@@ -3430,7 +3483,6 @@
         }
     }
 
-    /* Init */
     renderPage(1);
 
     /* ============================================
