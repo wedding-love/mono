@@ -589,6 +589,9 @@
             margin-bottom: 56px;
         }
 
+        /* ============================================
+           CARD — ОДИНАКОВАЯ ВЫСОТА, КНОПКИ НА ОДНОМ УРОВНЕ
+           ============================================ */
         .card {
             display: flex;
             flex-direction: column;
@@ -596,9 +599,10 @@
             background: var(--bg);
             border: 1px solid var(--border);
             overflow: hidden;
-            transition: all 0.5s var(--ease-out);
+            transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.5s var(--ease-out);
             position: relative;
             cursor: pointer;
+            height: 100%;
         }
 
         .card:hover {
@@ -616,6 +620,7 @@
             aspect-ratio: 4 / 5;
             overflow: hidden;
             background: var(--bg-soft);
+            flex-shrink: 0;
         }
 
         .card-image img {
@@ -713,11 +718,13 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
+        /* Тело карточки — flex-колонка для выравнивания кнопок по низу */
         .card-body {
             padding: 22px 22px 24px;
             display: flex;
             flex-direction: column;
             flex: 1;
+            min-height: 0;
         }
 
         .card-category {
@@ -729,28 +736,46 @@
             margin-bottom: 8px;
         }
 
+        /* Заголовок фиксированной высоты в 2 строки */
         .card-title {
             font-size: 1.35rem;
             font-weight: 600;
             letter-spacing: -0.02em;
             color: var(--text);
             margin-bottom: 8px;
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: calc(1.35rem * 1.25 * 2);
         }
 
+        /* Описание фиксированной высоты в 2 строки + flex: 1 для растягивания */
         .card-desc {
             font-size: 14px;
             font-weight: 400;
             color: var(--text-soft);
             line-height: 1.5;
             margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: calc(14px * 1.5 * 2);
             flex: 1;
         }
 
+        /* Кнопки всегда на одном уровне — прижаты к низу */
         .card-actions {
             display: flex;
             align-items: center;
             gap: 14px;
             margin-top: auto;
+            flex-shrink: 0;
+            min-height: 36px;
         }
 
         .card-link {
@@ -761,8 +786,10 @@
             text-underline-offset: 3px;
             text-decoration-thickness: 1px;
             transition: opacity 0.2s;
-            min-height: 36px;
+            height: 36px;
             padding: 0;
+            display: inline-flex;
+            align-items: center;
             touch-action: manipulation;
         }
 
@@ -772,15 +799,19 @@
 
         .card-cta {
             margin-left: auto;
-            padding: 8px 18px;
+            padding: 0 18px;
             background: var(--text);
             color: #fff;
             font-size: 12px;
             font-weight: 500;
             border-radius: var(--radius-pill);
             transition: all 0.3s var(--ease-out);
-            min-height: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             touch-action: manipulation;
+            flex-shrink: 0;
         }
 
         .card-cta:hover {
@@ -840,7 +871,7 @@
         }
 
         /* ============================================
-           PRICING (DARK)
+           PRICING (DARK) — КНОПКИ НА ОДНОМ УРОВНЕ
            ============================================ */
         .pricing-section {
             background: var(--bg-dark);
@@ -881,8 +912,10 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            align-items: stretch;
         }
 
+        /* Карточка тарифа — flex-колонка, кнопка прижата к низу */
         .pricing-card {
             padding: 48px 40px;
             background: rgba(255, 255, 255, 0.03);
@@ -892,6 +925,9 @@
             -webkit-backdrop-filter: blur(20px);
             position: relative;
             transition: all 0.4s var(--ease-out);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .pricing-card:hover {
@@ -916,6 +952,7 @@
             text-transform: uppercase;
             border-radius: var(--radius-pill);
             margin-bottom: 24px;
+            align-self: flex-start;
         }
 
         .pricing-name {
@@ -948,12 +985,14 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* Список фич — растягивается, чтобы заполнить пространство */
         .pricing-features {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 14px;
             margin-bottom: 36px;
+            flex: 1;
         }
 
         .pricing-features li {
@@ -979,8 +1018,14 @@
             background-position: center;
         }
 
+        /* Кнопка тарифа — одинаковая высота, прижата к низу */
         .pricing-card .btn {
             width: 100%;
+            height: 56px;
+            min-height: 56px;
+            padding: 0 24px;
+            margin-top: auto;
+            flex-shrink: 0;
         }
 
         .pricing-card .btn-primary {
@@ -1066,6 +1111,9 @@
             border-radius: var(--radius-lg);
             border: 1px solid transparent;
             transition: all 0.4s var(--ease-out);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .service-card:hover {
@@ -1088,6 +1136,7 @@
             color: var(--text-soft);
             line-height: 1.6;
             margin-bottom: 24px;
+            flex: 1;
         }
 
         .service-price {
@@ -1095,6 +1144,7 @@
             font-weight: 700;
             letter-spacing: -0.03em;
             color: var(--accent);
+            margin-top: auto;
         }
 
         .service-price small {
@@ -1122,6 +1172,9 @@
             background: var(--bg-soft);
             border-radius: var(--radius-lg);
             transition: all 0.4s var(--ease-out);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .review-card:hover {
@@ -1142,6 +1195,7 @@
             line-height: 1.65;
             color: var(--text);
             margin-bottom: 20px;
+            flex: 1;
         }
 
         .review-author {
@@ -1150,6 +1204,7 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--text-muted);
+            margin-top: auto;
         }
 
         /* ============================================
@@ -1901,6 +1956,13 @@
             .reviews-grid {
                 gap: 20px;
             }
+            .card-title {
+                font-size: 1.25rem;
+                min-height: calc(1.25rem * 1.25 * 2);
+            }
+            .card-body {
+                padding: 20px 18px 22px;
+            }
         }
 
         /* ============================================
@@ -1925,6 +1987,9 @@
             }
             .hero-stats {
                 gap: 28px;
+            }
+            .pricing-card {
+                padding: 36px 28px;
             }
         }
 
@@ -2078,9 +2143,7 @@
                 line-height: 1.5;
             }
 
-            /* ============================================
-               CATALOG — 2x2 GRID (4 на страницу)
-               ============================================ */
+            /* CATALOG — 2x2 */
             .filter-bar {
                 margin-bottom: 24px;
                 padding: 0 2px;
@@ -2141,7 +2204,7 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                min-height: 2.44em;
+                min-height: calc(15px * 1.22 * 2);
             }
             .card-desc {
                 display: -webkit-box;
@@ -2153,6 +2216,8 @@
                 line-height: 1.4;
                 margin-bottom: 12px;
                 color: var(--text-soft);
+                min-height: calc(11.5px * 1.4 * 2);
+                flex: 1;
             }
             .card-actions {
                 display: flex;
@@ -2160,24 +2225,31 @@
                 gap: 8px;
                 flex-wrap: nowrap;
                 margin-top: auto;
+                min-height: 32px;
+                flex-shrink: 0;
             }
             .card-link {
                 flex: 1;
                 font-size: 11px;
                 font-weight: 600;
-                min-height: 32px;
+                height: 32px;
                 text-align: left;
                 padding: 0;
                 letter-spacing: -0.005em;
+                display: inline-flex;
+                align-items: center;
             }
             .card-cta {
                 flex-shrink: 0;
-                padding: 6px 12px;
+                padding: 0 12px;
                 font-size: 10px;
                 font-weight: 600;
-                min-height: 32px;
+                height: 32px;
                 letter-spacing: 0;
                 margin-left: auto;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
             }
             .card-price {
                 bottom: 8px;
@@ -2226,17 +2298,19 @@
                 margin-top: 8px;
             }
 
-            /* ============================================
-               PRICING — 2 КАРТОЧКИ В ОДНУ СТРОКУ
-               ============================================ */
+            /* PRICING — 2 в ряд, кнопки на одном уровне */
             .pricing-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
                 max-width: 100%;
+                align-items: stretch;
             }
             .pricing-card {
                 padding: 18px 14px;
                 border-radius: 16px;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
             }
             .pricing-badge {
                 font-size: 8px;
@@ -2267,6 +2341,7 @@
             .pricing-features {
                 gap: 8px;
                 margin-bottom: 16px;
+                flex: 1;
             }
             .pricing-features li {
                 font-size: 11px;
@@ -2283,11 +2358,14 @@
                 display: none;
             }
             .pricing-card .btn {
-                padding: 10px 8px;
+                padding: 0 8px;
                 font-size: 11px;
-                min-height: 38px;
+                height: 40px;
+                min-height: 40px;
                 letter-spacing: 0;
                 font-weight: 600;
+                margin-top: auto;
+                width: 100%;
             }
 
             /* PROCESS */
@@ -2524,16 +2602,18 @@
             }
             .card-title {
                 font-size: 14px;
+                min-height: calc(14px * 1.22 * 2);
             }
             .card-desc {
                 font-size: 11px;
+                min-height: calc(11px * 1.4 * 2);
             }
             .card-link {
                 font-size: 10.5px;
             }
             .card-cta {
                 font-size: 9.5px;
-                padding: 5px 10px;
+                padding: 0 10px;
             }
             .card-price {
                 font-size: 10px;
@@ -2557,7 +2637,9 @@
             }
             .pricing-card .btn {
                 font-size: 10px;
-                padding: 9px 6px;
+                padding: 0 6px;
+                height: 38px;
+                min-height: 38px;
             }
             .form-card {
                 padding: 26px 18px;
@@ -2597,10 +2679,11 @@
             }
             .card-title {
                 font-size: 13px;
+                min-height: calc(13px * 1.22 * 2);
             }
             .card-desc {
                 font-size: 10.5px;
-                -webkit-line-clamp: 2;
+                min-height: calc(10.5px * 1.4 * 2);
                 margin-bottom: 10px;
             }
             .card-category {
@@ -2611,7 +2694,7 @@
             }
             .card-cta {
                 font-size: 9px;
-                padding: 5px 8px;
+                padding: 0 8px;
             }
             .card-price {
                 font-size: 9.5px;
@@ -2631,6 +2714,8 @@
             }
             .pricing-card .btn {
                 font-size: 9.5px;
+                height: 36px;
+                min-height: 36px;
             }
         }
 
@@ -3548,7 +3633,7 @@
             paginationDiv.appendChild(prev);
         }
 
-        var maxVisible = isMobile ? 5 : 5;
+        var maxVisible = 5;
         var startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
         var endPage = Math.min(totalPages, startPage + maxVisible - 1);
         if (endPage - startPage < maxVisible - 1) {
@@ -3627,7 +3712,7 @@
     });
 
     /* ============================================
-       RESIZE HANDLER — ПЕРЕСЧЁТ КОЛИЧЕСТВА НА СТРАНИЦЕ
+       RESIZE HANDLER
        ============================================ */
     var resizeTimer;
     var lastWasMobile = isMobile;
