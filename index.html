@@ -440,10 +440,9 @@
             width: 100%;
         }
 
-        /* ---- ЗАГОЛОВОК В ОДНУ СТРОКУ, ОДИН ШРИФТ ---- */
         .hero-title {
             font-family: var(--font-serif);
-            font-size: clamp(1.25rem, 6.5vw, 6rem);
+            font-size: clamp(1.4rem, 6.5vw, 6rem);
             font-weight: 300;
             letter-spacing: -0.025em;
             line-height: 1.05;
@@ -463,7 +462,7 @@
             font-size: clamp(1rem, 1.7vw, 1.3rem);
             font-weight: 400;
             color: var(--text-soft);
-            line-height: 1.5;
+            line-height: 1.55;
             max-width: 640px;
             margin-bottom: 44px;
             letter-spacing: -0.01em;
@@ -681,6 +680,8 @@
             white-space: nowrap;
             z-index: 2;
         }
+
+        .price-short { display: none; }
 
         .card-overlay {
             position: absolute;
@@ -1998,7 +1999,7 @@
 
             /* HERO */
             .hero {
-                padding: 88px 16px 100px;
+                padding: 88px 16px 90px;
                 min-height: 100vh;
                 min-height: 100dvh;
             }
@@ -2007,14 +2008,14 @@
                 opacity: 0.8;
             }
             .hero-title {
-                font-size: clamp(1.05rem, 6.2vw, 2rem);
-                margin-bottom: 22px;
+                font-size: clamp(1.15rem, 7.2vw, 2.4rem);
+                margin-bottom: 24px;
                 letter-spacing: -0.03em;
             }
             .hero-subtitle {
-                font-size: 0.95rem;
-                line-height: 1.5;
-                margin-bottom: 30px;
+                font-size: 1rem;
+                line-height: 1.55;
+                margin-bottom: 32px;
                 max-width: 100%;
                 padding: 0 4px;
             }
@@ -2041,7 +2042,7 @@
                 min-width: 80px;
             }
             .stat-value {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .stat-label {
                 font-size: 11px;
@@ -2067,17 +2068,18 @@
                 margin-bottom: 12px;
             }
             .section-title {
-                font-size: clamp(1.6rem, 6.5vw, 2.2rem);
+                font-size: clamp(1.75rem, 7vw, 2.4rem);
                 letter-spacing: -0.03em;
                 margin-bottom: 14px;
+                line-height: 1.1;
             }
             .section-subtitle {
-                font-size: 14px;
+                font-size: 15px;
                 line-height: 1.5;
             }
 
             /* ============================================
-               CATALOG — 3 КОЛОНКИ НА МОБИЛЬНОМ
+               CATALOG — 2x2 GRID (4 на страницу)
                ============================================ */
             .filter-bar {
                 margin-bottom: 24px;
@@ -2098,81 +2100,130 @@
             .filter-btn {
                 flex: 1;
                 padding: 10px 12px;
-                font-size: 12px;
+                font-size: 12.5px;
                 min-height: 40px;
                 text-align: center;
             }
 
             .catalog-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
                 max-width: 100%;
                 margin-left: 0;
                 margin-right: 0;
                 margin-bottom: 32px;
             }
             .card {
-                border-radius: 12px;
+                border-radius: 16px;
                 border-width: 1px;
             }
             .card-image {
-                aspect-ratio: 3 / 4;
+                aspect-ratio: 4 / 5;
             }
             .card-body {
-                padding: 8px 6px 10px;
+                padding: 14px 14px 16px;
             }
             .card-category {
-                display: none;
+                display: block;
+                font-size: 9.5px;
+                font-weight: 600;
+                margin-bottom: 6px;
+                letter-spacing: 0.09em;
             }
             .card-title {
-                font-size: 11px;
-                font-weight: 600;
-                margin-bottom: 0;
-                line-height: 1.25;
-                letter-spacing: -0.01em;
+                font-size: 15px;
+                font-weight: 700;
+                letter-spacing: -0.015em;
+                margin-bottom: 6px;
+                line-height: 1.22;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                min-height: 2.44em;
             }
             .card-desc {
-                display: none;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 11.5px;
+                line-height: 1.4;
+                margin-bottom: 12px;
+                color: var(--text-soft);
             }
             .card-actions {
-                display: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: nowrap;
+                margin-top: auto;
+            }
+            .card-link {
+                flex: 1;
+                font-size: 11px;
+                font-weight: 600;
+                min-height: 32px;
+                text-align: left;
+                padding: 0;
+                letter-spacing: -0.005em;
+            }
+            .card-cta {
+                flex-shrink: 0;
+                padding: 6px 12px;
+                font-size: 10px;
+                font-weight: 600;
+                min-height: 32px;
+                letter-spacing: 0;
+                margin-left: auto;
             }
             .card-price {
-                font-size: 7px;
-                padding: 2px 5px;
-                bottom: 5px;
-                letter-spacing: 0;
+                bottom: 8px;
+                padding: 5px 11px;
+                font-size: 10.5px;
                 font-weight: 700;
             }
+            .price-full { display: none; }
+            .price-short { display: inline; }
             .card-badge {
-                font-size: 6px;
-                padding: 2px 5px;
-                top: 5px;
-                right: 5px;
-                letter-spacing: 0.04em;
+                font-size: 7.5px;
+                padding: 3px 8px;
+                top: 8px;
+                right: 8px;
+                letter-spacing: 0.06em;
             }
             .card-overlay {
                 display: none;
             }
+            .card:hover {
+                transform: none;
+                box-shadow: none;
+                border-color: var(--border);
+            }
+            .card:hover .card-image img {
+                transform: none;
+            }
             .card:active {
-                transform: scale(0.96);
+                transform: scale(0.98);
                 transition: transform 0.15s var(--ease-out);
+            }
+            .img-fallback::after {
+                font-size: 11px;
+                padding: 12px;
             }
 
             /* PAGINATION */
             .page-btn {
-                min-width: 38px;
-                height: 38px;
+                min-width: 40px;
+                height: 40px;
                 padding: 0 10px;
-                font-size: 12px;
+                font-size: 13px;
             }
             .pagination {
                 gap: 4px;
+                margin-top: 8px;
             }
 
             /* ============================================
@@ -2184,19 +2235,19 @@
                 max-width: 100%;
             }
             .pricing-card {
-                padding: 16px 12px;
-                border-radius: 14px;
+                padding: 18px 14px;
+                border-radius: 16px;
             }
             .pricing-badge {
-                font-size: 7px;
-                padding: 3px 8px;
-                margin-bottom: 10px;
-                letter-spacing: 0.08em;
+                font-size: 8px;
+                padding: 4px 9px;
+                margin-bottom: 12px;
+                letter-spacing: 0.09em;
             }
             .pricing-name {
-                font-size: 13px;
+                font-size: 14px;
                 font-weight: 700;
-                margin-bottom: 8px;
+                margin-bottom: 10px;
                 letter-spacing: -0.01em;
                 line-height: 1.2;
             }
@@ -2204,38 +2255,39 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1px;
-                margin-bottom: 12px;
-            }
-            .pricing-amount {
-                font-size: 1.15rem;
-                letter-spacing: -0.02em;
-            }
-            .pricing-currency {
-                font-size: 10px;
-            }
-            .pricing-features {
-                gap: 7px;
                 margin-bottom: 14px;
             }
+            .pricing-amount {
+                font-size: 1.3rem;
+                letter-spacing: -0.025em;
+            }
+            .pricing-currency {
+                font-size: 10.5px;
+            }
+            .pricing-features {
+                gap: 8px;
+                margin-bottom: 16px;
+            }
             .pricing-features li {
-                font-size: 10px;
-                line-height: 1.3;
-                gap: 6px;
+                font-size: 11px;
+                line-height: 1.35;
+                gap: 7px;
             }
             .pricing-features li::before {
-                width: 11px;
-                height: 11px;
+                width: 12px;
+                height: 12px;
                 margin-top: 1px;
-                background-size: 7px;
+                background-size: 8px;
             }
             .pricing-features li:nth-child(n+5) {
                 display: none;
             }
             .pricing-card .btn {
-                padding: 9px 8px;
-                font-size: 10px;
-                min-height: 36px;
+                padding: 10px 8px;
+                font-size: 11px;
+                min-height: 38px;
                 letter-spacing: 0;
+                font-weight: 600;
             }
 
             /* PROCESS */
@@ -2244,72 +2296,73 @@
                 gap: 28px;
             }
             .process-number {
-                font-size: 40px;
+                font-size: 42px;
                 margin-bottom: 12px;
             }
             .process-step h3 {
-                font-size: 16px;
+                font-size: 17px;
             }
             .process-step p {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             /* SERVICES */
             .service-card {
-                padding: 24px 20px;
+                padding: 26px 22px;
             }
             .service-card h3 {
-                font-size: 17px;
+                font-size: 18px;
             }
             .service-card p {
-                font-size: 13px;
-                margin-bottom: 16px;
+                font-size: 14px;
+                margin-bottom: 18px;
             }
             .service-price {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             /* REVIEWS */
             .review-card {
-                padding: 24px 20px;
+                padding: 26px 22px;
             }
             .review-text {
-                font-size: 14px;
+                font-size: 14.5px;
             }
             .review-stars {
-                font-size: 12px;
+                font-size: 13px;
                 margin-bottom: 14px;
             }
 
             /* FAQ */
             .faq-item summary {
-                font-size: 15px;
-                padding: 18px 0;
-                min-height: 56px;
+                font-size: 15.5px;
+                padding: 20px 0;
+                min-height: 58px;
             }
             .faq-icon {
                 margin-left: 14px;
             }
             .faq-answer {
-                font-size: 13px;
-                padding-bottom: 18px;
+                font-size: 14px;
+                padding-bottom: 20px;
                 max-width: 100%;
+                line-height: 1.65;
             }
 
             /* FORM */
             .form-card {
-                padding: 28px 18px;
+                padding: 30px 20px;
                 border-radius: var(--radius-lg);
             }
             .form-card .section-title {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .form-card .form-subtitle {
-                font-size: 13px;
-                margin-bottom: 22px;
+                font-size: 14px;
+                margin-bottom: 24px;
             }
             .form-fields {
-                gap: 12px;
+                gap: 13px;
             }
             .form-field input,
             .form-field select,
@@ -2327,7 +2380,7 @@
                 gap: 12px;
             }
             .form-toggle label {
-                font-size: 13px;
+                font-size: 13.5px;
             }
             .checkbox-field {
                 gap: 10px;
@@ -2338,7 +2391,7 @@
             }
             .checkbox-field label,
             .checkbox-field span {
-                font-size: 12px;
+                font-size: 12.5px;
             }
             .form-submit {
                 padding: 16px;
@@ -2448,56 +2501,72 @@
            ============================================ */
         @media (max-width: 480px) {
             .hero-title {
-                font-size: clamp(0.95rem, 6vw, 1.6rem);
+                font-size: clamp(1.05rem, 7vw, 1.8rem);
+            }
+            .hero-subtitle {
+                font-size: 0.95rem;
             }
             .section-title {
-                font-size: 1.55rem;
+                font-size: 1.65rem;
+            }
+            .section-subtitle {
+                font-size: 14px;
             }
             .filter-btn {
-                font-size: 11px;
-                padding: 9px 8px;
+                font-size: 12px;
+                padding: 10px 8px;
             }
             .catalog-grid {
-                gap: 6px;
+                gap: 12px;
             }
             .card-body {
-                padding: 6px 5px 8px;
+                padding: 12px 12px 14px;
             }
             .card-title {
-                font-size: 10px;
+                font-size: 14px;
+            }
+            .card-desc {
+                font-size: 11px;
+            }
+            .card-link {
+                font-size: 10.5px;
+            }
+            .card-cta {
+                font-size: 9.5px;
+                padding: 5px 10px;
             }
             .card-price {
-                font-size: 6.5px;
-                padding: 2px 4px;
+                font-size: 10px;
+                padding: 4px 10px;
             }
             .card-badge {
-                font-size: 5.5px;
-                padding: 2px 4px;
+                font-size: 7px;
+                padding: 3px 7px;
             }
             .pricing-card {
-                padding: 14px 9px;
+                padding: 16px 12px;
             }
             .pricing-name {
-                font-size: 11.5px;
+                font-size: 13px;
             }
             .pricing-amount {
-                font-size: 1.05rem;
+                font-size: 1.2rem;
             }
             .pricing-features li {
-                font-size: 9px;
+                font-size: 10.5px;
             }
             .pricing-card .btn {
-                font-size: 9px;
-                padding: 8px 6px;
+                font-size: 10px;
+                padding: 9px 6px;
             }
             .form-card {
-                padding: 24px 16px;
+                padding: 26px 18px;
             }
             .footer-links {
                 gap: 12px;
             }
             .footer-links a {
-                font-size: 11px;
+                font-size: 11.5px;
             }
         }
 
@@ -2506,34 +2575,62 @@
            ============================================ */
         @media (max-width: 380px) {
             .hero-title {
-                font-size: clamp(0.85rem, 5.8vw, 1.3rem);
+                font-size: clamp(0.95rem, 6.8vw, 1.5rem);
             }
             .hero-stats {
                 gap: 16px;
             }
             .stat-value {
-                font-size: 1.3rem;
-            }
-            .stat-label {
-                font-size: 10px;
-            }
-            .section-title {
                 font-size: 1.4rem;
             }
+            .stat-label {
+                font-size: 10.5px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .catalog-grid {
+                gap: 10px;
+            }
+            .card-body {
+                padding: 10px 10px 12px;
+            }
             .card-title {
-                font-size: 9.5px;
+                font-size: 13px;
+            }
+            .card-desc {
+                font-size: 10.5px;
+                -webkit-line-clamp: 2;
+                margin-bottom: 10px;
+            }
+            .card-category {
+                font-size: 9px;
+            }
+            .card-link {
+                font-size: 10px;
+            }
+            .card-cta {
+                font-size: 9px;
+                padding: 5px 8px;
             }
             .card-price {
-                font-size: 6px;
+                font-size: 9.5px;
+                padding: 4px 8px;
+            }
+            .pricing-card {
+                padding: 14px 10px;
             }
             .pricing-name {
-                font-size: 11px;
+                font-size: 12px;
             }
             .pricing-amount {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             .pricing-features li {
-                font-size: 8.5px;
+                font-size: 10px;
+            }
+            .pricing-card .btn {
+                font-size: 9.5px;
             }
         }
 
@@ -3186,15 +3283,15 @@
     }
 
     /* ============================================
-       UNIFIED PRICE
+       PRICE TEXTS
        ============================================ */
     var UNIFIED_PRICE_TEXT = '90 BYN / 2500 RUB';
+    var UNIFIED_PRICE_SHORT = '90 BYN';
 
     /* ============================================
        TEMPLATES DATA
        ============================================ */
     var templates = [
-        /* НОВИНКИ */
         {
             name: "Бордо",
             desc: "Глубокий винный оттенок и благородная атмосфера. Для пар, которые любят смелые и элегантные решения.",
@@ -3222,10 +3319,9 @@
             badge: "new",
             type: "wedding"
         },
-        /* ГЕНДЕР-ПАТИ */
         {
             name: "Вечерняя сказка",
-            desc: "Загадочный и элегантный дизайн для гендер-пати. Идеально подходит для создания интриги и уютной атмосферы.",
+            desc: "Загадочный и элегантный дизайн для гендер-пати. Идеально для создания интриги и уютной атмосферы.",
             demoUrl: "https://wedding-love.github.io/gender-party2/",
             imageUrl: "главная.png",
             category: "gender",
@@ -3233,13 +3329,12 @@
         },
         {
             name: "Принц или Принцесса",
-            desc: "Яркий, игривый дизайн для гендер-пати с главной интригой вечера. Идеален для создания праздничного настроения и ожидания чуда.",
+            desc: "Яркий, игривый дизайн для гендер-пати с главной интригой вечера.",
             demoUrl: "https://gender-party.github.io/-1/",
             imageUrl: "photo_2026-07-16_17-12-43.jpg",
             category: "gender",
             type: "gender"
         },
-        /* СВАДЕБНЫЕ */
         { name: "Классика", desc: "Вневременная элегантность, строгие линии и благородство.", demoUrl: "https://wedding-love.github.io/classic/", imageUrl: "классика.jpg", category: "classic", type: "wedding" },
         { name: "Письмо", desc: "Камерный формат, личное послание гостям в стиле эпистолы.", demoUrl: "https://wedding-love.github.io/letter/", imageUrl: "letter.jpg", category: "classic", type: "wedding" },
         { name: "Газета", desc: "Типографика в стиле редакционных изданий с винтажным шармом.", demoUrl: "https://wedding-love.github.io/newspaper/", imageUrl: "газета.jpg", category: "classic", type: "wedding" },
@@ -3275,7 +3370,7 @@
     /* ============================================
        CATALOG LOGIC
        ============================================ */
-    var ITEMS_PER_PAGE = 9;
+    var ITEMS_PER_PAGE = isMobile ? 4 : 9;
     var currentCategoryFilter = 'all';
     var currentPage = 1;
     var filteredTemplates = templates.slice();
@@ -3389,7 +3484,10 @@
                         ? '<img src="' + item.imageUrl + '" alt="' + safeName + '" loading="lazy" ' +
                           'onerror="this.style.display=\'none\'; this.parentElement.classList.add(\'img-fallback\'); this.parentElement.setAttribute(\'data-name\', this.alt);">'
                         : '<div class="img-fallback" data-name="' + safeName + '"></div>') +
-                    '<div class="card-price">' + UNIFIED_PRICE_TEXT + '</div>' +
+                    '<div class="card-price">' +
+                        '<span class="price-full">' + UNIFIED_PRICE_TEXT + '</span>' +
+                        '<span class="price-short">' + UNIFIED_PRICE_SHORT + '</span>' +
+                    '</div>' +
                     '<div class="card-overlay">' +
                         '<button class="btn demo-trigger" data-name="' + safeName + '">Быстрый просмотр</button>' +
                     '</div>' +
@@ -3403,12 +3501,6 @@
                         '<button class="card-cta order-trigger" data-template="' + safeName + '">Выбрать</button>' +
                     '</div>' +
                 '</div>';
-
-            /* Делаем всю карточку кликабельной (важно для мобильного 3-col) */
-            card.addEventListener('click', function (e) {
-                if (e.target.closest('.demo-trigger') || e.target.closest('.order-trigger')) return;
-                openDemoModal(item);
-            });
 
             grid.appendChild(card);
         });
@@ -3456,7 +3548,7 @@
             paginationDiv.appendChild(prev);
         }
 
-        var maxVisible = isMobile ? 3 : 5;
+        var maxVisible = isMobile ? 5 : 5;
         var startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
         var endPage = Math.min(totalPages, startPage + maxVisible - 1);
         if (endPage - startPage < maxVisible - 1) {
@@ -3535,14 +3627,22 @@
     });
 
     /* ============================================
-       RESIZE HANDLER
+       RESIZE HANDLER — ПЕРЕСЧЁТ КОЛИЧЕСТВА НА СТРАНИЦЕ
        ============================================ */
     var resizeTimer;
+    var lastWasMobile = isMobile;
     window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function () {
-            isMobile = window.matchMedia('(max-width: 768px)').matches;
-        }, 150);
+            var nowMobile = window.matchMedia('(max-width: 768px)').matches;
+            if (nowMobile !== lastWasMobile) {
+                lastWasMobile = nowMobile;
+                isMobile = nowMobile;
+                ITEMS_PER_PAGE = isMobile ? 4 : 9;
+                currentPage = 1;
+                applyFilters();
+            }
+        }, 200);
     });
 </script>
 </body>
